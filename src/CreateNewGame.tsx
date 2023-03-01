@@ -1,11 +1,24 @@
+import { writeTextFile, BaseDirectory } from '@tauri-apps/api/fs';
+
 function CreateNewGame() {
 
     return (
         <div>
             <h1>Create new game</h1>
             <form
-                onSubmit={(e) => {
+                onSubmit={async (e) => {
                     e.preventDefault();
+                    const content = {
+                        name: "GAME NAME HERE",
+                        scene: {
+                            width: 10.0,
+                            height: 10.0
+                        },
+                    };
+
+                    const contentJson = JSON.stringify(content);
+
+                    await writeTextFile('PATH_HERE/content.json', contentJson, { dir: BaseDirectory.AppConfig });
                 }}
             >
                 <div>
