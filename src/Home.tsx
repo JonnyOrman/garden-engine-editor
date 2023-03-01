@@ -2,8 +2,13 @@ import { useNavigate } from "react-router-dom";
 
 function Home() {
     const navigate = useNavigate();
+
     const goToCreateNewGame = () => {
         navigate("/create-new-game");
+    }
+
+    const goToEditGame = () => {
+        navigate("/edit-game");
     }
 
     return (
@@ -12,7 +17,10 @@ function Home() {
 
             <div className="row">
                 <button onClick={goToCreateNewGame}>Create new game</button>
+
+                <button onClick={goToEditGame}>Edit game</button>
             </div>
+
         </div >
     );
 }

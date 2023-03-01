@@ -1,10 +1,16 @@
 import { writeTextFile, BaseDirectory } from '@tauri-apps/api/fs';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 function CreateNewGame() {
     const [name, setName] = useState("");
     const [sceneWidth, setSceneWidth] = useState(0);
     const [sceneHeight, setSceneHeight] = useState(0);
+
+    const navigate = useNavigate();
+    const goToCreateNewGame = () => {
+        navigate("/create-new-game");
+    }
 
     const submit = async (e: any) => {
         e.preventDefault();
@@ -19,6 +25,8 @@ function CreateNewGame() {
         const contentJson = JSON.stringify(content);
 
         await writeTextFile('PATH_HERE/content.json', contentJson, { dir: BaseDirectory.AppConfig });
+
+        navigate('/edit-game');
     };
 
     return (
