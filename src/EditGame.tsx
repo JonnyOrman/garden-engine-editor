@@ -1,6 +1,12 @@
+import EditContent from "./EditContent";
+import EditScene from "./EditScene";
+
 function EditGame() {
     return (
-        <div>Edit game screen</div>
+        <div>
+            <EditScene />
+            <EditContent />
+        </div>
     )
 }
 

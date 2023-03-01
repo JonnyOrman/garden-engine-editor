@@ -20,13 +20,39 @@ function CreateNewGame() {
                 width: sceneWidth,
                 height: sceneHeight
             },
+            content: {
+                objects: [
+                    {
+                        name: "Rectangle1",
+                        type: "rectangle",
+                        width: 2.0,
+                        height: 5.0,
+                        rgb: {
+                            r: 0.0,
+                            g: 0.0,
+                            b: 1.0
+                        }
+                    },
+                    {
+                        name: "Rectangle2",
+                        type: "rectangle",
+                        width: 3.0,
+                        height: 2.0,
+                        rgb: {
+                            r: 1.0,
+                            g: 0.0,
+                            b: 0.0
+                        }
+                    }
+                ]
+            }
         };
 
         const contentJson = JSON.stringify(content);
 
-        await writeTextFile('PATH_HERE/content.json', contentJson, { dir: BaseDirectory.AppConfig });
-
-        navigate('/edit-game');
+        await writeTextFile('PATH_HERE/content.json', contentJson, { dir: BaseDirectory.AppConfig }).then(() => {
+            navigate('/edit-game');
+        });
     };
 
     return (
