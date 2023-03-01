@@ -2,32 +2,30 @@ import { readTextFile, BaseDirectory } from '@tauri-apps/api/fs';
 import { useEffect, useState } from 'react';
 
 function EditContent() {
-    const [name, setName] = useState('');
-    const [objects, setObjects] = useState([]);
+    const [content, setContent] = useState<any>();
 
     useEffect(() => {
-        async function getData() {
+        async function getContent() {
             const contentJson: any = await readTextFile('PATH_HERE/content.json', { dir: BaseDirectory.AppConfig });
 
             const content = JSON.parse(contentJson);
 
-            setName(content.name);
-            setObjects(content.content.objects);
+            setContent(content.content);
         };
 
-        if (!name || !objects) {
-            getData();
+        if (!content) {
+            getContent();
         }
     }, []);
 
     return (
         <div>
             {
-                objects.map((object: any) => {
+                content?.objects?.map((object: any) => {
                     return <div>{object.name}</div>
                 })
             }
-        </div>
+        </div >
     )
 }
 

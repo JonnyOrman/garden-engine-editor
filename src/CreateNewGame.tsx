@@ -45,7 +45,43 @@ function CreateNewGame() {
                         }
                     }
                 ]
-            }
+            },
+            objects: [
+                {
+                    name: "Rectangle1-a",
+                    contentName: "Rectangle1",
+                    type: "rectangle",
+                    scale: 1.0,
+                    width: 2.5,
+                    height: 5.0,
+                    position: {
+                        x: -5.0,
+                        y: 5.0
+                    },
+                    rgb: {
+                        r: 0.0,
+                        g: 0.0,
+                        b: 1.0
+                    }
+                },
+                {
+                    name: "Rectangle2-a",
+                    contentName: "Rectangle2",
+                    type: "rectangle",
+                    scale: 1.0,
+                    width: 3.0,
+                    height: 2.0,
+                    position: {
+                        x: 5.0,
+                        y: -5.0
+                    },
+                    rgb: {
+                        r: 1.0,
+                        g: 0.0,
+                        b: 0.0
+                    }
+                }
+            ]
         };
 
         const contentJson = JSON.stringify(content);
