@@ -4,26 +4,26 @@ import EditContent from "./EditContent";
 import EditScene from "./EditScene";
 
 function EditGame() {
-    const [name, setName] = useState('');
+    const [content, setContent] = useState<any>();
 
     useEffect(() => {
-        async function getName() {
+        async function getContent() {
             const contentJson: any = await readTextFile('PATH_HERE/content.json', { dir: BaseDirectory.AppConfig });
 
             const content = JSON.parse(contentJson);
 
-            setName(content.name);
+            setContent(content);
         };
 
-        if (!name) {
-            getName();
+        if (!content) {
+            getContent();
         }
     }, []);
 
     return (
         <div>
-            <EditScene />
-            <EditContent />
+            <EditScene objects={content?.objects || []} />
+            <EditContent content={content?.content || {}} />
         </div>
     )
 }
