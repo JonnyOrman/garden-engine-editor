@@ -1,9 +1,16 @@
 import { writeTextFile, BaseDirectory } from '@tauri-apps/api/fs';
 import { useState } from 'react';
+import Button from 'react-bootstrap/Button';
+import Form from 'react-bootstrap/Form';
+import Row from 'react-bootstrap/Row';
 import { useNavigate } from 'react-router-dom';
+import Game from './Game';
+import Rectangle from './Rectangle';
+import RectangleInstance from './RectangleInstance';
+import Scene from './Scene';
 
 function CreateNewGame() {
-    const [name, setName] = useState("");
+    const [name, setName] = useState('');
     const [sceneWidth, setSceneWidth] = useState(0);
     const [sceneHeight, setSceneHeight] = useState(0);
 
@@ -14,12 +21,12 @@ function CreateNewGame() {
 
     const submit = async (e: any) => {
         e.preventDefault();
-        const content = {
+        const game: Game = {
             name: name,
             scene: {
                 width: sceneWidth,
                 height: sceneHeight
-            },
+            } as Scene,
             content: {
                 objects: [
                     {
@@ -32,7 +39,7 @@ function CreateNewGame() {
                             g: 0.0,
                             b: 1.0
                         }
-                    },
+                    } as Rectangle,
                     {
                         name: "Rectangle2",
                         type: "rectangle",
@@ -43,7 +50,7 @@ function CreateNewGame() {
                             g: 0.0,
                             b: 0.0
                         }
-                    }
+                    } as Rectangle
                 ]
             },
             objects: [
@@ -63,7 +70,7 @@ function CreateNewGame() {
                         g: 0.0,
                         b: 1.0
                     }
-                },
+                } as RectangleInstance,
                 {
                     name: "Rectangle2-a",
                     contentName: "Rectangle2",
@@ -80,58 +87,55 @@ function CreateNewGame() {
                         g: 0.0,
                         b: 0.0
                     }
-                }
+                } as RectangleInstance
             ]
         };
 
-        const contentJson = JSON.stringify(content);
+        const gameJson = JSON.stringify(game);
 
-        await writeTextFile('PATH_HERE/content.json', contentJson, { dir: BaseDirectory.AppConfig }).then(() => {
+        await writeTextFile('PATH_HERE/content.json', gameJson, { dir: BaseDirectory.AppConfig }).then(() => {
             navigate('/edit-game');
         });
     };
 
     return (
-        <div>
+        <Row>
             <h1>Create new game</h1>
-            <form
+            <Form
                 onSubmit={submit}
             >
-                <div>
-                    <label>
-                        Name:
-                        <input
-                            id="name"
-                            type="text"
-                            onChange={(e) => setName(e.currentTarget.value)}
-                        />
-                    </label>
-                </div>
+                <Form.Group>
+                    <Form.Label>Name:</Form.Label>
+                    <Form.Control id="name"
+                        type="text"
+                        onChange={(e) => setName(e.currentTarget.value)}>
+                    </Form.Control>
+                </Form.Group>
 
-                <div>
-                    <label>
+                <Form.Group>
+                    <Form.Label>
                         Scene width:
-                        <input
-                            id="scene-width"
-                            type="number"
-                            onChange={(e) => setSceneWidth(+e.currentTarget.value)}
-                        />
-                    </label>
-                </div>
+                    </Form.Label>
+                    <Form.Control
+                        id="scene-width"
+                        type="number"
+                        onChange={(e) => setSceneWidth(+e.currentTarget.value)}
+                    />
+                </Form.Group>
 
-                <div>
-                    <label>
+                <Form.Group>
+                    <Form.Label>
                         Scene height:
-                        <input
-                            id="scene-height"
-                            type="number"
-                            onChange={(e) => setSceneHeight(+e.currentTarget.value)}
-                        />
-                    </label>
-                </div>
-                <button type="submit">Create</button>
-            </form>
-        </div>
+                    </Form.Label>
+                    <Form.Control
+                        id="scene-height"
+                        type="number"
+                        onChange={(e) => setSceneHeight(+e.currentTarget.value)}
+                    />
+                </Form.Group>
+                <Button variant="primary" type="submit">Create</Button>
+            </Form>
+        </Row>
     );
 }
 
