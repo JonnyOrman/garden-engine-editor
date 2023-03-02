@@ -4,15 +4,18 @@ import Dropdown from "react-bootstrap/Dropdown";
 import Modal from "react-bootstrap/Modal";
 import CreateRectangle from "./CreateRectangle";
 import CreateTriangle from "./CreateTriangle";
+import JsonObjectWriter from "./JsonObjectWriter";
+import Rectangle from "./Rectangle";
+import Triangle from "./Triangle";
 
 function CreateContentModal(props: any) {
     const [type, setType] = useState('');
 
     let typeForm;
     if (type == 'triangle') {
-        typeForm = <CreateTriangle onHide={props.onHide} />;
+        typeForm = <CreateTriangle onHide={props.onHide} triangleWriter={new JsonObjectWriter<Triangle>()} />;
     } else if (type == 'rectangle') {
-        typeForm = <CreateRectangle onHide={props.onHide} />;
+        typeForm = <CreateRectangle onHide={props.onHide} rectangleWriter={new JsonObjectWriter<Rectangle>()} />;
     }
 
     return (
