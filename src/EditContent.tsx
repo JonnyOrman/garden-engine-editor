@@ -1,6 +1,11 @@
+import React from "react";
+import Button from "react-bootstrap/Button";
+import CreateContentModal from "./CreateContentModal";
 import ObjectListItem from "./ObjectListItem";
 
-function EditContent(props: { content: any }) {
+function EditContent(props: any) {
+    const [createContentModalShow, setCreateContentModalShow] = React.useState(false);
+
     return (
         <div>
             <div className="row">
@@ -11,9 +16,13 @@ function EditContent(props: { content: any }) {
                 }
             </div>
             <div className="row">
-                <button type="submit">Add content</button>
+                <Button variant="primary" onClick={() => setCreateContentModalShow(true)}>Add content</Button>
             </div>
-        </div >
+            <CreateContentModal
+                show={createContentModalShow}
+                onHide={() => setCreateContentModalShow(false)}
+            />
+        </div>
     )
 }
 
