@@ -1,24 +1,18 @@
-import { BaseDirectory, readTextFile, writeTextFile } from "@tauri-apps/api/fs";
 import { useState } from "react";
 import Button from "react-bootstrap/Button";
-import Form from "react-bootstrap/Form";
+import Dropdown from "react-bootstrap/Dropdown";
 import Modal from "react-bootstrap/Modal";
+import CreateRectangle from "./CreateRectangle";
+import CreateTriangle from "./CreateTriangle";
 
 function CreateContentModal(props: any) {
-    const [name, setName] = useState('');
+    const [type, setType] = useState('');
 
-    const submit = async (e: any) => {
-        e.preventDefault();
-
-        const contentJson: any = await readTextFile('PATH_HERE/content.json', { dir: BaseDirectory.AppConfig });
-
-        const content = JSON.parse(contentJson);
-
-        content.content.objects.push({ name: name });
-
-        await writeTextFile('PATH_HERE/content.json', JSON.stringify(content), { dir: BaseDirectory.AppConfig });
-
-        props.onHide();
+    let typeForm;
+    if (type == 'triangle') {
+        typeForm = <CreateTriangle onHide={props.onHide} />;
+    } else if (type == 'rectangle') {
+        typeForm = <CreateRectangle />;
     }
 
     return (
@@ -35,18 +29,17 @@ function CreateContentModal(props: any) {
             </Modal.Header>
             <Modal.Body>
                 <h4>New Content</h4>
-                <Form
-                    onSubmit={submit}
-                >
-                    <Form.Group>
-                        <Form.Label>Name:</Form.Label>
-                        <Form.Control id="name"
-                            type="text"
-                            onChange={(e) => setName(e.currentTarget.value)}>
-                        </Form.Control>
-                    </Form.Group>
-                    <Button variant="primary" type="submit">Create</Button>
-                </Form>
+                <Dropdown onSelect={(eventKey: any, event: Object) => { setType(eventKey) }}>
+                    <Dropdown.Toggle variant="success" id="dropdown-basic">
+                        Type
+                    </Dropdown.Toggle>
+
+                    <Dropdown.Menu>
+                        <Dropdown.Item eventKey={"triangle"} href="#">Triangle</Dropdown.Item>
+                        <Dropdown.Item eventKey={"rectangle"} href="#">Rectangle</Dropdown.Item>
+                    </Dropdown.Menu>
+                </Dropdown>
+                {typeForm}
             </Modal.Body>
             <Modal.Footer>
                 <Button onClick={props.onHide}>Close</Button>
