@@ -5,7 +5,7 @@ import Row from "react-bootstrap/Row";
 import EditContent from "./EditContent";
 import EditScene from "./EditScene";
 
-function EditGame() {
+function EditGame(props: any) {
     const [content, setContent] = useState<any>();
 
     useEffect(() => {
@@ -28,7 +28,7 @@ function EditGame() {
                 <EditScene objects={content?.objects || []} />
             </Col>
             <Col xs="2">
-                <EditContent content={content?.content || {}} />
+                <EditContent content={content?.content || {}} gameWriter={props.gameWriter} />
             </Col>
         </Row>
     )

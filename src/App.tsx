@@ -12,6 +12,7 @@ import JsonGameWriter from "./JsonGameWriter";
 function App() {
   const [greetMsg, setGreetMsg] = useState("");
   const [name, setName] = useState("");
+  const [gameWriter, setGameWriter] = useState(new JsonGameWriter());
 
   async function greet() {
     // Learn more about Tauri commands at https://tauri.app/v1/guides/features/command
@@ -23,8 +24,8 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/create-new-game" element={<CreateNewGame gameWriter={new JsonGameWriter()} />} />
-          <Route path="/edit-game" element={<EditGame />} />
+          <Route path="/create-new-game" element={<CreateNewGame gameWriter={gameWriter} />} />
+          <Route path="/edit-game" element={<EditGame gameWriter={gameWriter} />} />
         </Routes>
       </BrowserRouter>
     </Container>
