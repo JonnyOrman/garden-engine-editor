@@ -7,6 +7,7 @@ import CreateNewGame from "./CreateNewGame";
 import EditGame from "./EditGame";
 import Container from "react-bootstrap/Container";
 import 'bootstrap/dist/css/bootstrap.min.css';
+import JsonGameWriter from "./JsonGameWriter";
 
 function App() {
   const [greetMsg, setGreetMsg] = useState("");
@@ -22,7 +23,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/create-new-game" element={<CreateNewGame />} />
+          <Route path="/create-new-game" element={<CreateNewGame gameWriter={new JsonGameWriter()} />} />
           <Route path="/edit-game" element={<EditGame />} />
         </Routes>
       </BrowserRouter>
