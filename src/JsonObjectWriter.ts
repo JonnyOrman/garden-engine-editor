@@ -1,14 +1,16 @@
-import { BaseDirectory, readTextFile, writeTextFile } from "@tauri-apps/api/fs";
+import { BaseDirectory, writeTextFile } from "@tauri-apps/api/fs";
+import ContentObject from "./ContentObject";
+import GameReader from "./Reader";
 import Writer from "./Writer";
 
-export default class JsonObjectWriter<T> implements Writer<T> {
+export default class JsonObjectWriter<T extends ContentObject> implements Writer<T> {
+    constructor(private gameReader: GameReader) { }
+
     async write(obj: T): Promise<void> {
-        const contentJson: any = await readTextFile('PATH_HERE/content.json', { dir: BaseDirectory.AppConfig });
+        const game = await this.gameReader.read();
 
-        const content = JSON.parse(contentJson);
+        game.content.objects.push(obj);
 
-        content.content.objects.push(obj);
-
-        await writeTextFile('PATH_HERE/content.json', JSON.stringify(content), { dir: BaseDirectory.AppConfig });
+        await writeTextFile('PATH_HERE/content.json', JSON.stringify(game), { dir: BaseDirectory.AppConfig });
     }
 }
