@@ -12,7 +12,7 @@ function CreateContentModal(props: any) {
     if (type == 'triangle') {
         typeForm = <CreateTriangle onHide={props.onHide} />;
     } else if (type == 'rectangle') {
-        typeForm = <CreateRectangle />;
+        typeForm = <CreateRectangle onHide={props.onHide} />;
     }
 
     return (
