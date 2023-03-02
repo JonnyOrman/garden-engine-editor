@@ -9,7 +9,7 @@ import Rectangle from './Rectangle';
 import RectangleInstance from './RectangleInstance';
 import Scene from './Scene';
 
-function CreateNewGame() {
+function CreateNewGame(props: any) {
     const [name, setName] = useState('');
     const [sceneWidth, setSceneWidth] = useState(0);
     const [sceneHeight, setSceneHeight] = useState(0);
@@ -91,9 +91,7 @@ function CreateNewGame() {
             ]
         };
 
-        const gameJson = JSON.stringify(game);
-
-        await writeTextFile('PATH_HERE/content.json', gameJson, { dir: BaseDirectory.AppConfig }).then(() => {
+        props.gameWriter.write(game).then(() => {
             navigate('/edit-game');
         });
     };

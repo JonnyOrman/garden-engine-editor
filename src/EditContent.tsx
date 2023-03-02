@@ -23,6 +23,7 @@ function EditContent(props: any) {
             <CreateContentModal
                 show={createContentModalShow}
                 onHide={() => setCreateContentModalShow(false)}
+                gameWriter={props.gameWriter}
             />
         </Col>
     )

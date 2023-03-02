@@ -1,4 +1,3 @@
-import { BaseDirectory, readTextFile, writeTextFile } from "@tauri-apps/api/fs";
 import { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
@@ -14,11 +13,7 @@ function CreateRectangle(props: any) {
     const submit = async (e: any) => {
         e.preventDefault();
 
-        const contentJson: any = await readTextFile('PATH_HERE/content.json', { dir: BaseDirectory.AppConfig });
-
-        const content = JSON.parse(contentJson);
-
-        content.content.objects.push({
+        await props.rectangleWriter?.write({
             name: name,
             type: 'rectangle',
             width: width,
@@ -29,8 +24,6 @@ function CreateRectangle(props: any) {
                 b: b
             }
         });
-
-        await writeTextFile('PATH_HERE/content.json', JSON.stringify(content), { dir: BaseDirectory.AppConfig });
 
         props.onHide();
     }
