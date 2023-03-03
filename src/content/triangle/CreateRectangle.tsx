@@ -1,8 +1,9 @@
 import { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
+import CreateRectangleProps from "./CreateRectangleProps";
 
-function CreateRectangle(props: any) {
+function CreateRectangle(props: CreateRectangleProps) {
     const [name, setName] = useState('');
     const [width, setWidth] = useState(0);
     const [height, setHeight] = useState(0);

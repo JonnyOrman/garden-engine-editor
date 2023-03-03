@@ -1,4 +1,6 @@
-function ContentInstanceListItem(props: any) {
+import ContentInstanceListItemProps from "./ContentInstanceListItemProps";
+
+function ContentInstanceListItem(props: ContentInstanceListItemProps) {
     return (
         <div>
             <div>Name: {props.contentInstance.name}</div>

@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { invoke } from "@tauri-apps/api/tauri";
 import "./App.css";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Home from "./Home";
@@ -14,18 +13,12 @@ import GameJsonReader from "./game/GameJsonReader";
 import GameFilePathProvider from "./game/GameFilePathProvider";
 
 function App() {
-  const [greetMsg, setGreetMsg] = useState("");
   const [name, setName] = useState("");
   const [gameFilePathProvider, setGameFilePathProvider] = useState(new GameFilePathProvider('FILE_PATH/content.json'));
   const [gameJsonWriter, setGameJsonWriter] = useState(new GameJsonWriter(gameFilePathProvider));
   const [gameJsonReader, setGameJsonReader] = useState(new GameJsonReader(gameFilePathProvider));
   const [gameWriter, setGameWriter] = useState(new JsonGameWriter(gameJsonWriter));
   const [gameReader, setGameReader] = useState(new JsonGameReader(gameJsonReader));
-
-  async function greet() {
-    // Learn more about Tauri commands at https://tauri.app/v1/guides/features/command
-    setGreetMsg(await invoke("greet", { name }));
-  }
 
   return (
     <Container fluid className="h-100">

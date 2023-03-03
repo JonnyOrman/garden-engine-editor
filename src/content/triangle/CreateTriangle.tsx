@@ -1,8 +1,9 @@
 import { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
+import CreateTriangleProps from "./CreateTriangleProps";
 
-function CreateTriangle(props: any) {
+function CreateTriangle(props: CreateTriangleProps) {
     const [name, setName] = useState('');
     const [point1X, setPoint1X] = useState(0);
     const [point1Y, setPoint1Y] = useState(0);

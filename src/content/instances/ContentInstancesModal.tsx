@@ -2,9 +2,9 @@ import React, { useEffect } from "react";
 import Modal from "react-bootstrap/Modal";
 import ContentInstance from "./ContentInstance";
 import ContentInstanceListItem from "./ContentInstanceListItem";
-import ContentInstancesProvider from "./ContentInstancesProvider";
+import ContentInstancesModalProps from "./ContentInstancesModalProps";
 
-function ContentInstancesModal(props: { show: boolean, onHide: () => void, contentName: string, contentInstancesProvider: ContentInstancesProvider }) {
+function ContentInstancesModal(props: ContentInstancesModalProps) {
     const [contentInstances, setContentInstances] = React.useState<ContentInstance[]>();
 
     useEffect(() => {

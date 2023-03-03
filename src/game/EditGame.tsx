@@ -3,9 +3,10 @@ import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import EditContent from "../content/EditContent";
 import EditScene from "../scene/EditScene";
+import EditGameProps from "./EditGameProps";
 import Game from "./Game";
 
-function EditGame(props: any) {
+function EditGame(props: EditGameProps) {
     const [game, setGame] = useState<Game>();
 
     useEffect(() => {
@@ -26,7 +27,7 @@ function EditGame(props: any) {
                 <EditScene objects={game?.objects || []} />
             </Col>
             <Col xs="2">
-                <EditContent content={game?.content || {}} gameWriter={props.gameWriter} gameReader={props.gameReader} />
+                <EditContent content={game?.content} gameWriter={props.gameWriter} gameReader={props.gameReader} />
             </Col>
         </Row>
     )

@@ -2,8 +2,9 @@ import React from "react";
 import Button from "react-bootstrap/Button";
 import GameContentInstancesProvider from "../game/GameContentInstancesProvider";
 import ContentInstancesModal from "./instances/ContentInstancesModal";
+import ObjectListItemProps from "./ObjectListItemProps";
 
-function ObjectListItem(props: any) {
+function ObjectListItem(props: ObjectListItemProps) {
     const [contentInstancesModalShow, setContentInstancesModalShow] = React.useState(false);
 
     return (

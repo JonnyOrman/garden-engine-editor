@@ -7,8 +7,9 @@ import CreateTriangle from "./triangle/CreateTriangle";
 import JsonObjectWriter from "./JsonObjectWriter";
 import Rectangle from "./rectangle/Rectangle";
 import Triangle from "./triangle/Triangle";
+import CreateContentModalProps from "./CreateContentModalProps";
 
-function CreateContentModal(props: any) {
+function CreateContentModal(props: CreateContentModalProps) {
     const [type, setType] = useState('');
     const [gameReader, setGameReader] = useState(props.gameReader);
 
