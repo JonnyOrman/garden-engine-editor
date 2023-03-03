@@ -3,12 +3,12 @@ import { invoke } from "@tauri-apps/api/tauri";
 import "./App.css";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Home from "./Home";
-import CreateNewGame from "./CreateNewGame";
-import EditGame from "./EditGame";
+import CreateNewGame from "./game/CreateNewGame";
+import EditGame from "./game/EditGame";
 import Container from "react-bootstrap/Container";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import JsonGameWriter from "./JsonGameWriter";
-import JsonGameReader from "./JsonGameReader";
+import JsonGameWriter from "./game/JsonGameWriter";
+import JsonGameReader from "./game/JsonGameReader";
 
 function App() {
   const [greetMsg, setGreetMsg] = useState("");

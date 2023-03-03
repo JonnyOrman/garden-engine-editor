@@ -1,7 +1,7 @@
 import ContentObject from "./ContentObject";
-import Game from "./Game";
-import GameReader from "./Reader";
-import Writer from "./Writer";
+import Game from "../game/Game";
+import GameReader from "../Reader";
+import Writer from "../Writer";
 
 export default class JsonObjectWriter<T extends ContentObject> implements Writer<T> {
     constructor(

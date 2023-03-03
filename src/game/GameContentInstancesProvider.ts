@@ -1,6 +1,6 @@
-import ContentInstance from "./ContentInstance";
-import ContentInstancesProvider from "./ContentInstancesProvider";
-import GameReader from "./Reader";
+import ContentInstance from "../content/instances/ContentInstance";
+import ContentInstancesProvider from "../content/instances/ContentInstancesProvider";
+import GameReader from "../Reader";
 
 export default class GameContentInstancesProvider implements ContentInstancesProvider {
     constructor(private gameReader: GameReader) { }

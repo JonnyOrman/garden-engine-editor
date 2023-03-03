@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
-import EditContent from "./EditContent";
-import EditScene from "./EditScene";
+import EditContent from "../content/EditContent";
+import EditScene from "../scene/EditScene";
 import Game from "./Game";
 
 function EditGame(props: any) {

@@ -4,7 +4,7 @@ import ContentInstance from "./ContentInstance";
 import ContentInstanceListItem from "./ContentInstanceListItem";
 import ContentInstancesProvider from "./ContentInstancesProvider";
 
-function ContentInstancesModal(props: { contentName: string, contentInstancesProvider: ContentInstancesProvider }) {
+function ContentInstancesModal(props: { show: boolean, onHide: () => void, contentName: string, contentInstancesProvider: ContentInstancesProvider }) {
     const [contentInstances, setContentInstances] = React.useState<ContentInstance[]>();
 
     useEffect(() => {
