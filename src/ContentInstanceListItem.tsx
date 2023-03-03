@@ -1,6 +1,10 @@
 function ContentInstanceListItem(props: any) {
     return (
-        <div>A content instance list item</div>
+        <div>
+            <div>Name: {props.contentInstance.name}</div>
+            <div>Location: {props.contentInstance.position.x}, {props.contentInstance.position.y}</div>
+            <div>Scale: {props.contentInstance.scale}</div>
+        </div>
     )
 }
 

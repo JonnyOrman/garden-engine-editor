@@ -1,34 +1,32 @@
-import { BaseDirectory, readTextFile } from "@tauri-apps/api/fs";
 import { useEffect, useState } from "react";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import EditContent from "./EditContent";
 import EditScene from "./EditScene";
+import Game from "./Game";
 
 function EditGame(props: any) {
-    const [content, setContent] = useState<any>();
+    const [game, setGame] = useState<Game>();
 
     useEffect(() => {
-        async function getContent() {
-            const contentJson: any = await readTextFile('PATH_HERE/content.json', { dir: BaseDirectory.AppConfig });
+        async function getGame() {
+            const game = await props.gameReader.read();
 
-            const content = JSON.parse(contentJson);
-
-            setContent(content);
+            setGame(game);
         };
 
-        if (!content) {
-            getContent();
+        if (!game) {
+            getGame();
         }
     }, []);
 
     return (
         <Row className="h-100">
             <Col xs="10">
-                <EditScene objects={content?.objects || []} />
+                <EditScene objects={game?.objects || []} />
             </Col>
             <Col xs="2">
-                <EditContent content={content?.content || {}} gameWriter={props.gameWriter} gameReader={props.gameReader} />
+                <EditContent content={game?.content || {}} gameWriter={props.gameWriter} gameReader={props.gameReader} />
             </Col>
         </Row>
     )

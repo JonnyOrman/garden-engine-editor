@@ -8,5 +8,4 @@ export default class JsonGameWriter implements Writer<Game>{
 
         await writeTextFile('PATH_HERE/content.json', gameJson, { dir: BaseDirectory.AppConfig })
     }
-
 }
