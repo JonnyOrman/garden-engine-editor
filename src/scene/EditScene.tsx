@@ -1,4 +1,6 @@
-function EditScene(props: any) {
+import EditSceneProps from "./EditSceneProps";
+
+function EditScene(props: EditSceneProps) {
     return (
         <div className="h-100" style={{
             background: "black"

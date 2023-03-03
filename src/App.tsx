@@ -1,23 +1,24 @@
 import { useState } from "react";
-import { invoke } from "@tauri-apps/api/tauri";
 import "./App.css";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Home from "./Home";
-import CreateNewGame from "./CreateNewGame";
-import EditGame from "./EditGame";
+import CreateNewGame from "./game/CreateNewGame";
+import EditGame from "./game/EditGame";
 import Container from "react-bootstrap/Container";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import JsonGameWriter from "./JsonGameWriter";
+import JsonGameWriter from "./game/JsonGameWriter";
+import JsonGameReader from "./game/JsonGameReader";
+import GameJsonWriter from "./game/GameJsonWriter";
+import GameJsonReader from "./game/GameJsonReader";
+import GameFilePathProvider from "./game/GameFilePathProvider";
 
 function App() {
-  const [greetMsg, setGreetMsg] = useState("");
   const [name, setName] = useState("");
-  const [gameWriter, setGameWriter] = useState(new JsonGameWriter());
-
-  async function greet() {
-    // Learn more about Tauri commands at https://tauri.app/v1/guides/features/command
-    setGreetMsg(await invoke("greet", { name }));
-  }
+  const [gameFilePathProvider, setGameFilePathProvider] = useState(new GameFilePathProvider('FILE_PATH/content.json'));
+  const [gameJsonWriter, setGameJsonWriter] = useState(new GameJsonWriter(gameFilePathProvider));
+  const [gameJsonReader, setGameJsonReader] = useState(new GameJsonReader(gameFilePathProvider));
+  const [gameWriter, setGameWriter] = useState(new JsonGameWriter(gameJsonWriter));
+  const [gameReader, setGameReader] = useState(new JsonGameReader(gameJsonReader));
 
   return (
     <Container fluid className="h-100">
@@ -25,7 +26,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/create-new-game" element={<CreateNewGame gameWriter={gameWriter} />} />
-          <Route path="/edit-game" element={<EditGame gameWriter={gameWriter} />} />
+          <Route path="/edit-game" element={<EditGame gameWriter={gameWriter} gameReader={gameReader} />} />
         </Routes>
       </BrowserRouter>
     </Container>

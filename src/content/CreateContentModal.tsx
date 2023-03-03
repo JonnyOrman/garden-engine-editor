@@ -2,16 +2,16 @@ import { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Dropdown from "react-bootstrap/Dropdown";
 import Modal from "react-bootstrap/Modal";
-import CreateRectangle from "./CreateRectangle";
-import CreateTriangle from "./CreateTriangle";
-import JsonGameReader from "./JsonGameReader";
+import CreateRectangle from "./triangle/CreateRectangle";
+import CreateTriangle from "./triangle/CreateTriangle";
 import JsonObjectWriter from "./JsonObjectWriter";
-import Rectangle from "./Rectangle";
-import Triangle from "./Triangle";
+import Rectangle from "./rectangle/Rectangle";
+import Triangle from "./triangle/Triangle";
+import CreateContentModalProps from "./CreateContentModalProps";
 
-function CreateContentModal(props: any) {
+function CreateContentModal(props: CreateContentModalProps) {
     const [type, setType] = useState('');
-    const [gameReader, setGameReader] = useState(new JsonGameReader());
+    const [gameReader, setGameReader] = useState(props.gameReader);
 
     let typeForm;
     if (type == 'triangle') {

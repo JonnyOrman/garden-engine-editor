@@ -1,15 +1,15 @@
-import { writeTextFile, BaseDirectory } from '@tauri-apps/api/fs';
 import { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 import { useNavigate } from 'react-router-dom';
 import Game from './Game';
-import Rectangle from './Rectangle';
-import RectangleInstance from './RectangleInstance';
-import Scene from './Scene';
+import Rectangle from '../content/rectangle/Rectangle';
+import Scene from '../scene/Scene';
+import RectangleInstance from '../content/rectangle/RectangleInstance';
+import CreateNewGameProps from './CreateNewGameProps';
 
-function CreateNewGame(props: any) {
+function CreateNewGame(props: CreateNewGameProps) {
     const [name, setName] = useState('');
     const [sceneWidth, setSceneWidth] = useState(0);
     const [sceneHeight, setSceneHeight] = useState(0);

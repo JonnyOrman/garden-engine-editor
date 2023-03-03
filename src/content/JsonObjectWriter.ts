@@ -1,11 +1,11 @@
 import ContentObject from "./ContentObject";
-import Game from "./Game";
-import GameReader from "./Reader";
-import Writer from "./Writer";
+import Game from "../game/Game";
+import Writer from "../Writer";
+import Reader from "../Reader";
 
 export default class JsonObjectWriter<T extends ContentObject> implements Writer<T> {
     constructor(
-        private gameReader: GameReader,
+        private gameReader: Reader<Game>,
         private gameWriter: Writer<Game>) { }
 
     async write(obj: T): Promise<void> {

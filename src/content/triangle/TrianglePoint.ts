@@ -1,5 +1,5 @@
-import Rgb from "./Rgb";
-import TwoDPoint from "./TwoDPoint";
+import Rgb from "../../Rgb";
+import TwoDPoint from "../../TwoDPoint";
 
 export interface TrianglePoint {
     twoDPoint: TwoDPoint,
