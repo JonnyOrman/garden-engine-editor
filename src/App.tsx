@@ -8,11 +8,13 @@ import EditGame from "./EditGame";
 import Container from "react-bootstrap/Container";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import JsonGameWriter from "./JsonGameWriter";
+import JsonGameReader from "./JsonGameReader";
 
 function App() {
   const [greetMsg, setGreetMsg] = useState("");
   const [name, setName] = useState("");
   const [gameWriter, setGameWriter] = useState(new JsonGameWriter());
+  const [gameReader, setGameReader] = useState(new JsonGameReader());
 
   async function greet() {
     // Learn more about Tauri commands at https://tauri.app/v1/guides/features/command
@@ -25,7 +27,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/create-new-game" element={<CreateNewGame gameWriter={gameWriter} />} />
-          <Route path="/edit-game" element={<EditGame gameWriter={gameWriter} />} />
+          <Route path="/edit-game" element={<EditGame gameWriter={gameWriter} gameReader={gameReader} />} />
         </Routes>
       </BrowserRouter>
     </Container>

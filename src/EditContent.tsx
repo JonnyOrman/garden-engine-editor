@@ -13,7 +13,7 @@ function EditContent(props: any) {
             <Row>
                 {
                     props?.content?.objects?.map((object: any) => {
-                        return <ObjectListItem object={object || {}} />
+                        return <ObjectListItem object={object || {}} gameReader={props.gameReader} />
                     })
                 }
             </Row>
@@ -24,6 +24,7 @@ function EditContent(props: any) {
                 show={createContentModalShow}
                 onHide={() => setCreateContentModalShow(false)}
                 gameWriter={props.gameWriter}
+                gameReader={props.gameReader}
             />
         </Col>
     )

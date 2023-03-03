@@ -28,7 +28,7 @@ function EditGame(props: any) {
                 <EditScene objects={content?.objects || []} />
             </Col>
             <Col xs="2">
-                <EditContent content={content?.content || {}} gameWriter={props.gameWriter} />
+                <EditContent content={content?.content || {}} gameWriter={props.gameWriter} gameReader={props.gameReader} />
             </Col>
         </Row>
     )

@@ -4,14 +4,13 @@ import Dropdown from "react-bootstrap/Dropdown";
 import Modal from "react-bootstrap/Modal";
 import CreateRectangle from "./CreateRectangle";
 import CreateTriangle from "./CreateTriangle";
-import JsonGameReader from "./JsonGameReader";
 import JsonObjectWriter from "./JsonObjectWriter";
 import Rectangle from "./Rectangle";
 import Triangle from "./Triangle";
 
 function CreateContentModal(props: any) {
     const [type, setType] = useState('');
-    const [gameReader, setGameReader] = useState(new JsonGameReader());
+    const [gameReader, setGameReader] = useState(props.gameReader);
 
     let typeForm;
     if (type == 'triangle') {

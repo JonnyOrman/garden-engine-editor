@@ -1,6 +1,7 @@
 import React from "react";
 import Button from "react-bootstrap/Button";
 import ContentInstancesModal from "./ContentInstancesModal";
+import GameContentInstancesProvider from "./GameContentInstancesProvider";
 
 function ObjectListItem(props: any) {
     const [contentInstancesModalShow, setContentInstancesModalShow] = React.useState(false);
@@ -13,6 +14,8 @@ function ObjectListItem(props: any) {
             <ContentInstancesModal
                 show={contentInstancesModalShow}
                 onHide={() => setContentInstancesModalShow(false)}
+                contentName={props.object.name}
+                contentInstancesProvider={new GameContentInstancesProvider(props.gameReader)}
             />
         </div>
     )
