@@ -1,10 +1,11 @@
-import { BaseDirectory, readTextFile } from "@tauri-apps/api/fs";
-import GameReader from "../Reader";
+import Reader from "../Reader";
 import Game from "./Game";
 
-export default class JsonGameReader implements GameReader {
+export default class JsonGameReader implements Reader<Game> {
+    constructor(private gameJsonReader: Reader<string>) { }
+
     async read(): Promise<Game> {
-        const gameJson = await readTextFile('PATH_HERE/content.json', { dir: BaseDirectory.AppConfig });
+        const gameJson = await this.gameJsonReader.read();
 
         const game = JSON.parse(gameJson);
 

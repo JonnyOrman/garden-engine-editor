@@ -9,12 +9,18 @@ import Container from "react-bootstrap/Container";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import JsonGameWriter from "./game/JsonGameWriter";
 import JsonGameReader from "./game/JsonGameReader";
+import GameJsonWriter from "./game/GameJsonWriter";
+import GameJsonReader from "./game/GameJsonReader";
+import GameFilePathProvider from "./game/GameFilePathProvider";
 
 function App() {
   const [greetMsg, setGreetMsg] = useState("");
   const [name, setName] = useState("");
-  const [gameWriter, setGameWriter] = useState(new JsonGameWriter());
-  const [gameReader, setGameReader] = useState(new JsonGameReader());
+  const [gameFilePathProvider, setGameFilePathProvider] = useState(new GameFilePathProvider('FILE_PATH/content.json'));
+  const [gameJsonWriter, setGameJsonWriter] = useState(new GameJsonWriter(gameFilePathProvider));
+  const [gameJsonReader, setGameJsonReader] = useState(new GameJsonReader(gameFilePathProvider));
+  const [gameWriter, setGameWriter] = useState(new JsonGameWriter(gameJsonWriter));
+  const [gameReader, setGameReader] = useState(new JsonGameReader(gameJsonReader));
 
   async function greet() {
     // Learn more about Tauri commands at https://tauri.app/v1/guides/features/command

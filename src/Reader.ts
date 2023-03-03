@@ -1,5 +1,3 @@
-import Game from "./game/Game";
-
-export default interface GameReader {
-    read(): Promise<Game>
+export default interface Reader<T> {
+    read(): Promise<T>
 }
