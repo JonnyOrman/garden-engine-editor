@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import Game from './Game';
 import Rectangle from '../content/rectangle/Rectangle';
 import Scene from '../scene/Scene';
-import RectangleInstance from '../content/rectangle/RectangleInstance';
+import RectangleInstance from '../content/rectangle/instances/RectangleInstance';
 import CreateNewGameProps from './CreateNewGameProps';
 
 function CreateNewGame(props: CreateNewGameProps) {

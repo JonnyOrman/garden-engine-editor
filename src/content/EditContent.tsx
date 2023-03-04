@@ -14,7 +14,7 @@ function EditContent(props: EditContentProps) {
             <Row>
                 {
                     props?.content?.objects?.map((object: any) => {
-                        return <ObjectListItem object={object || {}} gameReader={props.gameReader} />
+                        return <ObjectListItem object={object || {}} gameReader={props.gameReader} gameWriter={props.gameWriter} />
                     })
                 }
             </Row>

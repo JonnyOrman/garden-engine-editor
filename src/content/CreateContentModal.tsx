@@ -2,12 +2,12 @@ import { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Dropdown from "react-bootstrap/Dropdown";
 import Modal from "react-bootstrap/Modal";
-import CreateRectangle from "./triangle/CreateRectangle";
 import CreateTriangle from "./triangle/CreateTriangle";
 import JsonObjectWriter from "./JsonObjectWriter";
 import Rectangle from "./rectangle/Rectangle";
 import Triangle from "./triangle/Triangle";
 import CreateContentModalProps from "./CreateContentModalProps";
+import CreateRectangle from "./rectangle/CreateRectangle";
 
 function CreateContentModal(props: CreateContentModalProps) {
     const [type, setType] = useState('');
