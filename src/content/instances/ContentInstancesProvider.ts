@@ -1,5 +1,3 @@
-import ContentInstance from "./ContentInstance";
-
-export default interface ContentInstancesProvider {
-    get(contentName: string): Promise<ContentInstance[]>;
+export default interface ContentInstancesProvider<TContentInstance> {
+    get(contentName: string): Promise<TContentInstance[]>;
 }
