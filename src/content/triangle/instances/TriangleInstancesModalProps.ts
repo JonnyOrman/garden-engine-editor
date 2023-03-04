@@ -1,11 +1,13 @@
 import Writer from "../../../Writer";
+import ContentInstance from "../../instances/ContentInstance";
 import ContentInstancesProvider from "../../instances/ContentInstancesProvider";
+import Triangle from "../Triangle";
 import TriangleInstance from "./TriangleInstance";
 
 export default interface TriangleInstancesModalProps {
-    contentName: string;
+    triangle: Triangle;
     show: boolean;
     onHide: () => void;
-    triangleInstanceWriter: Writer<TriangleInstance>;
+    contentInstanceWriter: Writer<ContentInstance>;
     triangleInstancesProvider: ContentInstancesProvider<TriangleInstance>;
 }

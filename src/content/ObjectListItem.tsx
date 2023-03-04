@@ -3,31 +3,33 @@ import Button from "react-bootstrap/Button";
 import GameContentInstancesProvider from "../game/GameContentInstancesProvider";
 import JsonContentInstanceWriter from "./instances/JsonContentInstanceWriter";
 import ObjectListItemProps from "./ObjectListItemProps";
-import RectangleInstance from "./rectangle/instances/RectangleInstance";
 import RectangleInstancesModal from "./rectangle/instances/RectangleInstancesModal";
+import Rectangle from "./rectangle/Rectangle";
 import TriangleInstance from "./triangle/instances/TriangleInstance";
 import TriangleInstancesModal from "./triangle/instances/TriangleInstancesModal";
+import Triangle from "./triangle/Triangle";
 
 function ObjectListItem(props: ObjectListItemProps) {
     const [type, setType] = useState(props.object.type);
     const [instancesModalShow, setInstancesModalShow] = React.useState(false);
+    const [contentInstanceWriter, setContentInstanceWriter] = React.useState(new JsonContentInstanceWriter<TriangleInstance>(props.gameReader, props.gameWriter));
 
     let typeInstancesModal;
     if (type == 'triangle') {
         typeInstancesModal = <TriangleInstancesModal
-            contentName={props.object.name}
+            triangle={props.object as Triangle}
             show={instancesModalShow}
             onHide={() => setInstancesModalShow(false)}
             triangleInstancesProvider={new GameContentInstancesProvider(props.gameReader)}
-            triangleInstanceWriter={new JsonContentInstanceWriter<TriangleInstance>(props.gameReader, props.gameWriter)}
+            contentInstanceWriter={contentInstanceWriter}
         />;
     } else if (type == 'rectangle') {
         typeInstancesModal = <RectangleInstancesModal
-            contentName={props.object.name}
+            rectangle={props.object as Rectangle}
             show={instancesModalShow}
             onHide={() => setInstancesModalShow(false)}
             rectangleInstancesProvider={new GameContentInstancesProvider(props.gameReader)}
-            rectangleInstanceWriter={new JsonContentInstanceWriter<RectangleInstance>(props.gameReader, props.gameWriter)}
+            contentInstanceWriter={contentInstanceWriter}
         />;
     }
 

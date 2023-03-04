@@ -1,11 +1,13 @@
 import Writer from "../../../Writer";
+import ContentInstance from "../../instances/ContentInstance";
 import ContentInstancesProvider from "../../instances/ContentInstancesProvider";
+import Rectangle from "../Rectangle";
 import RectangleInstance from "./RectangleInstance";
 
 export default interface RectangleInstancesModalProps {
-    contentName: string;
+    rectangle: Rectangle;
     show: boolean;
     onHide: () => void;
-    rectangleInstanceWriter: Writer<RectangleInstance>;
+    contentInstanceWriter: Writer<ContentInstance>;
     rectangleInstancesProvider: ContentInstancesProvider<RectangleInstance>;
 }
