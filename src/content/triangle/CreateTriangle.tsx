@@ -1,9 +1,10 @@
 import { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
-import CreateTriangleProps from "./CreateTriangleProps";
+import CreateContentProps from "../CreateContentProps";
+import Triangle from "./Triangle";
 
-function CreateTriangle(props: CreateTriangleProps) {
+function CreateTriangle(props: CreateContentProps<Triangle>) {
     const [name, setName] = useState('');
     const [point1X, setPoint1X] = useState(0);
     const [point1Y, setPoint1Y] = useState(0);
@@ -24,7 +25,7 @@ function CreateTriangle(props: CreateTriangleProps) {
     const submit = async (e: any) => {
         e.preventDefault();
 
-        await props.triangleWriter?.write({
+        await props.contentWriter?.write({
             name: name,
             type: 'triangle',
             point1: {

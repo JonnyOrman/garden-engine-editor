@@ -1,15 +1,16 @@
 import react, { useEffect } from "react";
 import Modal from "react-bootstrap/esm/Modal";
+import ContentInstancesModalProps from "../../instances/ContentInstancesModalProps";
+import Rectangle from "../Rectangle";
 import CreateRectangleInstance from "./CreateRectangleInstance";
 import RectangleInstance from "./RectangleInstance";
-import RectangleInstancesModalProps from "./RectangleInstancesModalProps";
 
-function RectangleInstancesModal(props: RectangleInstancesModalProps) {
+function RectangleInstancesModal(props: ContentInstancesModalProps<Rectangle, RectangleInstance>) {
     const [rectangleInstances, setRectangleInstances] = react.useState<RectangleInstance[]>();
 
     useEffect(() => {
         async function getTriangleInstances() {
-            const rectangleInstances = await props.rectangleInstancesProvider.get(props.rectangle.name);
+            const rectangleInstances = await props.contentInstancesProvider.get(props.content.name);
 
             setRectangleInstances(rectangleInstances);
         };
@@ -28,7 +29,7 @@ function RectangleInstancesModal(props: RectangleInstancesModalProps) {
         >
             <Modal.Header closeButton>
                 <Modal.Title id="rectangle-instances-modal">
-                    {props.rectangle.name} instances
+                    {props.content.name} instances
                 </Modal.Title>
             </Modal.Header>
             <Modal.Body>
@@ -40,7 +41,7 @@ function RectangleInstancesModal(props: RectangleInstancesModalProps) {
                         })
                     }
                 </div>
-                <CreateRectangleInstance rectangle={props.rectangle} rectangleInstanceWriter={props.contentInstanceWriter} />
+                <CreateRectangleInstance content={props.content} contentInstanceWriter={props.contentInstanceWriter} />
             </Modal.Body>
         </Modal>
     )

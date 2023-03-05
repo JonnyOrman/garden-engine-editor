@@ -17,18 +17,18 @@ function ObjectListItem(props: ObjectListItemProps) {
     let typeInstancesModal;
     if (type == 'triangle') {
         typeInstancesModal = <TriangleInstancesModal
-            triangle={props.object as Triangle}
+            content={props.object as Triangle}
             show={instancesModalShow}
             onHide={() => setInstancesModalShow(false)}
-            triangleInstancesProvider={new GameContentInstancesProvider(props.gameReader)}
+            contentInstancesProvider={new GameContentInstancesProvider(props.gameReader)}
             contentInstanceWriter={contentInstanceWriter}
         />;
     } else if (type == 'rectangle') {
         typeInstancesModal = <RectangleInstancesModal
-            rectangle={props.object as Rectangle}
+            content={props.object as Rectangle}
             show={instancesModalShow}
             onHide={() => setInstancesModalShow(false)}
-            rectangleInstancesProvider={new GameContentInstancesProvider(props.gameReader)}
+            contentInstancesProvider={new GameContentInstancesProvider(props.gameReader)}
             contentInstanceWriter={contentInstanceWriter}
         />;
     }

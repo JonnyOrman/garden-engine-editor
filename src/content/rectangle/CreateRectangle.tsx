@@ -1,9 +1,10 @@
 import { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
-import CreateRectangleProps from "./CreateRectangleProps";
+import CreateContentProps from "../CreateContentProps";
+import Rectangle from "./Rectangle";
 
-function CreateRectangle(props: CreateRectangleProps) {
+function CreateRectangle(props: CreateContentProps<Rectangle>) {
     const [name, setName] = useState('');
     const [width, setWidth] = useState(0);
     const [height, setHeight] = useState(0);
@@ -14,7 +15,7 @@ function CreateRectangle(props: CreateRectangleProps) {
     const submit = async (e: any) => {
         e.preventDefault();
 
-        await props.rectangleWriter?.write({
+        await props.contentWriter?.write({
             name: name,
             type: 'rectangle',
             width: width,

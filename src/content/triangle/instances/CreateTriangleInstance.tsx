@@ -1,9 +1,11 @@
 import react from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
-import CreateTriangleInstanceProps from "./CreateTriangleInstanceProps";
+import CreateContentInstanceProps from "../../instances/CreateContentInstanceProps";
+import Triangle from "../Triangle";
+import TriangleInstance from "./TriangleInstance";
 
-function CreateTriangleInstance(props: CreateTriangleInstanceProps) {
+function CreateTriangleInstance(props: CreateContentInstanceProps<Triangle, TriangleInstance>) {
     const [name, setName] = react.useState('');
     const [scale, setScale] = react.useState(0);
     const [positionX, setPositionX] = react.useState(0);
@@ -12,9 +14,9 @@ function CreateTriangleInstance(props: CreateTriangleInstanceProps) {
     const submit = async (e: any) => {
         e.preventDefault();
 
-        await props.triangleInstanceWriter?.write({
+        await props.contentInstanceWriter?.write({
             name: name,
-            contentName: props.triangle.name,
+            contentName: props.content.name,
             scale: scale,
             position: {
                 x: positionX,

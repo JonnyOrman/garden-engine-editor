@@ -1,9 +1,11 @@
 import react from "react";
 import Button from "react-bootstrap/esm/Button";
 import Form from "react-bootstrap/esm/Form";
-import CreateRectangleInstanceProps from "./CreateRectangleInstanceProps";
+import CreateContentInstanceProps from "../../instances/CreateContentInstanceProps";
+import Rectangle from "../Rectangle";
+import RectangleInstance from "./RectangleInstance";
 
-function CreateRectangleInstance(props: CreateRectangleInstanceProps) {
+function CreateRectangleInstance(props: CreateContentInstanceProps<Rectangle, RectangleInstance>) {
     const [name, setName] = react.useState('');
     const [scale, setScale] = react.useState(0);
     const [positionX, setPositionX] = react.useState(0);
@@ -12,15 +14,15 @@ function CreateRectangleInstance(props: CreateRectangleInstanceProps) {
     const submit = async (e: any) => {
         e.preventDefault();
 
-        await props.rectangleInstanceWriter?.write({
+        await props.contentInstanceWriter?.write({
             name: name,
-            contentName: props.rectangle.name,
+            contentName: props.content.name,
             scale: scale,
             position: {
                 x: positionX,
                 y: positionY
             },
-            rgb: props.rectangle.rgb
+            rgb: props.content.rgb
         });
     }
 

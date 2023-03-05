@@ -1,15 +1,16 @@
 import react, { useEffect } from "react";
 import Modal from "react-bootstrap/Modal";
+import ContentInstancesModalProps from "../../instances/ContentInstancesModalProps";
+import Triangle from "../Triangle";
 import CreateTriangleInstance from "./CreateTriangleInstance";
 import TriangleInstance from "./TriangleInstance";
-import TriangleInstancesModalProps from "./TriangleInstancesModalProps";
 
-function TriangleInstancesModal(props: TriangleInstancesModalProps) {
+function TriangleInstancesModal(props: ContentInstancesModalProps<Triangle, TriangleInstance>) {
     const [triangleInstances, setTriangleInstances] = react.useState<TriangleInstance[]>();
 
     useEffect(() => {
         async function getTriangleInstances() {
-            const triangleInstances = await props.triangleInstancesProvider.get(props.triangle.name);
+            const triangleInstances = await props.contentInstancesProvider.get(props.content.name);
 
             setTriangleInstances(triangleInstances);
         };
@@ -28,7 +29,7 @@ function TriangleInstancesModal(props: TriangleInstancesModalProps) {
         >
             <Modal.Header closeButton>
                 <Modal.Title id="triangle-instances-modal">
-                    {props.triangle.name} instances
+                    {props.content.name} instances
                 </Modal.Title>
             </Modal.Header>
             <Modal.Body>
@@ -40,7 +41,7 @@ function TriangleInstancesModal(props: TriangleInstancesModalProps) {
                         })
                     }
                 </div>
-                <CreateTriangleInstance triangle={props.triangle} triangleInstanceWriter={props.contentInstanceWriter} />
+                <CreateTriangleInstance content={props.content} contentInstanceWriter={props.contentInstanceWriter} />
             </Modal.Body>
         </Modal>
     )
