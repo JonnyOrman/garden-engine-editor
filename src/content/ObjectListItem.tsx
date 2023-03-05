@@ -2,11 +2,13 @@ import React, { useState } from "react";
 import Button from "react-bootstrap/Button";
 import GameContentInstancesProvider from "../game/GameContentInstancesProvider";
 import JsonContentInstanceWriter from "./instances/JsonContentInstanceWriter";
+import ObjectInstancesModal from "./instances/ObjectInstancesModal";
 import ObjectListItemProps from "./ObjectListItemProps";
-import RectangleInstancesModal from "./rectangle/instances/RectangleInstancesModal";
+import CreateRectangleInstance from "./rectangle/instances/CreateRectangleInstance";
+import RectangleInstance from "./rectangle/instances/RectangleInstance";
 import Rectangle from "./rectangle/Rectangle";
+import CreateTriangleInstance from "./triangle/instances/CreateTriangleInstance";
 import TriangleInstance from "./triangle/instances/TriangleInstance";
-import TriangleInstancesModal from "./triangle/instances/TriangleInstancesModal";
 import Triangle from "./triangle/Triangle";
 
 function ObjectListItem(props: ObjectListItemProps) {
@@ -16,20 +18,22 @@ function ObjectListItem(props: ObjectListItemProps) {
 
     let typeInstancesModal;
     if (type == 'triangle') {
-        typeInstancesModal = <TriangleInstancesModal
+        typeInstancesModal = <ObjectInstancesModal
             content={props.object as Triangle}
             show={instancesModalShow}
             onHide={() => setInstancesModalShow(false)}
-            contentInstancesProvider={new GameContentInstancesProvider(props.gameReader)}
+            contentInstancesProvider={new GameContentInstancesProvider<TriangleInstance>(props.gameReader)}
             contentInstanceWriter={contentInstanceWriter}
+            createContentInstance={<CreateTriangleInstance content={props.object as Triangle} contentInstanceWriter={contentInstanceWriter} />}
         />;
     } else if (type == 'rectangle') {
-        typeInstancesModal = <RectangleInstancesModal
+        typeInstancesModal = <ObjectInstancesModal
             content={props.object as Rectangle}
             show={instancesModalShow}
             onHide={() => setInstancesModalShow(false)}
-            contentInstancesProvider={new GameContentInstancesProvider(props.gameReader)}
+            contentInstancesProvider={new GameContentInstancesProvider<RectangleInstance>(props.gameReader)}
             contentInstanceWriter={contentInstanceWriter}
+            createContentInstance={<CreateRectangleInstance content={props.object as Rectangle} contentInstanceWriter={contentInstanceWriter} />}
         />;
     }
 

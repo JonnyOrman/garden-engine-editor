@@ -9,4 +9,5 @@ export default interface ContentInstancesModalProps<TContent extends Entity, TCo
     onHide: () => void;
     contentInstanceWriter: Writer<ContentInstance>;
     contentInstancesProvider: ContentInstancesProvider<TContentInstance>;
+    createContentInstance: JSX.Element;
 }
