@@ -15,9 +15,9 @@ function CreateContentModal(props: CreateContentModalProps) {
 
     let typeForm;
     if (type == 'triangle') {
-        typeForm = <CreateTriangle onHide={props.onHide} triangleWriter={new JsonObjectWriter<Triangle>(gameReader, props.gameWriter)} />;
+        typeForm = <CreateTriangle onHide={props.onHide} contentWriter={new JsonObjectWriter<Triangle>(gameReader, props.gameWriter)} />;
     } else if (type == 'rectangle') {
-        typeForm = <CreateRectangle onHide={props.onHide} rectangleWriter={new JsonObjectWriter<Rectangle>(gameReader, props.gameWriter)} />;
+        typeForm = <CreateRectangle onHide={props.onHide} contentWriter={new JsonObjectWriter<Rectangle>(gameReader, props.gameWriter)} />;
     }
 
     return (
