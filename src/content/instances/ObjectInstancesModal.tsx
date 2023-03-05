@@ -1,15 +1,15 @@
-import React, { useEffect } from "react";
+import react, { useEffect } from "react";
 import Modal from "react-bootstrap/Modal";
+import Entity from "../../Entity";
 import ContentInstance from "./ContentInstance";
-import ContentInstanceListItem from "./ContentInstanceListItem";
 import ContentInstancesModalProps from "./ContentInstancesModalProps";
 
-function ContentInstancesModal(props: ContentInstancesModalProps) {
-    const [contentInstances, setContentInstances] = React.useState<ContentInstance[]>();
+function ObjectInstancesModal<TContent extends Entity, TContentInstance extends ContentInstance, TCreateContentInstance>(props: ContentInstancesModalProps<TContent, TContentInstance>) {
+    const [contentInstances, setContentInstances] = react.useState<TContentInstance[]>();
 
     useEffect(() => {
         async function getContentInstances() {
-            const contentInstances = await props.contentInstancesProvider.get(props.contentName);
+            const contentInstances = await props.contentInstancesProvider.get(props.content.name);
 
             setContentInstances(contentInstances);
         };
@@ -28,21 +28,22 @@ function ContentInstancesModal(props: ContentInstancesModalProps) {
         >
             <Modal.Header closeButton>
                 <Modal.Title id="content-instances-modal">
-                    {props.contentName} Instances
+                    {props.content.name} instances
                 </Modal.Title>
             </Modal.Header>
             <Modal.Body>
-                <h4>Content instances</h4>
+                <h4>Triangle instances</h4>
                 <div>
                     {
-                        contentInstances?.map((contentInstance: ContentInstance) => {
-                            return <ContentInstanceListItem contentInstance={contentInstance || {}} />
+                        contentInstances?.map((contentInstance: TContentInstance) => {
+                            return <div>{contentInstance.name}, location: {contentInstance.position.x}, {contentInstance.position.y}</div>
                         })
                     }
                 </div>
+                {props.createContentInstance}
             </Modal.Body>
         </Modal>
     )
 }
 
-export default ContentInstancesModal;
+export default ObjectInstancesModal;
