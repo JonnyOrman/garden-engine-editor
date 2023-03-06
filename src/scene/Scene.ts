@@ -1,4 +1,4 @@
 export default interface Scene {
-    width: number,
-    height: number
+  width: number;
+  height: number;
 }

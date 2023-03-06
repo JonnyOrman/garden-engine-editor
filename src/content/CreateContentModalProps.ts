@@ -1,10 +1,10 @@
-import Game from "../game/Game";
-import Reader from "../Reader";
-import Writer from "../Writer";
+import Game from '../game/Game';
+import Reader from '../Reader';
+import Writer from '../Writer';
 
 export default interface CreateContentModalProps {
-    gameReader: Reader<Game>;
-    gameWriter: Writer<Game>;
-    onHide: () => void;
-    show: boolean;
+  gameReader: Reader<Game>;
+  gameWriter: Writer<Game>;
+  onHide: () => void;
+  show: boolean;
 }
