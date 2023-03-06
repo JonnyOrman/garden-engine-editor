@@ -4,9 +4,7 @@ import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 import { useNavigate } from 'react-router-dom';
 import Game from './Game';
-import Rectangle from '../content/rectangle/Rectangle';
 import Scene from '../scene/Scene';
-import RectangleInstance from '../content/rectangle/instances/RectangleInstance';
 import CreateNewGameProps from './CreateNewGameProps';
 
 function CreateNewGame(props: CreateNewGameProps) {
@@ -28,67 +26,9 @@ function CreateNewGame(props: CreateNewGameProps) {
                 height: sceneHeight
             } as Scene,
             content: {
-                objects: [
-                    {
-                        name: "Rectangle1",
-                        type: "rectangle",
-                        width: 2.0,
-                        height: 5.0,
-                        rgb: {
-                            r: 0.0,
-                            g: 0.0,
-                            b: 1.0
-                        }
-                    } as Rectangle,
-                    {
-                        name: "Rectangle2",
-                        type: "rectangle",
-                        width: 3.0,
-                        height: 2.0,
-                        rgb: {
-                            r: 1.0,
-                            g: 0.0,
-                            b: 0.0
-                        }
-                    } as Rectangle
-                ]
+                objects: []
             },
-            objects: [
-                {
-                    name: "Rectangle1-a",
-                    contentName: "Rectangle1",
-                    type: "rectangle",
-                    scale: 1.0,
-                    width: 2.5,
-                    height: 5.0,
-                    position: {
-                        x: -5.0,
-                        y: 5.0
-                    },
-                    rgb: {
-                        r: 0.0,
-                        g: 0.0,
-                        b: 1.0
-                    }
-                } as RectangleInstance,
-                {
-                    name: "Rectangle2-a",
-                    contentName: "Rectangle2",
-                    type: "rectangle",
-                    scale: 1.0,
-                    width: 3.0,
-                    height: 2.0,
-                    position: {
-                        x: 5.0,
-                        y: -5.0
-                    },
-                    rgb: {
-                        r: 1.0,
-                        g: 0.0,
-                        b: 0.0
-                    }
-                } as RectangleInstance
-            ]
+            objects: []
         };
 
         props.gameWriter.write(game).then(() => {
