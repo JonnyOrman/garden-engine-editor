@@ -1,9 +1,9 @@
-import Provider from "../Provider";
+import Provider from '../Provider';
 
 export default class GameFilePathProvider implements Provider<string> {
-    constructor(private gameFilePath: string) { }
+  constructor(private gameFilePath: string) {}
 
-    get(): string {
-        return this.gameFilePath;
-    }
+  get(): string {
+    return this.gameFilePath;
+  }
 }

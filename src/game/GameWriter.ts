@@ -1,15 +1,16 @@
-import Game from "./Game";
-import Writer from "../Writer";
-import Serialiser from "../Serialiser";
+import Game from './Game';
+import Writer from '../Writer';
+import Serialiser from '../Serialiser';
 
-export default class GameWriter implements Writer<Game>{
-    constructor(
-        private serialiser: Serialiser,
-        private gameDataWriter: Writer<string>) { }
+export default class GameWriter implements Writer<Game> {
+  constructor(
+    private serialiser: Serialiser,
+    private gameDataWriter: Writer<string>
+  ) {}
 
-    async write(game: Game): Promise<void> {
-        const gameData = this.serialiser.serialise(game);
+  async write(game: Game): Promise<void> {
+    const gameData = this.serialiser.serialise(game);
 
-        await this.gameDataWriter.write(gameData);
-    }
+    await this.gameDataWriter.write(gameData);
+  }
 }

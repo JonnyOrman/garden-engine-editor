@@ -1,5 +1,5 @@
-import ContentObject from "./ContentObject";
+import ContentObject from './ContentObject';
 
 export default interface Content {
-    objects: ContentObject[]
+  objects: ContentObject[];
 }
