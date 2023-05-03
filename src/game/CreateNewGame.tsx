@@ -7,7 +7,7 @@ import Game from './Game';
 import Scene from '../scene/Scene';
 import CreateNewGameProps from './CreateNewGameProps';
 import Name from '../fields/Name';
-import SceneDimension from '../fields/SceneDimension';
+import SceneEditor from '../scene/SceneEditor';
 
 function CreateNewGame(props: CreateNewGameProps) {
   const [name, setName] = useState('');
@@ -18,6 +18,8 @@ function CreateNewGame(props: CreateNewGameProps) {
   const [error, setError] = useState<string | null>(null);
 
   const navigate = useNavigate();
+
+  const onSceneChange = (newScene: Scene) => {};
 
   const submit = async (e: any) => {
     console.log('submitted');
@@ -46,16 +48,11 @@ function CreateNewGame(props: CreateNewGameProps) {
       <h1>Create new game</h1>
       <Form onSubmit={submit}>
         <Name onChange={setName} props={props.nameProps} />
-        <SceneDimension
-          dimension="Width"
-          onChange={setSceneWidth}
-          props={props.sceneDimensionProps}
-        />
-        <SceneDimension
-          dimension="Height"
-          onChange={setSceneHeight}
-          props={props.sceneDimensionProps}
-        />
+        <SceneEditor
+          onChange={onSceneChange}
+          props={props.sceneProps}
+          sceneDimensionProps={props.sceneDimensionProps}
+        ></SceneEditor>
         <Button variant="primary" type="submit">
           Create
         </Button>
