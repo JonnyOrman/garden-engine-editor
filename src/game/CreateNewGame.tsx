@@ -7,7 +7,6 @@ import Game from './Game';
 import Scene from '../scene/Scene';
 import CreateNewGameProps from './CreateNewGameProps';
 import Name from '../fields/Name';
-import React from 'react';
 import SceneDimension from '../fields/SceneDimension';
 
 function CreateNewGame(props: CreateNewGameProps) {
