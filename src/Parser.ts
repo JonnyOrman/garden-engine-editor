@@ -1,3 +1,3 @@
 export default interface Parse {
-    parse<T>(data: string): T;
+  parse<T>(data: string): T;
 }

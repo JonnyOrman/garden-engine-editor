@@ -1,3 +1,3 @@
-import ContentInstance from "../../instances/ContentInstance";
+import ContentInstance from '../../instances/ContentInstance';
 
-export default interface TriangleInstance extends ContentInstance { }
+export type TriangleInstance = ContentInstance;

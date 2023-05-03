@@ -8,8 +8,8 @@ import CreateRectangleInstance from './rectangle/instances/CreateRectangleInstan
 import RectangleInstance from './rectangle/instances/RectangleInstance';
 import Rectangle from './rectangle/Rectangle';
 import CreateTriangleInstance from './triangle/instances/CreateTriangleInstance';
-import TriangleInstance from './triangle/instances/TriangleInstance';
 import Triangle from './triangle/Triangle';
+import { TriangleInstance } from './triangle/instances/TriangleInstance';
 
 function ObjectListItem(props: ObjectListItemProps) {
   const [type, setType] = useState(props.object.type);

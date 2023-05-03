@@ -11,12 +11,33 @@ import Rgb from '../../fields/Rgb';
 
 function CreateTriangle(props: CreateContentProps<Triangle>) {
   const [name, setName] = useState('');
-  const [point1, setPoint1] = useState<TwoDPoint>({ x: 0, y: 0 });
-  const [point1Rgb, setPoint1Rgb] = useState<Rgb>({ r: 0, g: 0, b: 0 });
-  const [point2, setPoint2] = useState<TwoDPoint>({ x: 0, y: 0 });
-  const [point2Rgb, setPoint2Rgb] = useState<Rgb>({ r: 0, g: 0, b: 0 });
-  const [point3, setPoint3] = useState<TwoDPoint>({ x: 0, y: 0 });
-  const [point3Rgb, setPoint3Rgb] = useState<Rgb>({ r: 0, g: 0, b: 0 });
+  const [point1, setPoint1] = useState<TwoDPoint>({
+    x: 0,
+    y: 0,
+  });
+  const [point1Rgb, setPoint1Rgb] = useState<Rgb>({
+    r: 0,
+    g: 0,
+    b: 0,
+  });
+  const [point2, setPoint2] = useState<TwoDPoint>({
+    x: 0,
+    y: 0,
+  });
+  const [point2Rgb, setPoint2Rgb] = useState<Rgb>({
+    r: 0,
+    g: 0,
+    b: 0,
+  });
+  const [point3, setPoint3] = useState<TwoDPoint>({
+    x: 0,
+    y: 0,
+  });
+  const [point3Rgb, setPoint3Rgb] = useState<Rgb>({
+    r: 0,
+    g: 0,
+    b: 0,
+  });
 
   const submit = async (e: any) => {
     e.preventDefault();

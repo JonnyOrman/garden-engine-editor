@@ -1,5 +1,5 @@
-import ContentInstance from "./ContentInstance";
+import ContentInstance from './ContentInstance';
 
 export default interface ContentInstanceListItemProps {
-    contentInstance: ContentInstance;
+  contentInstance: ContentInstance;
 }

@@ -23,7 +23,10 @@ const runTest = (
   const width = 123;
   const height = 456;
 
-  const scene = { width: width, height: height };
+  const scene = {
+    width: width,
+    height: height,
+  };
 
   const sceneDimensionValidator = mock<Validator<number>>();
   sceneDimensionValidator.validate

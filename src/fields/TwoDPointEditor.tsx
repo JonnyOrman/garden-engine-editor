@@ -5,7 +5,10 @@ import ValidatedFieldProps from './ValidatedFieldProps';
 import TwoDPoint from './TwoDPoint';
 
 function TwoDPointEditor(props: ValidatedFieldProps<TwoDPoint>) {
-  const [value, setValue] = useState<TwoDPoint>({ x: 0, y: 0 });
+  const [value, setValue] = useState<TwoDPoint>({
+    x: 0,
+    y: 0,
+  });
   const [error, setError] = useState<string | null>(null);
 
   const onXValueChange = (newXValue: number) => {

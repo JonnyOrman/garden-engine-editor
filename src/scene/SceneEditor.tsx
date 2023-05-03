@@ -5,7 +5,10 @@ import Scene from './Scene';
 import SceneEditorProps from './SceneEditorProps';
 
 function EditScene(props: SceneEditorProps) {
-  const [value, setValue] = useState<Scene>({ width: 0, height: 0 });
+  const [value, setValue] = useState<Scene>({
+    width: 0,
+    height: 0,
+  });
   const [error, setError] = useState<string | null>(null);
 
   const onWidthChange = (newWidth: number) => {

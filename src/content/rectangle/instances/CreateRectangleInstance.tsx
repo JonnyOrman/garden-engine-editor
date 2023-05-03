@@ -14,7 +14,10 @@ function CreateRectangleInstance(
 ) {
   const [name, setName] = useState('');
   const [scale, setScale] = useState(0);
-  const [position, setPosition] = useState({ x: 0, y: 0 });
+  const [position, setPosition] = useState({
+    x: 0,
+    y: 0,
+  });
 
   const submit = async (e: any) => {
     e.preventDefault();

@@ -12,7 +12,11 @@ function CreateRectangle(props: CreateContentProps<Rectangle>) {
   const [name, setName] = useState('');
   const [width, setWidth] = useState(0);
   const [height, setHeight] = useState(0);
-  const [rgb, setRgb] = useState<Rgb>({ r: 0, g: 0, b: 0 });
+  const [rgb, setRgb] = useState<Rgb>({
+    r: 0,
+    g: 0,
+    b: 0,
+  });
 
   const submit = async (e: any) => {
     e.preventDefault();

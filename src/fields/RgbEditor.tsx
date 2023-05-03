@@ -4,7 +4,11 @@ import ValidatedFieldProps from './ValidatedFieldProps';
 import Rgb from './Rgb';
 
 function RgbEditor(props: ValidatedFieldProps<Rgb>) {
-  const [value, setValue] = useState<Rgb>({ r: 0, g: 0, b: 0 });
+  const [value, setValue] = useState<Rgb>({
+    r: 0,
+    g: 0,
+    b: 0,
+  });
   const [error, setError] = useState<string | null>(null);
 
   const onRValueChange = (newRValue: number) => {

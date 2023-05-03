@@ -11,7 +11,11 @@ function EditScene(props: EditSceneProps) {
     >
       {props.objects.map((object: any) => {
         return (
-          <div style={{ color: 'white' }}>
+          <div
+            style={{
+              color: 'white',
+            }}
+          >
             {object.name}, {object.type}
           </div>
         );

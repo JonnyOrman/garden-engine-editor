@@ -29,6 +29,15 @@
             "error",
             "single"
         ],
-        "import/no-unresolved": 0
+        "import/no-unresolved": 0,
+        "object-curly-newline": [
+            "error",
+            {
+                "ObjectExpression": {
+                    "multiline": true,
+                    "minProperties": 1
+                }
+            }
+        ]
     }
 }
