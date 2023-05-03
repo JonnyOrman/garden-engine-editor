@@ -36,6 +36,9 @@ function ObjectListItem(props: ObjectListItemProps) {
           <CreateTriangleInstance
             content={props.object as Triangle}
             contentInstanceWriter={contentInstanceWriter}
+            nameProps={props.nameProps}
+            scaleProps={props.scaleProps}
+            twoDPointProps={props.twoDPointProps}
           />
         }
       />
@@ -54,6 +57,9 @@ function ObjectListItem(props: ObjectListItemProps) {
           <CreateRectangleInstance
             content={props.object as Rectangle}
             contentInstanceWriter={contentInstanceWriter}
+            nameProps={props.nameProps}
+            scaleProps={props.scaleProps}
+            twoDPointProps={props.twoDPointProps}
           />
         }
       />

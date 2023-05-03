@@ -8,6 +8,7 @@ import Rectangle from './rectangle/Rectangle';
 import Triangle from './triangle/Triangle';
 import CreateContentModalProps from './CreateContentModalProps';
 import CreateRectangle from './rectangle/CreateRectangle';
+import React from 'react';
 
 function CreateContentModal(props: CreateContentModalProps) {
   const [type, setType] = useState('');
@@ -21,6 +22,10 @@ function CreateContentModal(props: CreateContentModalProps) {
         contentWriter={
           new JsonObjectWriter<Triangle>(gameReader, props.gameWriter)
         }
+        nameProps={props.nameProps}
+        rgbProps={props.rgbProps}
+        sceneDimensionProps={props.sceneDimensionProps}
+        twoDPointProps={props.twoDPointProps}
       />
     );
   } else if (type == 'rectangle') {
@@ -30,6 +35,10 @@ function CreateContentModal(props: CreateContentModalProps) {
         contentWriter={
           new JsonObjectWriter<Rectangle>(gameReader, props.gameWriter)
         }
+        nameProps={props.nameProps}
+        rgbProps={props.rgbProps}
+        sceneDimensionProps={props.sceneDimensionProps}
+        twoDPointProps={props.twoDPointProps}
       />
     );
   }
@@ -42,7 +51,7 @@ function CreateContentModal(props: CreateContentModalProps) {
       <Modal.Body>
         <h4>New Content</h4>
         <Dropdown
-          onSelect={(eventKey: any, event: Object) => {
+          onSelect={(eventKey: any, event: any) => {
             setType(eventKey);
           }}
         >
