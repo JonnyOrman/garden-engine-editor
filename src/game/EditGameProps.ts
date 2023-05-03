@@ -1,8 +1,15 @@
-import Reader from '../Reader';
-import Writer from '../Writer';
-import Game from './Game';
+import NameProps from '../fields/NameProps';
+import Props from '../fields/Props';
+import RgbProps from '../fields/RgbProps';
+import ScaleProps from '../fields/ScaleProps';
+import TwoDPointProps from '../fields/TwoDPointProps';
+import GameReadWriteProps from './GameReadWriteProps';
 
-export default interface EditGameProps {
-  gameReader: Reader<Game>;
-  gameWriter: Writer<Game>;
+export default interface EditGameProps
+  extends NameProps,
+    GameReadWriteProps,
+    ScaleProps,
+    RgbProps,
+    TwoDPointProps {
+  sceneDimensionProps: Props<number>;
 }

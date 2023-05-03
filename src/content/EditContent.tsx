@@ -19,6 +19,9 @@ function EditContent(props: EditContentProps) {
               object={object || {}}
               gameReader={props.gameReader}
               gameWriter={props.gameWriter}
+              nameProps={props.nameProps}
+              scaleProps={props.scaleProps}
+              twoDPointProps={props.twoDPointProps}
             />
           );
         })}
@@ -36,6 +39,10 @@ function EditContent(props: EditContentProps) {
         onHide={() => setCreateContentModalShow(false)}
         gameWriter={props.gameWriter}
         gameReader={props.gameReader}
+        nameProps={props.nameProps}
+        rgbProps={props.rgbProps}
+        sceneDimensionProps={props.sceneDimensionProps}
+        twoDPointProps={props.twoDPointProps}
       />
     </Col>
   );

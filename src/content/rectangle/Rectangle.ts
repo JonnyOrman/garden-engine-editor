@@ -1,8 +1,8 @@
-import ContentObject from "../ContentObject";
-import Rgb from "../../Rgb";
+import Rgb from '../../fields/Rgb';
+import ContentObject from '../ContentObject';
 
 export default interface Rectangle extends ContentObject {
-    width: number,
-    height: number,
-    rgb: Rgb
+  width: number;
+  height: number;
+  rgb: Rgb;
 }

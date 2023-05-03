@@ -5,6 +5,7 @@ import EditContent from '../content/EditContent';
 import EditScene from '../scene/EditScene';
 import EditGameProps from './EditGameProps';
 import Game from './Game';
+import React from 'react';
 
 function EditGame(props: EditGameProps) {
   const [game, setGame] = useState<Game>();
@@ -31,6 +32,11 @@ function EditGame(props: EditGameProps) {
           content={game?.content}
           gameWriter={props.gameWriter}
           gameReader={props.gameReader}
+          nameProps={props.nameProps}
+          scaleProps={props.scaleProps}
+          rgbProps={props.rgbProps}
+          twoDPointProps={props.twoDPointProps}
+          sceneDimensionProps={props.sceneDimensionProps}
         />
       </Col>
     </Row>

@@ -6,19 +6,25 @@ import { useNavigate } from 'react-router-dom';
 import Game from './Game';
 import Scene from '../scene/Scene';
 import CreateNewGameProps from './CreateNewGameProps';
+import Name from '../fields/Name';
+import React from 'react';
+import SceneDimension from '../fields/SceneDimension';
 
 function CreateNewGame(props: CreateNewGameProps) {
   const [name, setName] = useState('');
+
   const [sceneWidth, setSceneWidth] = useState(0);
   const [sceneHeight, setSceneHeight] = useState(0);
 
+  const [error, setError] = useState<string | null>(null);
+
   const navigate = useNavigate();
-  const goToCreateNewGame = () => {
-    navigate('/create-new-game');
-  };
 
   const submit = async (e: any) => {
+    console.log('submitted');
+
     e.preventDefault();
+
     const game: Game = {
       name: name,
       scene: {
@@ -40,35 +46,21 @@ function CreateNewGame(props: CreateNewGameProps) {
     <Row>
       <h1>Create new game</h1>
       <Form onSubmit={submit}>
-        <Form.Group>
-          <Form.Label>Name:</Form.Label>
-          <Form.Control
-            id="name"
-            type="text"
-            onChange={(e) => setName(e.currentTarget.value)}
-          ></Form.Control>
-        </Form.Group>
-
-        <Form.Group>
-          <Form.Label>Scene width:</Form.Label>
-          <Form.Control
-            id="scene-width"
-            type="number"
-            onChange={(e) => setSceneWidth(+e.currentTarget.value)}
-          />
-        </Form.Group>
-
-        <Form.Group>
-          <Form.Label>Scene height:</Form.Label>
-          <Form.Control
-            id="scene-height"
-            type="number"
-            onChange={(e) => setSceneHeight(+e.currentTarget.value)}
-          />
-        </Form.Group>
+        <Name onChange={setName} props={props.nameProps} />
+        <SceneDimension
+          dimension="Width"
+          onChange={setSceneWidth}
+          props={props.sceneDimensionProps}
+        />
+        <SceneDimension
+          dimension="Height"
+          onChange={setSceneHeight}
+          props={props.sceneDimensionProps}
+        />
         <Button variant="primary" type="submit">
           Create
         </Button>
+        {error && <span>{error}</span>}
       </Form>
     </Row>
   );
