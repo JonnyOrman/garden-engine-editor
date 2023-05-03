@@ -1,4 +1,5 @@
 import EditSceneProps from './EditSceneProps';
+import React from 'react';
 
 function EditScene(props: EditSceneProps) {
   return (

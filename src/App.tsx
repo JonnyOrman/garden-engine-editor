@@ -23,13 +23,12 @@ import Props from './fields/Props';
 import Rgb from './fields/Rgb';
 import TwoDPoint from './fields/TwoDPoint';
 import TwoDPointValidator from './fields/TwoDPointValidator';
+import SceneValidator from './scene/SceneValidator';
 
 function App() {
   const [name, setName] = useState('');
   const [gameFilePathProvider, setGameFilePathProvider] = useState(
-    new GameFilePathProvider(
-      'FILE_PATH/content.json'
-    )
+    new GameFilePathProvider('FILE_PATH/content.json')
   );
   const [gameJsonWriter, setGameJsonWriter] = useState(
     new GameJsonWriter(gameFilePathProvider)
@@ -63,6 +62,17 @@ function App() {
   const [sceneDimensionProps, setSceneDimensionProps] = useState({
     validator: sceneDimensionValidator,
     onChangeHandler: sceneDimensionOnChangeHandler,
+  });
+
+  const [sceneValidator, setSceneValidator] = useState(
+    new SceneValidator(sceneDimensionValidator)
+  );
+  const [sceneOnChangeHandler, setsceneOnChangeHandler] = useState(
+    new ValidationOnChangeHandler(sceneValidator)
+  );
+  const [sceneProps, setSceneProps] = useState({
+    validator: sceneValidator,
+    onChangeHandler: sceneOnChangeHandler,
   });
 
   const [scaleValidator, setScaleValidator] = useState(new ScaleValidator());
@@ -106,6 +116,7 @@ function App() {
                 gameWriter={gameWriter}
                 nameProps={nameProps}
                 sceneDimensionProps={sceneDimensionProps}
+                sceneProps={sceneProps}
               />
             }
           />
