@@ -3,11 +3,11 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import CreateContentProps from '../CreateContentProps';
 import Triangle from './Triangle';
-import Name from '../../fields/Name';
-import TwoDPointEditor from '../../fields/TwoDPointEditor';
-import TwoDPoint from '../../fields/TwoDPoint';
-import RgbEditor from '../../fields/RgbEditor';
-import Rgb from '../../fields/Rgb';
+import Name from '../../fields/name/NameEditor';
+import TwoDPoint from '../../fields/twoDPoint/TwoDPoint';
+import Rgb from '../../fields/rgb/Rgb';
+import TwoDPointEditor from '../../fields/twoDPoint/TwoDPointEditor';
+import RgbEditor from '../../fields/rgb/RgbEditor';
 
 function CreateTriangle(props: CreateContentProps<Triangle>) {
   const [name, setName] = useState('');

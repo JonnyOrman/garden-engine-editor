@@ -1,5 +1,5 @@
+import { ValidationResult } from '../ValidationResult';
 import SceneDimensionValidator from './SceneDimensionValidator';
-import { ValidationResult } from './ValidationResult';
 
 test('When it validates a value below the range then it produces an error', () => {
   runTest(-1, 'Must be between 1 and 100');

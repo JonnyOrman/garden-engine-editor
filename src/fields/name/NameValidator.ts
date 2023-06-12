@@ -1,5 +1,5 @@
-import { ValidationResult } from './ValidationResult';
-import Validator from './Validator';
+import { ValidationResult } from '../ValidationResult';
+import Validator from '../Validator';
 
 export default class NameValidator implements Validator<string> {
   validate(value: string): ValidationResult {

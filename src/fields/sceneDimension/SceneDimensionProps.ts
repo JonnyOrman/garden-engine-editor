@@ -1,4 +1,4 @@
-import ValidatedFieldProps from '../fields/ValidatedFieldProps';
+import ValidatedFieldProps from '../ValidatedFieldProps';
 
 export default interface SceneDimensionProps
   extends ValidatedFieldProps<number> {

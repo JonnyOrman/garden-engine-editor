@@ -1,6 +1,6 @@
 import Writer from '../Writer';
 import Game from './Game';
-import Props from '../fields/Props';
+import Props from '../fields/EditorProps';
 import Scene from '../scene/Scene';
 
 export default interface CreateNewGameProps {

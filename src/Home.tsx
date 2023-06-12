@@ -1,6 +1,7 @@
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import { useNavigate } from 'react-router-dom';
+import React from 'react';
 
 function Home() {
   const navigate = useNavigate();
@@ -15,14 +16,18 @@ function Home() {
 
   return (
     <Col>
-      <h1>Garden Engine Editor</h1>
+      <h1 id="header">Garden Engine Editor</h1>
 
       <Row>
         <Col className="d-flex justify-content-center">
-          <button onClick={goToCreateNewGame}>Create new game</button>
+          <button id="create-new-game" onClick={goToCreateNewGame}>
+            Create new game
+          </button>
         </Col>
         <Col className="d-flex justify-content-center">
-          <button onClick={goToEditGame}>Edit game</button>
+          <button id="edit-game" onClick={goToEditGame}>
+            Edit game
+          </button>
         </Col>
       </Row>
     </Col>

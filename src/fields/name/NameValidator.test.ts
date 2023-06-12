@@ -1,5 +1,5 @@
+import { ValidationResult } from '../ValidationResult';
 import NameValidator from './NameValidator';
-import { ValidationResult } from './ValidationResult';
 
 test('When it validates an empty name then it produces an error', () => {
   runTest('', 'Name must be provided');

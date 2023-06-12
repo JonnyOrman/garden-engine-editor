@@ -1,56 +1,49 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Form from 'react-bootstrap/Form';
-import SceneDimension from '../fields/SceneDimension';
 import Scene from './Scene';
 import SceneEditorProps from './SceneEditorProps';
+import SceneDimensionEditor from '../fields/sceneDimension/SceneDimensionEditor';
+import { EditorB } from '../fields/Editor';
 
-function EditScene(props: SceneEditorProps) {
-  const [value, setValue] = useState<Scene>({
-    width: 0,
-    height: 0,
-  });
-  const [error, setError] = useState<string | null>(null);
+export default class SceneDimension extends EditorB<Scene, SceneEditorProps> {
+  constructor(props: SceneEditorProps) {
+    super(props, {
+      width: 0,
+      height: 0,
+    });
+  }
 
-  const onWidthChange = (newWidth: number) => {
+  onWidthChange = (newWidth: number) => {
     const newScene = {
       width: newWidth,
-      height: value.height,
+      height: this.value.height,
     };
-    onValueChange(newScene);
+    this.changeValue(newScene);
   };
 
-  const onHeightChange = (newHeight: number) => {
+  onHeightChange = (newHeight: number) => {
     const newScene = {
-      width: value.width,
+      width: this.value.width,
       height: newHeight,
     };
-    onValueChange(newScene);
+    this.changeValue(newScene);
   };
 
-  const onValueChange = (newValue: Scene) => {
-    props.props.onChangeHandler.handle(
-      newValue,
-      setError,
-      setValue,
-      props.onChange
+  render() {
+    return (
+      <Form.Group>
+        <SceneDimensionEditor
+          dimension="Width"
+          onChange={this.onWidthChange}
+          props={this.props.sceneDimensionProps}
+        />
+        <SceneDimensionEditor
+          dimension="Height"
+          onChange={this.onHeightChange}
+          props={this.props.sceneDimensionProps}
+        />
+        ;
+      </Form.Group>
     );
-  };
-
-  return (
-    <Form.Group>
-      <SceneDimension
-        dimension="Width"
-        onChange={onWidthChange}
-        props={props.sceneDimensionProps}
-      />
-      <SceneDimension
-        dimension="Height"
-        onChange={onHeightChange}
-        props={props.sceneDimensionProps}
-      />
-      ;
-    </Form.Group>
-  );
+  }
 }
-
-export default EditScene;

@@ -1,5 +1,5 @@
+import { ValidationResult } from '../ValidationResult';
 import RgbValidator from './RgbValidator';
-import { ValidationResult } from './ValidationResult';
 
 test('When it validates a red value below the valid range then it produces an error', () => {
   runTest(-0.1, 0, 0, 'R must be between 0 and 1');

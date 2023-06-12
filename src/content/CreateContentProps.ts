@@ -1,8 +1,8 @@
 import Writer from '../Writer';
-import NameProps from '../fields/NameProps';
-import Props from '../fields/Props';
-import RgbProps from '../fields/RgbProps';
-import TwoDPointProps from '../fields/TwoDPointProps';
+import Props from '../fields/EditorProps';
+import NameProps from '../fields/name/NameProps';
+import RgbProps from '../fields/rgb/RgbProps';
+import TwoDPointProps from '../fields/twoDPoint/TwoDPointProps';
 
 export default interface CreateContentProps<TContent>
   extends NameProps,

@@ -1,5 +1,5 @@
-import { ValidationResult } from './ValidationResult';
-import Validator from './Validator';
+import { ValidationResult } from '../ValidationResult';
+import Validator from '../Validator';
 
 export class SceneDimensionValidator implements Validator<number> {
   validate(value: number): ValidationResult {

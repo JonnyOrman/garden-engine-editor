@@ -1,5 +1,5 @@
+import { ValidationResult } from '../ValidationResult';
 import ScaleValidator from './ScaleValidator';
-import { ValidationResult } from './ValidationResult';
 
 test('When it validates a value below the lower limit then it produces an error', () => {
   runTest(-1, 'Scale must be above 0');

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { createContext, useState } from 'react';
 import './App.css';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Home from './Home';
@@ -14,16 +14,16 @@ import GameFilePathProvider from './game/GameFilePathProvider';
 import JsonSerialiser from './JsonSerialiser';
 import JsonParser from './JsonParser';
 import React from 'react';
-import SceneDimensionValidator from './fields/SceneDimensionValidator';
 import ValidationOnChangeHandler from './fields/ValidationOnChangeHandler';
-import NameValidator from './fields/NameValidator';
-import ScaleValidator from './fields/ScaleValidator';
-import RgbValidator from './fields/RgbValidator';
-import Props from './fields/Props';
-import Rgb from './fields/Rgb';
-import TwoDPoint from './fields/TwoDPoint';
-import TwoDPointValidator from './fields/TwoDPointValidator';
+import Props from './fields/EditorProps';
+import Rgb from './fields/rgb/Rgb';
+import TwoDPoint from './fields/twoDPoint/TwoDPoint';
 import SceneValidator from './scene/SceneValidator';
+import NameValidator from './fields/name/NameValidator';
+import SceneDimensionValidator from './fields/sceneDimension/SceneDimensionValidator';
+import ScaleValidator from './fields/scale/ScaleValidator';
+import TwoDPointValidator from './fields/twoDPoint/TwoDPointValidator';
+import RgbValidator from './fields/rgb/RgbValidator';
 
 function App() {
   const [name, setName] = useState('');
@@ -103,6 +103,8 @@ function App() {
     validator: twoDPointValidator,
     onChangeHandler: twoDPointOnChangeHandler,
   });
+
+  const AppContext = createContext(new RgbValidator());
 
   return (
     <Container fluid className="h-100">

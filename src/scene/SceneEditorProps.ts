@@ -1,4 +1,4 @@
-import Props from '../fields/Props';
+import Props from '../fields/EditorProps';
 import ValidatedFieldProps from '../fields/ValidatedFieldProps';
 import Scene from './Scene';
 

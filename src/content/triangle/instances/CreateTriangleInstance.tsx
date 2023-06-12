@@ -4,11 +4,11 @@ import Form from 'react-bootstrap/Form';
 import CreateContentInstanceProps from '../../instances/CreateContentInstanceProps';
 import Triangle from '../Triangle';
 import React from 'react';
-import Name from '../../../fields/Name';
-import Scale from '../../../fields/Scale';
-import TwoDPointEditor from '../../../fields/TwoDPointEditor';
-import TwoDPoint from '../../../fields/TwoDPoint';
+import Name from '../../../fields/name/NameEditor';
+import Scale from '../../../fields/scale/ScaleEditor';
+import TwoDPoint from '../../../fields/twoDPoint/TwoDPoint';
 import { TriangleInstance } from './TriangleInstance';
+import TwoDPointEditor from '../../../fields/twoDPoint/TwoDPointEditor';
 
 function CreateTriangleInstance(
   props: CreateContentInstanceProps<Triangle, TriangleInstance>

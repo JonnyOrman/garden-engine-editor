@@ -1,5 +1,5 @@
-import { ValidationResult } from './ValidationResult';
-import Validator from './Validator';
+import { ValidationResult } from '../ValidationResult';
+import Validator from '../Validator';
 import Rgb from './Rgb';
 
 export default class RgbValidator implements Validator<Rgb> {

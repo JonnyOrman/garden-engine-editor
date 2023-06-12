@@ -3,10 +3,10 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import CreateContentProps from '../CreateContentProps';
 import Rectangle from './Rectangle';
-import Name from '../../fields/Name';
-import RgbEditor from '../../fields/RgbEditor';
-import Rgb from '../../fields/Rgb';
-import SceneDimension from '../../fields/SceneDimension';
+import Name from '../../fields/name/NameEditor';
+import Rgb from '../../fields/rgb/Rgb';
+import SceneDimension from '../../fields/sceneDimension/SceneDimensionEditor';
+import RgbEditor from '../../fields/rgb/RgbEditor';
 
 function CreateRectangle(props: CreateContentProps<Rectangle>) {
   const [name, setName] = useState('');

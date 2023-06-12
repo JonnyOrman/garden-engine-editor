@@ -1,6 +1,6 @@
-import NameProps from '../fields/NameProps';
-import ScaleProps from '../fields/ScaleProps';
-import TwoDPointProps from '../fields/TwoDPointProps';
+import NameProps from '../fields/name/NameProps';
+import ScaleProps from '../fields/scale/ScaleProps';
+import TwoDPointProps from '../fields/twoDPoint/TwoDPointProps';
 import GameReadWriteProps from '../game/GameReadWriteProps';
 import ContentObject from './ContentObject';
 

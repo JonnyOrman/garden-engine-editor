@@ -5,9 +5,9 @@ import CreateContentInstanceProps from '../../instances/CreateContentInstancePro
 import Rectangle from '../Rectangle';
 import RectangleInstance from './RectangleInstance';
 import React from 'react';
-import Name from '../../../fields/Name';
-import TwoDPointEditor from '../../../fields/TwoDPointEditor';
-import Scale from '../../../fields/Scale';
+import Name from '../../../fields/name/NameEditor';
+import Scale from '../../../fields/scale/ScaleEditor';
+import TwoDPointEditor from '../../../fields/twoDPoint/TwoDPointEditor';
 
 function CreateRectangleInstance(
   props: CreateContentInstanceProps<Rectangle, RectangleInstance>
