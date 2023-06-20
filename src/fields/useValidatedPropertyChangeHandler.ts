@@ -1,5 +1,4 @@
-import { useEffect, useState } from 'react';
-import useValidator from './useValidator';
+import { useValidatedChangeHandler } from './useValidatedChangeHandler';
 
 export const useValidatedPropertyChangeHandler = <T, TProperty>(
   fieldName: string,
@@ -13,30 +12,20 @@ export const useValidatedPropertyChangeHandler = <T, TProperty>(
   T,
   string | null
 ] => {
-  const [value, setValue] = useState(defaultValue);
-  const [error, setError] = useState<string | null>(null);
+  const [handleChange, value, error] = useValidatedChangeHandler(
+    fieldName,
+    onChange,
+    defaultValue
+  );
 
-  const validator = useValidator(fieldName);
-
-  const handleChange = (
+  const handlePropertyChange = (
     newPropertyValue: TProperty,
     constructNewValue: (newPropertyValue: TProperty) => T
   ) => {
     const newValue = constructNewValue(newPropertyValue);
 
-    const validationResult = validator.validate(newValue);
-
-    if (!validationResult) {
-      setValue(newValue);
-      setError(null);
-    } else {
-      setError('invalid value');
-    }
+    handleChange(newValue);
   };
 
-  useEffect(() => {
-    onChange(value);
-  }, [value]);
-
-  return [handleChange, value, error];
+  return [handlePropertyChange, value, error];
 };
