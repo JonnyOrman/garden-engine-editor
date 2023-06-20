@@ -1,18 +1,20 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import EditContent from '../content/EditContent';
 import EditScene from '../scene/EditScene';
 import Game from './Game';
 import React from 'react';
-import GameReadWriteProps from './GameReadWriteProps';
+import { GameReaderContext } from '../App';
 
-function EditGame(props: GameReadWriteProps) {
+function EditGame() {
   const [game, setGame] = useState<Game>();
+
+  const gameReader = useContext(GameReaderContext);
 
   useEffect(() => {
     async function getGame() {
-      const game = await props.gameReader.read();
+      const game = await gameReader.read();
 
       setGame(game);
     }
@@ -28,11 +30,7 @@ function EditGame(props: GameReadWriteProps) {
         <EditScene objects={game?.objects || []} />
       </Col>
       <Col xs="2">
-        <EditContent
-          content={game?.content}
-          gameWriter={props.gameWriter}
-          gameReader={props.gameReader}
-        />
+        <EditContent content={game?.content} />
       </Col>
     </Row>
   );

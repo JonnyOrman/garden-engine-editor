@@ -1,6 +1,4 @@
-import GameReadWriteProps from '../game/GameReadWriteProps';
-
-export default interface CreateContentModalProps extends GameReadWriteProps {
+export default interface CreateContentModalProps {
   onHide: () => void;
   show: boolean;
 }

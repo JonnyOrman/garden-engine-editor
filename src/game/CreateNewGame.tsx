@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
@@ -7,9 +7,9 @@ import Game from './Game';
 import Scene from '../scene/Scene';
 import Name from '../fields/name/NameEditor';
 import { SceneEditor } from '../scene/SceneEditor';
-import Writer from '../Writer';
+import { GameWriterContext } from '../App';
 
-function CreateNewGame(props: { gameWriter: Writer<Game> }) {
+function CreateNewGame() {
   const [name, setName] = useState('');
 
   const [scene, setScene] = useState<Scene>({
@@ -22,6 +22,8 @@ function CreateNewGame(props: { gameWriter: Writer<Game> }) {
   const [error, setError] = useState<string | null>(null);
 
   const navigate = useNavigate();
+
+  const gameWriter = useContext(GameWriterContext);
 
   useEffect(() => {
     const game: Game = {
@@ -42,7 +44,7 @@ function CreateNewGame(props: { gameWriter: Writer<Game> }) {
 
       e.preventDefault();
 
-      props.gameWriter.write(game).then(() => {
+      gameWriter.write(game).then(() => {
         navigate('/edit-game');
       });
     }

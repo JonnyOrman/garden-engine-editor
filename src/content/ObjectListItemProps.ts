@@ -1,6 +1,5 @@
-import GameReadWriteProps from '../game/GameReadWriteProps';
 import ContentObject from './ContentObject';
 
-export default interface ObjectListItemProps extends GameReadWriteProps {
+export default interface ObjectListItemProps {
   object: ContentObject;
 }

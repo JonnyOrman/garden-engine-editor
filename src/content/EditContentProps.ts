@@ -1,6 +1,5 @@
-import GameReadWriteProps from '../game/GameReadWriteProps';
 import Content from './Content';
 
-export default interface EditContentProps extends GameReadWriteProps {
+export default interface EditContentProps {
   content: Content | undefined;
 }
