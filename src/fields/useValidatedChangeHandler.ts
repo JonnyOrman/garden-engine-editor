@@ -12,8 +12,6 @@ export const useValidatedChangeHandler = <T>(
   const validator = useValidator(fieldName);
 
   const handleChange = (newValue: T) => {
-    console.log('new value: ' + newValue);
-
     const validationResult = validator.validate(newValue);
 
     if (!validationResult) {
