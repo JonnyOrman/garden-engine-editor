@@ -3,34 +3,26 @@ import Button from 'react-bootstrap/Button';
 import Dropdown from 'react-bootstrap/Dropdown';
 import Modal from 'react-bootstrap/Modal';
 import CreateTriangle from './triangle/CreateTriangle';
-import JsonObjectWriter from './JsonObjectWriter';
-import Rectangle from './rectangle/Rectangle';
-import Triangle from './triangle/Triangle';
 import CreateContentModalProps from './CreateContentModalProps';
 import CreateRectangle from './rectangle/CreateRectangle';
 import React from 'react';
-import { GameReaderContext, GameWriterContext } from '../App';
+import { RectangleWriterContext } from './rectangle/RectangleWriterContext';
+import { TriangleWriterContext } from './triangle/TriangleWriterContext';
 
 function CreateContentModal(props: CreateContentModalProps) {
-  const gameReader = useContext(GameReaderContext);
-  const gameWriter = useContext(GameWriterContext);
+  const triangleWriter = useContext(TriangleWriterContext);
+  const rectangleWriter = useContext(RectangleWriterContext);
 
   const [type, setType] = useState('');
 
   let typeForm;
   if (type == 'triangle') {
     typeForm = (
-      <CreateTriangle
-        onHide={props.onHide}
-        contentWriter={new JsonObjectWriter<Triangle>(gameReader, gameWriter)}
-      />
+      <CreateTriangle onHide={props.onHide} contentWriter={triangleWriter} />
     );
   } else if (type == 'rectangle') {
     typeForm = (
-      <CreateRectangle
-        onHide={props.onHide}
-        contentWriter={new JsonObjectWriter<Rectangle>(gameReader, gameWriter)}
-      />
+      <CreateRectangle onHide={props.onHide} contentWriter={rectangleWriter} />
     );
   }
 

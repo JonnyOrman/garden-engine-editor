@@ -7,7 +7,7 @@ import Game from './Game';
 import Scene from '../scene/Scene';
 import Name from '../fields/name/NameEditor';
 import { SceneEditor } from '../scene/SceneEditor';
-import { GameWriterContext } from '../App';
+import { GameWriterContext } from './GameWriterContext';
 
 function CreateNewGame() {
   const [name, setName] = useState('');

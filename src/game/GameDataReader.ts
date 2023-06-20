@@ -1,6 +1,7 @@
 import { BaseDirectory, readTextFile } from '@tauri-apps/api/fs';
 import Provider from '../Provider';
 import Reader from '../Reader';
+import { gameFilePathProvider } from './GameFilePathProvider';
 
 export default class GameDataReader implements Reader<string> {
   constructor(private gameFilePathProvider: Provider<string>) {}
@@ -11,3 +12,5 @@ export default class GameDataReader implements Reader<string> {
     });
   }
 }
+
+export const gameJsonReader = new GameDataReader(gameFilePathProvider);

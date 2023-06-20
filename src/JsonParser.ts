@@ -5,3 +5,5 @@ export default class JsonParser implements Parser {
     return JSON.parse(data);
   }
 }
+
+export const jsonParser = new JsonParser();

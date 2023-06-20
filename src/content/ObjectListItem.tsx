@@ -1,25 +1,25 @@
 import React, { useContext } from 'react';
 import Button from 'react-bootstrap/Button';
-import GameContentInstancesProvider from '../game/GameContentInstancesProvider';
-import JsonContentInstanceWriter from './instances/JsonContentInstanceWriter';
 import ObjectInstancesModal from './instances/ObjectInstancesModal';
 import ObjectListItemProps from './ObjectListItemProps';
 import CreateRectangleInstance from './rectangle/instances/CreateRectangleInstance';
-import RectangleInstance from './rectangle/instances/RectangleInstance';
 import Rectangle from './rectangle/Rectangle';
 import CreateTriangleInstance from './triangle/instances/CreateTriangleInstance';
 import Triangle from './triangle/Triangle';
-import { TriangleInstance } from './triangle/instances/TriangleInstance';
-import { GameReaderContext, GameWriterContext } from '../App';
+import { TriangleInstanceWriterContext } from './triangle/instances/TriangleInstanceWriterContext';
+import { RectangleInstanceWriterContext } from './rectangle/instances/RectangleInstanceWriterContext';
+import { RectangleInstanceProviderContext } from './rectangle/instances/RectangleInstanceProviderContext';
+import { TriangleInstanceProviderContext } from './triangle/instances/TriangleInstanceProviderContext';
 
 function ObjectListItem(props: ObjectListItemProps) {
-  const gameReader = useContext(GameReaderContext);
-  const gameWriter = useContext(GameWriterContext);
+  const triangleInstanceProvider = useContext(TriangleInstanceProviderContext);
+  const triangleInstanceWriter = useContext(TriangleInstanceWriterContext);
+  const rectangleInstanceProvider = useContext(
+    RectangleInstanceProviderContext
+  );
+  const rectangleInstanceWriter = useContext(RectangleInstanceWriterContext);
 
   const [instancesModalShow, setInstancesModalShow] = React.useState(false);
-  const [contentInstanceWriter, setContentInstanceWriter] = React.useState(
-    new JsonContentInstanceWriter<TriangleInstance>(gameReader, gameWriter)
-  );
 
   let typeInstancesModal;
   if (props.object.type == 'triangle') {
@@ -28,14 +28,12 @@ function ObjectListItem(props: ObjectListItemProps) {
         content={props.object as Triangle}
         show={instancesModalShow}
         onHide={() => setInstancesModalShow(false)}
-        contentInstancesProvider={
-          new GameContentInstancesProvider<TriangleInstance>(gameReader)
-        }
-        contentInstanceWriter={contentInstanceWriter}
+        contentInstancesProvider={triangleInstanceProvider}
+        contentInstanceWriter={triangleInstanceWriter}
         createContentInstance={
           <CreateTriangleInstance
             content={props.object as Triangle}
-            contentInstanceWriter={contentInstanceWriter}
+            contentInstanceWriter={triangleInstanceWriter}
           />
         }
       />
@@ -46,14 +44,12 @@ function ObjectListItem(props: ObjectListItemProps) {
         content={props.object as Rectangle}
         show={instancesModalShow}
         onHide={() => setInstancesModalShow(false)}
-        contentInstancesProvider={
-          new GameContentInstancesProvider<RectangleInstance>(gameReader)
-        }
-        contentInstanceWriter={contentInstanceWriter}
+        contentInstancesProvider={rectangleInstanceProvider}
+        contentInstanceWriter={rectangleInstanceWriter}
         createContentInstance={
           <CreateRectangleInstance
             content={props.object as Rectangle}
-            contentInstanceWriter={contentInstanceWriter}
+            contentInstanceWriter={rectangleInstanceWriter}
           />
         }
       />

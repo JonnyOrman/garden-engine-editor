@@ -5,7 +5,7 @@ import EditContent from '../content/EditContent';
 import EditScene from '../scene/EditScene';
 import Game from './Game';
 import React from 'react';
-import { GameReaderContext } from '../App';
+import { GameReaderContext } from './GameReaderContext';
 
 function EditGame() {
   const [game, setGame] = useState<Game>();

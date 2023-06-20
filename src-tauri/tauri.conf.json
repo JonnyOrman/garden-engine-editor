@@ -29,7 +29,7 @@
         "renameFile": false,
         "exists": false,
         "scope": [
-          "FILE_PATH/content.json"
+          "PATH_HERE/content.json"
         ]
       }
     },

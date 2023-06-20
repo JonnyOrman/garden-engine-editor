@@ -1,6 +1,8 @@
+import { jsonParser } from '../JsonParser';
 import Parser from '../Parser';
 import Reader from '../Reader';
 import Game from './Game';
+import { gameJsonReader } from './GameDataReader';
 
 export default class GameReader implements Reader<Game> {
   constructor(private gameDataReader: Reader<string>, private parser: Parser) {}
@@ -13,3 +15,5 @@ export default class GameReader implements Reader<Game> {
     return game;
   }
 }
+
+export const gameReader = new GameReader(gameJsonReader, jsonParser);
