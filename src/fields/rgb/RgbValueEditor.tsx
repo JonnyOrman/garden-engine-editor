@@ -1,11 +1,9 @@
 import Form from 'react-bootstrap/Form';
 import React from 'react';
 import { useValidatedChangeHandler } from '../useValidatedChangeHandler';
+import RgbValueEditorProps from './RgbValueEditorProps';
 
-export const RgbValueEditor = (props: {
-  name: string;
-  onChange: (value: number) => void;
-}) => {
+export const RgbValueEditor = (props: RgbValueEditorProps) => {
   const [handleChange, value, error] = useValidatedChangeHandler<number>(
     'RgbValue',
     props.onChange,

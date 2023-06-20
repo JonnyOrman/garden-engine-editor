@@ -1,11 +1,9 @@
 import Form from 'react-bootstrap/Form';
 import React from 'react';
 import { useValidatedChangeHandler } from '../useValidatedChangeHandler';
+import DimensionEditorProps from './DimensionEditorProps';
 
-export const DimensionEditor = (props: {
-  onChange: (newValue: number) => void;
-  dimension: string;
-}) => {
+export const DimensionEditor = (props: DimensionEditorProps) => {
   const [handleChange, value, error] = useValidatedChangeHandler<number>(
     'Dimension',
     props.onChange,

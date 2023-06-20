@@ -1,8 +1,9 @@
 import React from 'react';
 import Form from 'react-bootstrap/Form';
 import { useValidatedChangeHandler } from '../useValidatedChangeHandler';
+import EditorProps from '../EditorProps';
 
-export const NameEditor = (props: { onChange: (newValue: string) => void }) => {
+export const NameEditor = (props: EditorProps<string>) => {
   const [handleChange, value, error] = useValidatedChangeHandler<string>(
     'Name',
     props.onChange,

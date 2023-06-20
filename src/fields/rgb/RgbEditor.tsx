@@ -1,44 +1,47 @@
 import React from 'react';
 import Rgb from './Rgb';
 import RgbValueEditor from './RgbValueEditor';
-import { useValidatedChangeHandler } from '../useValidatedChangeHandler';
+import EditorProps from '../EditorProps';
+import { useValidatedPropertyChangeHandler } from '../useValidatedPropertyChangeHandler';
 
-export const RgbEditor = (props: { onChange: (value: Rgb) => void }) => {
-  const [handleChange, value, error] = useValidatedChangeHandler<Rgb>(
-    'Rgb',
-    props.onChange,
-    {
-      r: 0,
-      g: 0,
-      b: 0,
-    }
-  );
+export const RgbEditor = (props: EditorProps<Rgb>) => {
+  const [handleChange, value, error] = useValidatedPropertyChangeHandler<
+    Rgb,
+    number
+  >('Rgb', props.onChange, {
+    r: 0,
+    g: 0,
+    b: 0,
+  });
 
   const onRValueChange = (newRValue: number) => {
-    const newRgb = {
-      r: newRValue,
-      g: value.g,
-      b: value.b,
-    };
-    handleChange(newRgb);
+    handleChange(newRValue, (newRValue: number) => {
+      return {
+        r: newRValue,
+        g: value.g,
+        b: value.b,
+      };
+    });
   };
 
   const onGValueChange = (newGValue: number) => {
-    const newRgb = {
-      r: value.r,
-      g: newGValue,
-      b: value.b,
-    };
-    handleChange(newRgb);
+    handleChange(newGValue, (newGValue: number) => {
+      return {
+        r: value.r,
+        g: newGValue,
+        b: value.b,
+      };
+    });
   };
 
   const onBValueChange = (newBValue: number) => {
-    const newRgb = {
-      r: value.r,
-      g: value.g,
-      b: newBValue,
-    };
-    handleChange(newRgb);
+    handleChange(newBValue, (newBValue: number) => {
+      return {
+        r: value.r,
+        g: value.g,
+        b: newBValue,
+      };
+    });
   };
 
   return (

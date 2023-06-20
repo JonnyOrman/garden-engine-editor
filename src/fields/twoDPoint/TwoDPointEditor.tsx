@@ -2,34 +2,34 @@ import Form from 'react-bootstrap/Form';
 import React from 'react';
 import TwoDPoint from './TwoDPoint';
 import DimensionEditor from '../dimension/DimensionEditor';
-import { useValidatedChangeHandler } from '../useValidatedChangeHandler';
+import { useValidatedPropertyChangeHandler } from '../useValidatedPropertyChangeHandler';
+import EditorProps from '../EditorProps';
 
-export const TwoDPointEditor = (props: {
-  onChange: (newValue: TwoDPoint) => void;
-}) => {
-  const [handleChange, value, error] = useValidatedChangeHandler<TwoDPoint>(
-    'TwoPointEditor',
-    props.onChange,
-    {
-      x: 0,
-      y: 0,
-    }
-  );
+export const TwoDPointEditor = (props: EditorProps<TwoDPoint>) => {
+  const [handleChange, value, error] = useValidatedPropertyChangeHandler<
+    TwoDPoint,
+    number
+  >('TwoPointEditor', props.onChange, {
+    x: 0,
+    y: 0,
+  });
 
   const onXValueChange = (newXValue: number) => {
-    const newPoint = {
-      x: newXValue,
-      y: value.y,
-    };
-    handleChange(newPoint);
+    handleChange(newXValue, (newXValue: number) => {
+      return {
+        x: newXValue,
+        y: value.y,
+      };
+    });
   };
 
   const onYValueChange = (newYValue: number) => {
-    const newPoint = {
-      x: value.x,
-      y: newYValue,
-    };
-    handleChange(newPoint);
+    handleChange(newYValue, (newYValue: number) => {
+      return {
+        x: value.x,
+        y: newYValue,
+      };
+    });
   };
 
   return (
