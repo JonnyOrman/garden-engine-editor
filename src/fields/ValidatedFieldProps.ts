@@ -1,4 +1,4 @@
-import Props from './Props';
+import Props from './EditorProps';
 
 export default interface ValidatedFieldProps<T> {
   onChange: (value: T) => void;

@@ -1,45 +1,28 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Dropdown from 'react-bootstrap/Dropdown';
 import Modal from 'react-bootstrap/Modal';
 import CreateTriangle from './triangle/CreateTriangle';
-import JsonObjectWriter from './JsonObjectWriter';
-import Rectangle from './rectangle/Rectangle';
-import Triangle from './triangle/Triangle';
 import CreateContentModalProps from './CreateContentModalProps';
 import CreateRectangle from './rectangle/CreateRectangle';
 import React from 'react';
+import { RectangleWriterContext } from './rectangle/RectangleWriterContext';
+import { TriangleWriterContext } from './triangle/TriangleWriterContext';
 
 function CreateContentModal(props: CreateContentModalProps) {
+  const triangleWriter = useContext(TriangleWriterContext);
+  const rectangleWriter = useContext(RectangleWriterContext);
+
   const [type, setType] = useState('');
-  const [gameReader, setGameReader] = useState(props.gameReader);
 
   let typeForm;
   if (type == 'triangle') {
     typeForm = (
-      <CreateTriangle
-        onHide={props.onHide}
-        contentWriter={
-          new JsonObjectWriter<Triangle>(gameReader, props.gameWriter)
-        }
-        nameProps={props.nameProps}
-        rgbProps={props.rgbProps}
-        sceneDimensionProps={props.sceneDimensionProps}
-        twoDPointProps={props.twoDPointProps}
-      />
+      <CreateTriangle onHide={props.onHide} contentWriter={triangleWriter} />
     );
   } else if (type == 'rectangle') {
     typeForm = (
-      <CreateRectangle
-        onHide={props.onHide}
-        contentWriter={
-          new JsonObjectWriter<Rectangle>(gameReader, props.gameWriter)
-        }
-        nameProps={props.nameProps}
-        rgbProps={props.rgbProps}
-        sceneDimensionProps={props.sceneDimensionProps}
-        twoDPointProps={props.twoDPointProps}
-      />
+      <CreateRectangle onHide={props.onHide} contentWriter={rectangleWriter} />
     );
   }
 

@@ -28,15 +28,15 @@ const runTest = (
     height: height,
   };
 
-  const sceneDimensionValidator = mock<Validator<number>>();
-  sceneDimensionValidator.validate
+  const DimensionValidator = mock<Validator<number>>();
+  DimensionValidator.validate
     .calledWith(123)
     .mockReturnValue(widthValidationResult);
-  sceneDimensionValidator.validate
+  DimensionValidator.validate
     .calledWith(456)
     .mockReturnValue(heightValidationResult);
 
-  const sceneValidator = new SceneValidator(sceneDimensionValidator);
+  const sceneValidator = new SceneValidator(DimensionValidator);
 
   const validationResult = sceneValidator.validate(scene);
 

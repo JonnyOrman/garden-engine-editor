@@ -14,16 +14,7 @@ function EditContent(props: EditContentProps) {
     <Col>
       <Row>
         {props?.content?.objects?.map((object: any) => {
-          return (
-            <ObjectListItem
-              object={object || {}}
-              gameReader={props.gameReader}
-              gameWriter={props.gameWriter}
-              nameProps={props.nameProps}
-              scaleProps={props.scaleProps}
-              twoDPointProps={props.twoDPointProps}
-            />
-          );
+          return <ObjectListItem object={object || {}} />;
         })}
       </Row>
       <Row>
@@ -37,12 +28,6 @@ function EditContent(props: EditContentProps) {
       <CreateContentModal
         show={createContentModalShow}
         onHide={() => setCreateContentModalShow(false)}
-        gameWriter={props.gameWriter}
-        gameReader={props.gameReader}
-        nameProps={props.nameProps}
-        rgbProps={props.rgbProps}
-        sceneDimensionProps={props.sceneDimensionProps}
-        twoDPointProps={props.twoDPointProps}
       />
     </Col>
   );

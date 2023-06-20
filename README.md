@@ -1,10 +1,20 @@
-# Tauri + React + Typescript
+# Garden Engine Editor
 
-This template should help get you started developing with Tauri, React and Typescript in Vite.
+Visual editor for [Garden Engine](https://github.com/JonnyOrman/garden-engine).
 
-## Recommended IDE Setup
+Can be run as a web or desktop app.
 
-- [VS Code](https://code.visualstudio.com/) + [Tauri](https://marketplace.visualstudio.com/items?itemName=tauri-apps.tauri-vscode) + [rust-analyzer](https://marketplace.visualstudio.com/items?itemName=rust-lang.rust-analyzer)
+## Web app
 
+Run as web app only with `npm run dev`, then navigate to `localhost:1420`
 
-To run in dev mode, run `npm run tauri dev`.
+## Desktop app
+
+To also run the desktop app, run `npm run tauri dev`.
+
+## Running tests
+
+Run unit tests with `npm run test`.
+
+Run feature tests by running the web app with `npm run dev`, then run the tests
+with `npx playwright test`. View the report with `npx playwright show-report`.

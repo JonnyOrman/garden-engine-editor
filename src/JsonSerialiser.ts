@@ -5,3 +5,5 @@ export default class JsonSerialiser implements Serialiser {
     return JSON.stringify(obj);
   }
 }
+
+export const jsonSerialiser = new JsonSerialiser();

@@ -4,11 +4,11 @@ import Form from 'react-bootstrap/Form';
 import CreateContentInstanceProps from '../../instances/CreateContentInstanceProps';
 import Triangle from '../Triangle';
 import React from 'react';
-import Name from '../../../fields/Name';
-import Scale from '../../../fields/Scale';
-import TwoDPointEditor from '../../../fields/TwoDPointEditor';
-import TwoDPoint from '../../../fields/TwoDPoint';
+import Name from '../../../fields/name/NameEditor';
+import ScaleEditor from '../../../fields/scale/ScaleEditor';
+import TwoDPoint from '../../../fields/twoDPoint/TwoDPoint';
 import { TriangleInstance } from './TriangleInstance';
+import TwoDPointEditor from '../../../fields/twoDPoint/TwoDPointEditor';
 
 function CreateTriangleInstance(
   props: CreateContentInstanceProps<Triangle, TriangleInstance>
@@ -35,12 +35,9 @@ function CreateTriangleInstance(
     <div>
       <h4>Create new instance</h4>
       <Form onSubmit={submit}>
-        <Name onChange={setName} props={props.nameProps}></Name>
-        <Scale onChange={setScale} props={props.scaleProps}></Scale>
-        <TwoDPointEditor
-          onChange={setPosition}
-          props={props.twoDPointProps}
-        ></TwoDPointEditor>
+        <Name onChange={setName}></Name>
+        <ScaleEditor onChange={setScale}></ScaleEditor>
+        <TwoDPointEditor onChange={setPosition}></TwoDPointEditor>
         <Button variant="primary" type="submit">
           Create
         </Button>

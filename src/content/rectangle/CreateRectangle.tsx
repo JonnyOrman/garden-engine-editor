@@ -3,10 +3,10 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import CreateContentProps from '../CreateContentProps';
 import Rectangle from './Rectangle';
-import Name from '../../fields/Name';
-import RgbEditor from '../../fields/RgbEditor';
-import Rgb from '../../fields/Rgb';
-import SceneDimension from '../../fields/SceneDimension';
+import Name from '../../fields/name/NameEditor';
+import Rgb from '../../fields/rgb/Rgb';
+import Dimension from '../../fields/dimension/DimensionEditor';
+import RgbEditor from '../../fields/rgb/RgbEditor';
 
 function CreateRectangle(props: CreateContentProps<Rectangle>) {
   const [name, setName] = useState('');
@@ -34,19 +34,11 @@ function CreateRectangle(props: CreateContentProps<Rectangle>) {
 
   return (
     <Form onSubmit={submit}>
-      <Name onChange={setName} props={props.nameProps}></Name>
+      <Name onChange={setName}></Name>
       <Form.Group>
-        <SceneDimension
-          dimension="Width"
-          onChange={setWidth}
-          props={props.sceneDimensionProps}
-        />
-        <SceneDimension
-          dimension="Height"
-          onChange={setHeight}
-          props={props.sceneDimensionProps}
-        />
-        <RgbEditor onChange={setRgb} props={props.rgbProps}></RgbEditor>
+        <Dimension dimension="Width" onChange={setWidth} />
+        <Dimension dimension="Height" onChange={setHeight} />
+        <RgbEditor onChange={setRgb}></RgbEditor>
       </Form.Group>
       <Button variant="primary" type="submit">
         Create

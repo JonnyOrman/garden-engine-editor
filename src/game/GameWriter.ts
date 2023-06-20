@@ -1,6 +1,8 @@
 import Game from './Game';
 import Writer from '../Writer';
 import Serialiser from '../Serialiser';
+import { gameJsonWriter } from './GameDataWriter';
+import { jsonSerialiser } from '../JsonSerialiser';
 
 export default class GameWriter implements Writer<Game> {
   constructor(
@@ -14,3 +16,5 @@ export default class GameWriter implements Writer<Game> {
     await this.gameDataWriter.write(gameData);
   }
 }
+
+export const gameWriter = new GameWriter(jsonSerialiser, gameJsonWriter);

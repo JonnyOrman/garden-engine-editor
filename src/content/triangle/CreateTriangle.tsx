@@ -3,11 +3,11 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import CreateContentProps from '../CreateContentProps';
 import Triangle from './Triangle';
-import Name from '../../fields/Name';
-import TwoDPointEditor from '../../fields/TwoDPointEditor';
-import TwoDPoint from '../../fields/TwoDPoint';
-import RgbEditor from '../../fields/RgbEditor';
-import Rgb from '../../fields/Rgb';
+import Name from '../../fields/name/NameEditor';
+import TwoDPoint from '../../fields/twoDPoint/TwoDPoint';
+import Rgb from '../../fields/rgb/Rgb';
+import TwoDPointEditor from '../../fields/twoDPoint/TwoDPointEditor';
+import RgbEditor from '../../fields/rgb/RgbEditor';
 
 function CreateTriangle(props: CreateContentProps<Triangle>) {
   const [name, setName] = useState('');
@@ -64,27 +64,18 @@ function CreateTriangle(props: CreateContentProps<Triangle>) {
 
   return (
     <Form onSubmit={submit}>
-      <Name onChange={setName} props={props.nameProps}></Name>
+      <Name onChange={setName}></Name>
       <Form.Group>
-        <TwoDPointEditor
-          onChange={setPoint1}
-          props={props.twoDPointProps}
-        ></TwoDPointEditor>
-        <RgbEditor onChange={setPoint1Rgb} props={props.rgbProps}></RgbEditor>
+        <TwoDPointEditor onChange={setPoint1}></TwoDPointEditor>
+        <RgbEditor onChange={setPoint1Rgb}></RgbEditor>
       </Form.Group>
       <Form.Group>
-        <TwoDPointEditor
-          onChange={setPoint2}
-          props={props.twoDPointProps}
-        ></TwoDPointEditor>
-        <RgbEditor onChange={setPoint2Rgb} props={props.rgbProps}></RgbEditor>
+        <TwoDPointEditor onChange={setPoint2}></TwoDPointEditor>
+        <RgbEditor onChange={setPoint2Rgb}></RgbEditor>
       </Form.Group>
       <Form.Group>
-        <TwoDPointEditor
-          onChange={setPoint3}
-          props={props.twoDPointProps}
-        ></TwoDPointEditor>
-        <RgbEditor onChange={setPoint3Rgb} props={props.rgbProps}></RgbEditor>
+        <TwoDPointEditor onChange={setPoint3}></TwoDPointEditor>
+        <RgbEditor onChange={setPoint3Rgb}></RgbEditor>
       </Form.Group>
       <Button variant="primary" type="submit">
         Create

@@ -1,22 +1,25 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Form from 'react-bootstrap/Form';
-import SceneDimension from '../fields/SceneDimension';
 import Scene from './Scene';
-import SceneEditorProps from './SceneEditorProps';
+import DimensionEditor from '../fields/dimension/DimensionEditor';
+import { useValidatedChangeHandler } from '../fields/useValidatedChangeHandler';
 
-function EditScene(props: SceneEditorProps) {
-  const [value, setValue] = useState<Scene>({
-    width: 0,
-    height: 0,
-  });
-  const [error, setError] = useState<string | null>(null);
+export const SceneEditor = (props: { onChange: (newValue: Scene) => void }) => {
+  const [handleChange, value, error] = useValidatedChangeHandler<Scene>(
+    'scale',
+    props.onChange,
+    {
+      width: 0,
+      height: 0,
+    }
+  );
 
   const onWidthChange = (newWidth: number) => {
     const newScene = {
       width: newWidth,
       height: value.height,
     };
-    onValueChange(newScene);
+    handleChange(newScene);
   };
 
   const onHeightChange = (newHeight: number) => {
@@ -24,33 +27,14 @@ function EditScene(props: SceneEditorProps) {
       width: value.width,
       height: newHeight,
     };
-    onValueChange(newScene);
-  };
-
-  const onValueChange = (newValue: Scene) => {
-    props.props.onChangeHandler.handle(
-      newValue,
-      setError,
-      setValue,
-      props.onChange
-    );
+    handleChange(newScene);
   };
 
   return (
     <Form.Group>
-      <SceneDimension
-        dimension="Width"
-        onChange={onWidthChange}
-        props={props.sceneDimensionProps}
-      />
-      <SceneDimension
-        dimension="Height"
-        onChange={onHeightChange}
-        props={props.sceneDimensionProps}
-      />
-      ;
+      <DimensionEditor dimension="Width" onChange={onWidthChange} />
+      <DimensionEditor dimension="Height" onChange={onHeightChange} />
+      {error && <span>{error}</span>}
     </Form.Group>
   );
-}
-
-export default EditScene;
+};

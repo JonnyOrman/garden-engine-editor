@@ -1,13 +1,13 @@
-import react, { useState } from 'react';
+import { useState } from 'react';
 import Button from 'react-bootstrap/esm/Button';
 import Form from 'react-bootstrap/esm/Form';
 import CreateContentInstanceProps from '../../instances/CreateContentInstanceProps';
 import Rectangle from '../Rectangle';
 import RectangleInstance from './RectangleInstance';
 import React from 'react';
-import Name from '../../../fields/Name';
-import TwoDPointEditor from '../../../fields/TwoDPointEditor';
-import Scale from '../../../fields/Scale';
+import Name from '../../../fields/name/NameEditor';
+import ScaleEditor from '../../../fields/scale/ScaleEditor';
+import TwoDPointEditor from '../../../fields/twoDPoint/TwoDPointEditor';
 
 function CreateRectangleInstance(
   props: CreateContentInstanceProps<Rectangle, RectangleInstance>
@@ -35,12 +35,9 @@ function CreateRectangleInstance(
     <div>
       <h4>Create new instance</h4>
       <Form onSubmit={submit}>
-        <Name onChange={setName} props={props.nameProps}></Name>
-        <Scale onChange={setScale} props={props.scaleProps}></Scale>
-        <TwoDPointEditor
-          onChange={setPosition}
-          props={props.twoDPointProps}
-        ></TwoDPointEditor>
+        <Name onChange={setName}></Name>
+        <ScaleEditor onChange={setScale}></ScaleEditor>
+        <TwoDPointEditor onChange={setPosition}></TwoDPointEditor>
         <Button variant="primary" type="submit">
           Create
         </Button>

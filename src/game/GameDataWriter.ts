@@ -1,6 +1,7 @@
 import { BaseDirectory, writeTextFile } from '@tauri-apps/api/fs';
 import Provider from '../Provider';
 import Writer from '../Writer';
+import { gameFilePathProvider } from './GameFilePathProvider';
 
 export default class GameJsonWriter implements Writer<string> {
   constructor(private gameFilePathProvider: Provider<string>) {}
@@ -11,3 +12,5 @@ export default class GameJsonWriter implements Writer<string> {
     });
   }
 }
+
+export const gameJsonWriter = new GameJsonWriter(gameFilePathProvider);
