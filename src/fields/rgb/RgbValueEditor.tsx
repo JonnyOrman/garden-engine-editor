@@ -1,4 +1,3 @@
-import Form from 'react-bootstrap/Form';
 import React from 'react';
 import { useValidatedChangeHandler } from '../useValidatedChangeHandler';
 import RgbValueEditorProps from './RgbValueEditorProps';
@@ -12,12 +11,13 @@ export const RgbValueEditor = (props: RgbValueEditorProps) => {
 
   return (
     <div>
-      <Form.Label>{props.name}:</Form.Label>
-      <Form.Control
-        id={props.name}
-        type="number"
-        onChange={(e) => handleChange(+e.currentTarget.value)}
-      ></Form.Control>
+      <label>
+        {props.name}
+        <input
+          type="number"
+          onChange={(e) => handleChange(+e.currentTarget.value)}
+        ></input>
+      </label>
       {error && <span>{error}</span>}
     </div>
   );

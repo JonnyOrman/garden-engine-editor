@@ -1,4 +1,3 @@
-import Form from 'react-bootstrap/Form';
 import React from 'react';
 import { useValidatedChangeHandler } from '../useValidatedChangeHandler';
 import DimensionEditorProps from './DimensionEditorProps';
@@ -11,15 +10,16 @@ export const DimensionEditor = (props: DimensionEditorProps) => {
   );
 
   return (
-    <Form.Group>
-      <Form.Label>{props.dimension}:</Form.Label>
-      <Form.Control
-        id="scene-${props.dimension}"
-        type="number"
-        onChange={(e) => handleChange(+e.currentTarget.value)}
-      />
+    <div>
+      <label>
+        {props.dimension}
+        <input
+          type="number"
+          onChange={(e) => handleChange(+e.currentTarget.value)}
+        ></input>
+      </label>
       {error && <span>{error}</span>}
-    </Form.Group>
+    </div>
   );
 };
 

@@ -1,4 +1,3 @@
-import Form from 'react-bootstrap/Form';
 import React from 'react';
 import TwoDPoint from './TwoDPoint';
 import DimensionEditor from '../dimension/DimensionEditor';
@@ -34,16 +33,14 @@ export const TwoDPointEditor = (props: EditorProps<TwoDPoint>) => {
 
   return (
     <div>
-      <Form.Group>
-        <DimensionEditor
-          onChange={onXValueChange}
-          dimension="X"
-        ></DimensionEditor>
-        <DimensionEditor
-          onChange={onYValueChange}
-          dimension="Y"
-        ></DimensionEditor>
-      </Form.Group>
+      <DimensionEditor
+        onChange={onXValueChange}
+        dimension="X"
+      ></DimensionEditor>
+      <DimensionEditor
+        onChange={onYValueChange}
+        dimension="Y"
+      ></DimensionEditor>
       {error && <span>{error}</span>}
     </div>
   );

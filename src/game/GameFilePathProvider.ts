@@ -9,5 +9,5 @@ export default class GameFilePathProvider implements Provider<string> {
 }
 
 export const gameFilePathProvider = new GameFilePathProvider(
-  'PATH_HERE/content.json'
+  'FILE_PATH/content.json'
 );

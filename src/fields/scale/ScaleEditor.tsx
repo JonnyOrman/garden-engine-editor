@@ -1,4 +1,3 @@
-import Form from 'react-bootstrap/Form';
 import React from 'react';
 import { useValidatedChangeHandler } from '../useValidatedChangeHandler';
 import EditorProps from '../EditorProps';
@@ -11,15 +10,16 @@ export const ScaleEditor = (props: EditorProps<number>) => {
   );
 
   return (
-    <Form.Group>
-      <Form.Label>Scale:</Form.Label>
-      <Form.Control
-        id="scale"
-        type="number"
-        onChange={(e) => handleChange(+e.currentTarget.value)}
-      ></Form.Control>
+    <div>
+      <label>
+        Scale
+        <input
+          type="number"
+          onChange={(e) => handleChange(+e.currentTarget.value)}
+        ></input>
+      </label>
       {error && <span>{error}</span>}
-    </Form.Group>
+    </div>
   );
 };
 
