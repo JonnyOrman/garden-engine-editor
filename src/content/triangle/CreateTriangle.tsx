@@ -64,27 +64,18 @@ function CreateTriangle(props: CreateContentProps<Triangle>) {
 
   return (
     <Form onSubmit={submit}>
-      <Name onChange={setName} props={props.nameProps}></Name>
+      <Name onChange={setName}></Name>
       <Form.Group>
-        <TwoDPointEditor
-          onChange={setPoint1}
-          props={props.twoDPointProps}
-        ></TwoDPointEditor>
-        <RgbEditor onChange={setPoint1Rgb} props={props.rgbProps}></RgbEditor>
+        <TwoDPointEditor onChange={setPoint1}></TwoDPointEditor>
+        <RgbEditor onChange={setPoint1Rgb}></RgbEditor>
       </Form.Group>
       <Form.Group>
-        <TwoDPointEditor
-          onChange={setPoint2}
-          props={props.twoDPointProps}
-        ></TwoDPointEditor>
-        <RgbEditor onChange={setPoint2Rgb} props={props.rgbProps}></RgbEditor>
+        <TwoDPointEditor onChange={setPoint2}></TwoDPointEditor>
+        <RgbEditor onChange={setPoint2Rgb}></RgbEditor>
       </Form.Group>
       <Form.Group>
-        <TwoDPointEditor
-          onChange={setPoint3}
-          props={props.twoDPointProps}
-        ></TwoDPointEditor>
-        <RgbEditor onChange={setPoint3Rgb} props={props.rgbProps}></RgbEditor>
+        <TwoDPointEditor onChange={setPoint3}></TwoDPointEditor>
+        <RgbEditor onChange={setPoint3Rgb}></RgbEditor>
       </Form.Group>
       <Button variant="primary" type="submit">
         Create

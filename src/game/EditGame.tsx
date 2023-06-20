@@ -3,11 +3,11 @@ import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import EditContent from '../content/EditContent';
 import EditScene from '../scene/EditScene';
-import EditGameProps from './EditGameProps';
 import Game from './Game';
 import React from 'react';
+import GameReadWriteProps from './GameReadWriteProps';
 
-function EditGame(props: EditGameProps) {
+function EditGame(props: GameReadWriteProps) {
   const [game, setGame] = useState<Game>();
 
   useEffect(() => {
@@ -32,11 +32,6 @@ function EditGame(props: EditGameProps) {
           content={game?.content}
           gameWriter={props.gameWriter}
           gameReader={props.gameReader}
-          nameProps={props.nameProps}
-          scaleProps={props.scaleProps}
-          rgbProps={props.rgbProps}
-          twoDPointProps={props.twoDPointProps}
-          sceneDimensionProps={props.sceneDimensionProps}
         />
       </Col>
     </Row>

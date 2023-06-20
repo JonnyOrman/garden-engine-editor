@@ -1,5 +1,5 @@
 import { ValidationResult } from '../ValidationResult';
-import SceneDimensionValidator from './SceneDimensionValidator';
+import DimensionValidator from './DimensionValidator';
 
 test('When it validates a value below the range then it produces an error', () => {
   runTest(-1, 'Must be between 1 and 100');
@@ -18,12 +18,12 @@ test('When it validates a value at the upper limit then it does not produce an e
 });
 
 const runTest = (
-  sceneDimension: number,
+  Dimension: number,
   expectedValidationResult: ValidationResult
 ) => {
-  const sceneDimensionValidator = new SceneDimensionValidator();
+  const dimensionValidator = new DimensionValidator();
 
-  const validationResult = sceneDimensionValidator.validate(sceneDimension);
+  const validationResult = dimensionValidator.validate(Dimension);
 
   expect(validationResult).toBe(expectedValidationResult);
 };

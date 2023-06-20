@@ -10,12 +10,12 @@ test('When it validates a value at the lower limit then it does not produce an e
 });
 
 const runTest = (
-  sceneDimension: number,
+  Dimension: number,
   expectedValidationResult: ValidationResult
 ) => {
   const scaleValidator = new ScaleValidator();
 
-  const validationResult = scaleValidator.validate(sceneDimension);
+  const validationResult = scaleValidator.validate(Dimension);
 
   expect(validationResult).toBe(expectedValidationResult);
 };

@@ -1,49 +1,40 @@
 import React from 'react';
 import Form from 'react-bootstrap/Form';
 import Scene from './Scene';
-import SceneEditorProps from './SceneEditorProps';
-import SceneDimensionEditor from '../fields/sceneDimension/SceneDimensionEditor';
-import { EditorB } from '../fields/Editor';
+import DimensionEditor from '../fields/dimension/DimensionEditor';
+import { useValidatedChangeHandler } from '../fields/useValidatedChangeHandler';
 
-export default class SceneDimension extends EditorB<Scene, SceneEditorProps> {
-  constructor(props: SceneEditorProps) {
-    super(props, {
+export const SceneEditor = (props: { onChange: (newValue: Scene) => void }) => {
+  const [handleChange, value, error] = useValidatedChangeHandler<Scene>(
+    'scale',
+    props.onChange,
+    {
       width: 0,
       height: 0,
-    });
-  }
+    }
+  );
 
-  onWidthChange = (newWidth: number) => {
+  const onWidthChange = (newWidth: number) => {
     const newScene = {
       width: newWidth,
-      height: this.value.height,
+      height: value.height,
     };
-    this.changeValue(newScene);
+    handleChange(newScene);
   };
 
-  onHeightChange = (newHeight: number) => {
+  const onHeightChange = (newHeight: number) => {
     const newScene = {
-      width: this.value.width,
+      width: value.width,
       height: newHeight,
     };
-    this.changeValue(newScene);
+    handleChange(newScene);
   };
 
-  render() {
-    return (
-      <Form.Group>
-        <SceneDimensionEditor
-          dimension="Width"
-          onChange={this.onWidthChange}
-          props={this.props.sceneDimensionProps}
-        />
-        <SceneDimensionEditor
-          dimension="Height"
-          onChange={this.onHeightChange}
-          props={this.props.sceneDimensionProps}
-        />
-        ;
-      </Form.Group>
-    );
-  }
-}
+  return (
+    <Form.Group>
+      <DimensionEditor dimension="Width" onChange={onWidthChange} />
+      <DimensionEditor dimension="Height" onChange={onHeightChange} />
+      {error && <span>{error}</span>}
+    </Form.Group>
+  );
+};

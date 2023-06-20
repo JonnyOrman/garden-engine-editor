@@ -5,11 +5,11 @@ import Row from 'react-bootstrap/Row';
 import { useNavigate } from 'react-router-dom';
 import Game from './Game';
 import Scene from '../scene/Scene';
-import CreateNewGameProps from './CreateNewGameProps';
 import Name from '../fields/name/NameEditor';
-import SceneEditor from '../scene/SceneEditor';
+import { SceneEditor } from '../scene/SceneEditor';
+import Writer from '../Writer';
 
-function CreateNewGame(props: CreateNewGameProps) {
+function CreateNewGame(props: { gameWriter: Writer<Game> }) {
   const [name, setName] = useState('');
 
   const [scene, setScene] = useState<Scene>({
@@ -52,12 +52,8 @@ function CreateNewGame(props: CreateNewGameProps) {
     <Row>
       <h1 id="header">Create new game</h1>
       <Form onSubmit={submit}>
-        <Name onChange={setName} props={props.nameProps} />
-        <SceneEditor
-          onChange={setScene}
-          props={props.sceneProps}
-          sceneDimensionProps={props.sceneDimensionProps}
-        ></SceneEditor>
+        <Name onChange={setName} />
+        <SceneEditor onChange={setScene}></SceneEditor>
         <Button variant="primary" type="submit">
           Create
         </Button>

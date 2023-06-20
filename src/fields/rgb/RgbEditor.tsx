@@ -1,67 +1,54 @@
-import Form from 'react-bootstrap/Form';
 import React from 'react';
 import Rgb from './Rgb';
-import Editor from '../Editor';
-import ValidatedFieldProps from '../ValidatedFieldProps';
+import RgbValueEditor from './RgbValueEditor';
+import { useValidatedChangeHandler } from '../useValidatedChangeHandler';
 
-export default class RgbEditor extends Editor<Rgb> {
-  constructor(props: ValidatedFieldProps<Rgb>) {
-    super(props, {
+export const RgbEditor = (props: { onChange: (value: Rgb) => void }) => {
+  const [handleChange, value, error] = useValidatedChangeHandler<Rgb>(
+    'Rgb',
+    props.onChange,
+    {
       r: 0,
       g: 0,
       b: 0,
-    });
-  }
+    }
+  );
 
-  onRValueChange = (newRValue: number) => {
+  const onRValueChange = (newRValue: number) => {
     const newRgb = {
       r: newRValue,
-      g: this.value.g,
-      b: this.value.b,
+      g: value.g,
+      b: value.b,
     };
-    this.changeValue(newRgb);
+    handleChange(newRgb);
   };
 
-  onGValueChange = (newGValue: number) => {
+  const onGValueChange = (newGValue: number) => {
     const newRgb = {
-      r: this.value.r,
+      r: value.r,
       g: newGValue,
-      b: this.value.b,
+      b: value.b,
     };
-    this.changeValue(newRgb);
+    handleChange(newRgb);
   };
 
-  onBValueChange = (newBValue: number) => {
+  const onBValueChange = (newBValue: number) => {
     const newRgb = {
-      r: this.value.r,
-      g: this.value.g,
+      r: value.r,
+      g: value.g,
       b: newBValue,
     };
-    this.changeValue(newRgb);
+    handleChange(newRgb);
   };
 
-  render = () => {
-    return (
-      <div>
-        <Form.Label>R:</Form.Label>
-        <Form.Control
-          id="r"
-          type="number"
-          onChange={(e) => this.onRValueChange(+e.currentTarget.value)}
-        ></Form.Control>
-        <Form.Label>G:</Form.Label>
-        <Form.Control
-          id="g"
-          type="number"
-          onChange={(e) => this.onGValueChange(+e.currentTarget.value)}
-        ></Form.Control>
-        <Form.Label>B:</Form.Label>
-        <Form.Control
-          id="b"
-          type="number"
-          onChange={(e) => this.onBValueChange(+e.currentTarget.value)}
-        ></Form.Control>
-      </div>
-    );
-  };
-}
+  return (
+    <div>
+      <RgbValueEditor name={'R'} onChange={onRValueChange}></RgbValueEditor>
+      <RgbValueEditor name={'G'} onChange={onGValueChange}></RgbValueEditor>
+      <RgbValueEditor name={'B'} onChange={onBValueChange}></RgbValueEditor>
+      {error && <span>{error}</span>}
+    </div>
+  );
+};
+
+export default RgbEditor;

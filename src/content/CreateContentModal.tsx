@@ -22,10 +22,6 @@ function CreateContentModal(props: CreateContentModalProps) {
         contentWriter={
           new JsonObjectWriter<Triangle>(gameReader, props.gameWriter)
         }
-        nameProps={props.nameProps}
-        rgbProps={props.rgbProps}
-        sceneDimensionProps={props.sceneDimensionProps}
-        twoDPointProps={props.twoDPointProps}
       />
     );
   } else if (type == 'rectangle') {
@@ -35,10 +31,6 @@ function CreateContentModal(props: CreateContentModalProps) {
         contentWriter={
           new JsonObjectWriter<Rectangle>(gameReader, props.gameWriter)
         }
-        nameProps={props.nameProps}
-        rgbProps={props.rgbProps}
-        sceneDimensionProps={props.sceneDimensionProps}
-        twoDPointProps={props.twoDPointProps}
       />
     );
   }

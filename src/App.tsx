@@ -1,4 +1,4 @@
-import { createContext, useState } from 'react';
+import { useState } from 'react';
 import './App.css';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Home from './Home';
@@ -14,16 +14,6 @@ import GameFilePathProvider from './game/GameFilePathProvider';
 import JsonSerialiser from './JsonSerialiser';
 import JsonParser from './JsonParser';
 import React from 'react';
-import ValidationOnChangeHandler from './fields/ValidationOnChangeHandler';
-import Props from './fields/EditorProps';
-import Rgb from './fields/rgb/Rgb';
-import TwoDPoint from './fields/twoDPoint/TwoDPoint';
-import SceneValidator from './scene/SceneValidator';
-import NameValidator from './fields/name/NameValidator';
-import SceneDimensionValidator from './fields/sceneDimension/SceneDimensionValidator';
-import ScaleValidator from './fields/scale/ScaleValidator';
-import TwoDPointValidator from './fields/twoDPoint/TwoDPointValidator';
-import RgbValidator from './fields/rgb/RgbValidator';
 
 function App() {
   const [name, setName] = useState('');
@@ -45,67 +35,6 @@ function App() {
     new GameReader(gameJsonReader, jsonParser)
   );
 
-  const [nameValidator, setNameValidator] = useState(new NameValidator());
-  const [nameOnChangeHandler, setNameOnChangeHandler] = useState(
-    new ValidationOnChangeHandler(nameValidator)
-  );
-  const [nameProps, setNameProps] = useState<Props<string>>({
-    validator: nameValidator,
-    onChangeHandler: nameOnChangeHandler,
-  });
-
-  const [sceneDimensionValidator, setSceneDimensionValidator] = useState(
-    new SceneDimensionValidator()
-  );
-  const [sceneDimensionOnChangeHandler, setsceneDimensionOnChangeHandler] =
-    useState(new ValidationOnChangeHandler(sceneDimensionValidator));
-  const [sceneDimensionProps, setSceneDimensionProps] = useState({
-    validator: sceneDimensionValidator,
-    onChangeHandler: sceneDimensionOnChangeHandler,
-  });
-
-  const [sceneValidator, setSceneValidator] = useState(
-    new SceneValidator(sceneDimensionValidator)
-  );
-  const [sceneOnChangeHandler, setsceneOnChangeHandler] = useState(
-    new ValidationOnChangeHandler(sceneValidator)
-  );
-  const [sceneProps, setSceneProps] = useState({
-    validator: sceneValidator,
-    onChangeHandler: sceneOnChangeHandler,
-  });
-
-  const [scaleValidator, setScaleValidator] = useState(new ScaleValidator());
-  const [scaleOnChangeHandler, setScaleOnChangeHandler] = useState(
-    new ValidationOnChangeHandler(scaleValidator)
-  );
-  const [scaleProps, setScaleProps] = useState<Props<number>>({
-    validator: scaleValidator,
-    onChangeHandler: scaleOnChangeHandler,
-  });
-
-  const [rgbValidator, setRgbValidator] = useState(new RgbValidator());
-  const [rgbOnChangeHandler, setRgbOnChangeHandler] = useState(
-    new ValidationOnChangeHandler(rgbValidator)
-  );
-  const [rgbProps, setRgbProps] = useState<Props<Rgb>>({
-    validator: rgbValidator,
-    onChangeHandler: rgbOnChangeHandler,
-  });
-
-  const [twoDPointValidator, setTwoDPointValidator] = useState(
-    new TwoDPointValidator()
-  );
-  const [twoDPointOnChangeHandler, setTwoDPointOnChangeHandler] = useState(
-    new ValidationOnChangeHandler(twoDPointValidator)
-  );
-  const [twoDPointProps, setTwoDPointProps] = useState<Props<TwoDPoint>>({
-    validator: twoDPointValidator,
-    onChangeHandler: twoDPointOnChangeHandler,
-  });
-
-  const AppContext = createContext(new RgbValidator());
-
   return (
     <Container fluid className="h-100">
       <BrowserRouter>
@@ -113,27 +42,12 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route
             path="/create-new-game"
-            element={
-              <CreateNewGame
-                gameWriter={gameWriter}
-                nameProps={nameProps}
-                sceneDimensionProps={sceneDimensionProps}
-                sceneProps={sceneProps}
-              />
-            }
+            element={<CreateNewGame gameWriter={gameWriter} />}
           />
           <Route
             path="/edit-game"
             element={
-              <EditGame
-                gameWriter={gameWriter}
-                gameReader={gameReader}
-                nameProps={nameProps}
-                scaleProps={scaleProps}
-                rgbProps={rgbProps}
-                twoDPointProps={twoDPointProps}
-                sceneDimensionProps={sceneDimensionProps}
-              />
+              <EditGame gameWriter={gameWriter} gameReader={gameReader} />
             }
           />
         </Routes>

@@ -1,51 +1,52 @@
 import Form from 'react-bootstrap/Form';
 import React from 'react';
 import TwoDPoint from './TwoDPoint';
-import Editor from '../Editor';
-import ValidatedFieldProps from '../ValidatedFieldProps';
+import DimensionEditor from '../dimension/DimensionEditor';
+import { useValidatedChangeHandler } from '../useValidatedChangeHandler';
 
-export default class SceneDimension extends Editor<TwoDPoint> {
-  constructor(props: ValidatedFieldProps<TwoDPoint>) {
-    super(props, {
+export const TwoDPointEditor = (props: {
+  onChange: (newValue: TwoDPoint) => void;
+}) => {
+  const [handleChange, value, error] = useValidatedChangeHandler<TwoDPoint>(
+    'TwoPointEditor',
+    props.onChange,
+    {
       x: 0,
       y: 0,
-    });
-  }
+    }
+  );
 
-  onXValueChange = (newXValue: number) => {
+  const onXValueChange = (newXValue: number) => {
     const newPoint = {
       x: newXValue,
-      y: this.value.y,
+      y: value.y,
     };
-    this.changeValue(newPoint);
+    handleChange(newPoint);
   };
 
-  onYValueChange = (newYValue: number) => {
+  const onYValueChange = (newYValue: number) => {
     const newPoint = {
-      x: this.value.x,
+      x: value.x,
       y: newYValue,
     };
-    this.changeValue(newPoint);
+    handleChange(newPoint);
   };
 
-  render = () => {
-    return (
-      <div>
-        <Form.Group>
-          <Form.Label>Position X:</Form.Label>
-          <Form.Control
-            id="position-x"
-            type="number"
-            onChange={(e) => this.onXValueChange(+e.currentTarget.value)}
-          ></Form.Control>
-          <Form.Label>Position Y:</Form.Label>
-          <Form.Control
-            id="position-y"
-            type="number"
-            onChange={(e) => this.onYValueChange(+e.currentTarget.value)}
-          ></Form.Control>
-        </Form.Group>
-      </div>
-    );
-  };
-}
+  return (
+    <div>
+      <Form.Group>
+        <DimensionEditor
+          onChange={onXValueChange}
+          dimension="X"
+        ></DimensionEditor>
+        <DimensionEditor
+          onChange={onYValueChange}
+          dimension="Y"
+        ></DimensionEditor>
+      </Form.Group>
+      {error && <span>{error}</span>}
+    </div>
+  );
+};
+
+export default TwoDPointEditor;

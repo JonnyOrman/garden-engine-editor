@@ -1,24 +1,25 @@
 import React from 'react';
 import Form from 'react-bootstrap/Form';
-import ValidatedFieldProps from '../ValidatedFieldProps';
-import Editor from '../Editor';
+import { useValidatedChangeHandler } from '../useValidatedChangeHandler';
 
-export default class NameEditor extends Editor<string> {
-  constructor(props: ValidatedFieldProps<string>) {
-    super(props, '');
-  }
+export const NameEditor = (props: { onChange: (newValue: string) => void }) => {
+  const [handleChange, value, error] = useValidatedChangeHandler<string>(
+    'Name',
+    props.onChange,
+    ''
+  );
 
-  render = () => {
-    return (
-      <Form.Group>
-        <Form.Label>Name:</Form.Label>
-        <Form.Control
-          id="name"
-          type="text"
-          onChange={(e) => this.changeValue(e.currentTarget.value)}
-        />
-        {this.error && <span>{this.error}</span>}
-      </Form.Group>
-    );
-  };
-}
+  return (
+    <Form.Group>
+      <Form.Label>Name:</Form.Label>
+      <Form.Control
+        id="name"
+        type="text"
+        onChange={(e) => handleChange(e.currentTarget.value)}
+      />
+      {error && <span>{error}</span>}
+    </Form.Group>
+  );
+};
+
+export default NameEditor;

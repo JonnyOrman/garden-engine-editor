@@ -3,18 +3,16 @@ import Validator from '../fields/Validator';
 import Scene from './Scene';
 
 export default class SceneValidator implements Validator<Scene> {
-  constructor(private sceneDimensionValidator: Validator<number>) {}
+  constructor(private DimensionValidator: Validator<number>) {}
 
   validate(value: Scene): ValidationResult {
-    const widthValidationResult = this.sceneDimensionValidator.validate(
-      value.width
-    );
+    const widthValidationResult = this.DimensionValidator.validate(value.width);
 
     if (widthValidationResult) {
       return widthValidationResult;
     }
 
-    const heightValidationResult = this.sceneDimensionValidator.validate(
+    const heightValidationResult = this.DimensionValidator.validate(
       value.height
     );
 

@@ -2,26 +2,27 @@ import Form from 'react-bootstrap/Form';
 import React from 'react';
 import { useValidatedChangeHandler } from '../useValidatedChangeHandler';
 
-export const ScaleEditor = (props: {
+export const DimensionEditor = (props: {
   onChange: (newValue: number) => void;
+  dimension: string;
 }) => {
   const [handleChange, value, error] = useValidatedChangeHandler<number>(
-    'scale',
+    'Dimension',
     props.onChange,
     0
   );
 
   return (
     <Form.Group>
-      <Form.Label>Scale:</Form.Label>
+      <Form.Label>{props.dimension}:</Form.Label>
       <Form.Control
-        id="scale"
+        id="scene-${props.dimension}"
         type="number"
         onChange={(e) => handleChange(+e.currentTarget.value)}
-      ></Form.Control>
+      />
       {error && <span>{error}</span>}
     </Form.Group>
   );
 };
 
-export default ScaleEditor;
+export default DimensionEditor;
