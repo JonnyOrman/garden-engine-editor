@@ -6,13 +6,10 @@ import Name from '../../fields/name/NameEditor';
 import Rgb from '../../fields/rgb/Rgb';
 import Dimension from '../../fields/dimension/DimensionEditor';
 import RgbEditor from '../../fields/rgb/RgbEditor';
-import { useRectangleWriter } from './useRectangleWriter';
 import Rectangle from './Rectangle';
 import { useRectangleSubmitter } from './useRectangleSubmitter';
 
 function CreateRectangle(props: CreateContentProps) {
-  const rectangleWriter = useRectangleWriter();
-
   const rectangleSubmitter = useRectangleSubmitter();
 
   const [rectangle, setRectangle] = useState<Rectangle>({
@@ -26,7 +23,7 @@ function CreateRectangle(props: CreateContentProps) {
       b: 0
     }
   });
-  
+
   const onNameValueChange = (newNameValue: string) => {
     setRectangle({
       name: newNameValue,
