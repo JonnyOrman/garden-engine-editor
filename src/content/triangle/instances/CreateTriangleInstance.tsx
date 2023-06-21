@@ -1,59 +1,61 @@
-import react, { useState } from 'react';
+import react from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import CreateContentInstanceProps from '../../instances/CreateContentInstanceProps';
 import Triangle from '../Triangle';
-import React from 'react';
 import Name from '../../../fields/name/NameEditor';
 import ScaleEditor from '../../../fields/scale/ScaleEditor';
 import TwoDPoint from '../../../fields/twoDPoint/TwoDPoint';
 import TwoDPointEditor from '../../../fields/twoDPoint/TwoDPointEditor';
 import { TriangleInstance } from './TriangleInstance';
 import { useTriangleInstanceSubmitter } from './useTriangleInstanceSubmitter';
+import { useSubmitter } from '../../useSubmitter';
 
 function CreateTriangleInstance(
   props: CreateContentInstanceProps<Triangle>
 ) {
-  const triangleInstanceSubmitter = useTriangleInstanceSubmitter();
-
-  const [triangleInstance, setTriangleInstance] = useState<TriangleInstance>({
-    name: '',
-    contentName: props.content.name,
-    scale: 0,
-    position: { x: 0, y: 0 },
-  });
+  const [submit, handleChange, value] = useSubmitter<TriangleInstance>({
+        name: '',
+        contentName: props.content.name,
+        scale: 0,
+        position: { x: 0, y: 0 },
+      },
+      useTriangleInstanceSubmitter(),
+      () => {});
 
   const onNameValueChange = (newNameValue: string) => {
-    setTriangleInstance({
-      name: newNameValue,
-      contentName: triangleInstance.contentName,
-      scale: triangleInstance.scale,
-      position: triangleInstance.position,
+    handleChange<string>(newNameValue, (newNameValue: string) => {
+      return {
+        name: newNameValue,
+        contentName: value.contentName,
+        scale: value.scale,
+        position: value.position,
+      }
     });
   };
 
   const onScaleValueChange = (newScaleValue: number) => {
-    setTriangleInstance({
-      name: triangleInstance.name,
-      contentName: triangleInstance.contentName,
-      scale: newScaleValue,
-      position: triangleInstance.position,
+    handleChange(newScaleValue, (newScaleValue: number) => {
+      return {
+        name: value.name,
+        contentName: value.contentName,
+        scale: newScaleValue,
+        position: value.position,
+      }
     });
   };
 
   const onPositionValueChange = (newPositionValue: TwoDPoint) => {
-    setTriangleInstance({
-      name: triangleInstance.name,
-      contentName: triangleInstance.contentName,
-      scale: triangleInstance.scale,
-      position: newPositionValue,
+    handleChange(newPositionValue, (newPositionValue: TwoDPoint) => {
+      return {
+        name: value.name,
+        contentName: value.contentName,
+        scale: value.scale,
+        position: newPositionValue,
+      }
     });
   };
-
-  const submit = async (e: any) => {
-    triangleInstanceSubmitter.submit(triangleInstance, e, () => {});
-  };
-
+  
   return (
     <div>
       <h4>Create new instance</h4>
