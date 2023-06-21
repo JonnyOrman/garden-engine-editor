@@ -1,19 +1,19 @@
 import react, { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
-import CreateContentInstanceProps from '../../instances/CreateContentInstanceProps';
-import Triangle from '../Triangle';
+import CreateContentInstanceProps from '../../../instances/CreateContentInstanceProps';
+import EquilateralTriangle from '../EquilateralTriangle';
 import React from 'react';
-import Name from '../../../fields/name/NameEditor';
-import ScaleEditor from '../../../fields/scale/ScaleEditor';
-import TwoDPoint from '../../../fields/twoDPoint/TwoDPoint';
-import TwoDPointEditor from '../../../fields/twoDPoint/TwoDPointEditor';
-import { useTriangleInstanceWriter } from './useTriangleInstanceWriter';
+import Name from '../../../../fields/name/NameEditor';
+import ScaleEditor from '../../../../fields/scale/ScaleEditor';
+import TwoDPoint from '../../../../fields/twoDPoint/TwoDPoint';
+import TwoDPointEditor from '../../../../fields/twoDPoint/TwoDPointEditor';
+import { useEquilateralTriangleInstanceWriter } from './useEquilateralTriangleInstanceWriter';
 
-function CreateTriangleInstance(
-  props: CreateContentInstanceProps<Triangle>
+function CreateEquilateralTriangleInstance(
+  props: CreateContentInstanceProps<EquilateralTriangle>
 ) {
-  const triangleInstanceWriter = useTriangleInstanceWriter();
+    const equilateralTriangleInstanceWriter = useEquilateralTriangleInstanceWriter();
 
   const [name, setName] = react.useState('');
   const [scale, setScale] = react.useState(0);
@@ -25,7 +25,7 @@ function CreateTriangleInstance(
   const submit = async (e: any) => {
     e.preventDefault();
 
-    await triangleInstanceWriter.write({
+    await equilateralTriangleInstanceWriter.write({
       name: name,
       contentName: props.content.name,
       scale: scale,
@@ -48,4 +48,4 @@ function CreateTriangleInstance(
   );
 }
 
-export default CreateTriangleInstance;
+export default CreateEquilateralTriangleInstance;

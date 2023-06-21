@@ -2,15 +2,14 @@ import React, { useContext, useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import CreateContentProps from '../CreateContentProps';
-import Rectangle from './Rectangle';
 import Name from '../../fields/name/NameEditor';
 import Rgb from '../../fields/rgb/Rgb';
 import Dimension from '../../fields/dimension/DimensionEditor';
 import RgbEditor from '../../fields/rgb/RgbEditor';
-import { RectangleWriterContext } from './RectangleWriterContext';
+import { useRectangleWriterContext } from './useRectangleWriterContext';
 
 function CreateRectangle(props: CreateContentProps) {
-  const rectangleWriter = useContext(RectangleWriterContext);
+  const rectangleWriter = useRectangleWriterContext();
 
   const [name, setName] = useState('');
   const [width, setWidth] = useState(0);
