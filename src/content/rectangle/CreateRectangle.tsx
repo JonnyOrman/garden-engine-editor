@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import CreateContentProps from '../CreateContentProps';
@@ -8,64 +8,69 @@ import Dimension from '../../fields/dimension/DimensionEditor';
 import RgbEditor from '../../fields/rgb/RgbEditor';
 import Rectangle from './Rectangle';
 import { useRectangleSubmitter } from './useRectangleSubmitter';
+import { useSubmitter } from '../useSubmitter';
 
 function CreateRectangle(props: CreateContentProps) {
-  const rectangleSubmitter = useRectangleSubmitter();
-
-  const [rectangle, setRectangle] = useState<Rectangle>({
-    name: '',
-    type: 'rectangle',
-    width: 0,
-    height: 0,
-    rgb: {
-      r: 0,
-      g: 0,
-      b: 0
-    }
-  });
+  const [submit, handleChange, value] = useSubmitter<Rectangle>({
+        name: '',
+        type: 'rectangle',
+        width: 0,
+        height: 0,
+        rgb: {
+          r: 0,
+          g: 0,
+          b: 0
+        }
+      },
+      useRectangleSubmitter(),
+  () => {});
 
   const onNameValueChange = (newNameValue: string) => {
-    setRectangle({
-      name: newNameValue,
-      type: rectangle.type,
-      width: rectangle.width,
-      height: rectangle.height,
-      rgb: rectangle.rgb,
+    handleChange<string>(newNameValue, (newNameValue: string) => {
+      return {
+        name: newNameValue,
+        type: value.type,
+        width: value.width,
+        height: value.height,
+        rgb: value.rgb,
+      }
     });
   };
 
   const onWidthValueChange = (newWidthValue: number) => {
-    setRectangle({
-      name: rectangle.name,
-      type: rectangle.type,
-      width: newWidthValue,
-      height: rectangle.height,
-      rgb: rectangle.rgb,
+    handleChange<number>(newWidthValue, (newWidthValue: number) => {
+      return {
+        name: value.name,
+        type: value.type,
+        width: newWidthValue,
+        height: value.height,
+        rgb: value.rgb,
+      }
     });
   };
 
   const onHeightValueChange = (newHeightValue: number) => {
-    setRectangle({
-      name: rectangle.name,
-      type: rectangle.type,
-      width: rectangle.width,
-      height: newHeightValue,
-      rgb: rectangle.rgb,
+    handleChange<number>(newHeightValue, (newHeightValue: number) => {
+      return {
+        name: value.name,
+        type: value.type,
+        width: value.width,
+        height: newHeightValue,
+        rgb: value.rgb,
+      }
     });
   };
 
   const onRgbValueChange = (newRgbValue: Rgb) => {
-    setRectangle({
-      name: rectangle.name,
-      type: rectangle.type,
-      width: rectangle.width,
-      height: rectangle.height,
-      rgb: newRgbValue,
+    handleChange<Rgb>(newRgbValue, (newRgbValue: Rgb) => {
+      return {
+        name: value.name,
+        type: value.type,
+        width: value.width,
+        height: value.height,
+        rgb: newRgbValue,
+      }
     });
-  };
-
-  const submit = async (e: any) => {
-    await rectangleSubmitter.submit(rectangle, e, props.onHide);
   };
 
   return (
