@@ -1,4 +1,3 @@
-import react, { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import CreateContentInstanceProps from '../../../instances/CreateContentInstanceProps';
@@ -6,30 +5,54 @@ import EquilateralTriangle from '../EquilateralTriangle';
 import React from 'react';
 import Name from '../../../../fields/name/NameEditor';
 import ScaleEditor from '../../../../fields/scale/ScaleEditor';
-import TwoDPoint from '../../../../fields/twoDPoint/TwoDPoint';
 import TwoDPointEditor from '../../../../fields/twoDPoint/TwoDPointEditor';
-import { useEquilateralTriangleInstanceWriter } from './useEquilateralTriangleInstanceWriter';
+import { useSubmitter } from '../../../useSubmitter';
+import { EquilateralTriangleInstance } from './EquilateralTriangleInstance';
+import { useEquilateralTriangleInstanceSubmitter } from './useEquilateralTriangleInstanceSubmitter';
+import TwoDPoint from '../../../../fields/twoDPoint/TwoDPoint';
 
 function CreateEquilateralTriangleInstance(
   props: CreateContentInstanceProps<EquilateralTriangle>
 ) {
-    const equilateralTriangleInstanceWriter = useEquilateralTriangleInstanceWriter();
+  const [submit, handleChange, value] = useSubmitter<EquilateralTriangleInstance>({
+        name: '',
+        contentName: props.content.name,
+        scale: 0,
+        position: { x: 0, y: 0 },
+      },
+      useEquilateralTriangleInstanceSubmitter(),
+      () => {});
 
-  const [name, setName] = react.useState('');
-  const [scale, setScale] = react.useState(0);
-  const [position, setPosition] = useState<TwoDPoint>({
-    x: 0,
-    y: 0,
-  });
+  const onNameValueChange = (newNameValue: string) => {
+    handleChange<string>(newNameValue, (newNameValue: string) => {
+      return {
+        name: newNameValue,
+        contentName: value.contentName,
+        scale: value.scale,
+        position: value.position,
+      }
+    });
+  };
 
-  const submit = async (e: any) => {
-    e.preventDefault();
+  const onScaleValueChange = (newScaleValue: number) => {
+    handleChange<number>(newScaleValue, (newScaleValue: number) => {
+      return {
+        name: value.name,
+        contentName: value.contentName,
+        scale: newScaleValue,
+        position: value.position,
+      }
+    });
+  };
 
-    await equilateralTriangleInstanceWriter.write({
-      name: name,
-      contentName: props.content.name,
-      scale: scale,
-      position: position,
+  const onPositionValueChange = (newPositionValue: TwoDPoint) => {
+    handleChange<TwoDPoint>(newPositionValue, (newPositionValue: TwoDPoint) => {
+      return {
+        name: value.name,
+        contentName: value.contentName,
+        scale: value.scale,
+        position: newPositionValue,
+      }
     });
   };
 
@@ -37,9 +60,9 @@ function CreateEquilateralTriangleInstance(
     <div>
       <h4>Create new instance</h4>
       <Form onSubmit={submit}>
-        <Name onChange={setName}></Name>
-        <ScaleEditor onChange={setScale}></ScaleEditor>
-        <TwoDPointEditor onChange={setPosition}></TwoDPointEditor>
+        <Name onChange={onNameValueChange}></Name>
+        <ScaleEditor onChange={onScaleValueChange}></ScaleEditor>
+        <TwoDPointEditor onChange={onPositionValueChange}></TwoDPointEditor>
         <Button variant="primary" type="submit">
           Create
         </Button>
