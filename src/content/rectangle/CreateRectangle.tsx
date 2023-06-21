@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import CreateContentProps from '../CreateContentProps';
@@ -6,41 +6,75 @@ import Name from '../../fields/name/NameEditor';
 import Rgb from '../../fields/rgb/Rgb';
 import Dimension from '../../fields/dimension/DimensionEditor';
 import RgbEditor from '../../fields/rgb/RgbEditor';
-import { useRectangleWriter } from './useRectangleWriter';
+import Rectangle from './Rectangle';
+import { useRectangleSubmitter } from './useRectangleSubmitter';
 
 function CreateRectangle(props: CreateContentProps) {
-  const rectangleWriter = useRectangleWriter();
+  const rectangleSubmitter = useRectangleSubmitter();
 
-  const [name, setName] = useState('');
-  const [width, setWidth] = useState(0);
-  const [height, setHeight] = useState(0);
-  const [rgb, setRgb] = useState<Rgb>({
-    r: 0,
-    g: 0,
-    b: 0,
+  const [rectangle, setRectangle] = useState<Rectangle>({
+    name: '',
+    type: 'rectangle',
+    width: 0,
+    height: 0,
+    rgb: {
+      r: 0,
+      g: 0,
+      b: 0
+    }
   });
 
-  const submit = async (e: any) => {
-    e.preventDefault();
-
-    await rectangleWriter.write({
-      name: name,
-      type: 'rectangle',
-      width: width,
-      height: height,
-      rgb: rgb,
+  const onNameValueChange = (newNameValue: string) => {
+    setRectangle({
+      name: newNameValue,
+      type: rectangle.type,
+      width: rectangle.width,
+      height: rectangle.height,
+      rgb: rectangle.rgb,
     });
+  };
 
-    props.onHide();
+  const onWidthValueChange = (newWidthValue: number) => {
+    setRectangle({
+      name: rectangle.name,
+      type: rectangle.type,
+      width: newWidthValue,
+      height: rectangle.height,
+      rgb: rectangle.rgb,
+    });
+  };
+
+  const onHeightValueChange = (newHeightValue: number) => {
+    setRectangle({
+      name: rectangle.name,
+      type: rectangle.type,
+      width: rectangle.width,
+      height: newHeightValue,
+      rgb: rectangle.rgb,
+    });
+  };
+
+  const onRgbValueChange = (newRgbValue: Rgb) => {
+    setRectangle({
+      name: rectangle.name,
+      type: rectangle.type,
+      width: rectangle.width,
+      height: rectangle.height,
+      rgb: newRgbValue,
+    });
+  };
+
+  const submit = async (e: any) => {
+    await rectangleSubmitter.submit(rectangle, e, props.onHide);
   };
 
   return (
     <Form onSubmit={submit}>
-      <Name onChange={setName}></Name>
+      <Name onChange={onNameValueChange}></Name>
       <Form.Group>
-        <Dimension dimension="Width" onChange={setWidth} />
-        <Dimension dimension="Height" onChange={setHeight} />
-        <RgbEditor onChange={setRgb}></RgbEditor>
+        <Dimension dimension="Width" onChange={onWidthValueChange} />
+        <Dimension dimension="Height" onChange={onHeightValueChange} />
+        <RgbEditor onChange={onRgbValueChange}></RgbEditor>
       </Form.Group>
       <Button variant="primary" type="submit">
         Create

@@ -7,9 +7,12 @@ import CreateContentModalProps from './CreateContentModalProps';
 import CreateRectangle from './rectangle/CreateRectangle';
 import React from 'react';
 import CreateEquilateralTriangle from './triangle/EquilateralTriangle/CreateEquilateralTriangle';
+import useContentTypes from './useContentTypes';
 
 function CreateContentModal(props: CreateContentModalProps) {
   const [type, setType] = useState('');
+
+  const contentTypes = useContentTypes();
 
   let typeForm;
   if (type == 'triangle') {
@@ -43,15 +46,11 @@ function CreateContentModal(props: CreateContentModalProps) {
           </Dropdown.Toggle>
 
           <Dropdown.Menu>
-            <Dropdown.Item eventKey={'triangle'} href="#">
-              Triangle
-            </Dropdown.Item>
-            <Dropdown.Item eventKey={'rectangle'} href="#">
-              Rectangle
-            </Dropdown.Item>
-            <Dropdown.Item eventKey={'EquilateralTriangle'} href="#">
-              Equilateral Triangle
-            </Dropdown.Item>
+            {contentTypes.map((contentType: any) => {
+              return <Dropdown.Item eventKey={contentType.type} href="#">
+                {contentType.name}
+              </Dropdown.Item>
+            })}
           </Dropdown.Menu>
         </Dropdown>
         {typeForm}
