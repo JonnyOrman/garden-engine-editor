@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import Button from 'react-bootstrap/esm/Button';
 import Form from 'react-bootstrap/esm/Form';
 import CreateContentInstanceProps from '../../instances/CreateContentInstanceProps';
@@ -10,52 +9,55 @@ import TwoDPointEditor from '../../../fields/twoDPoint/TwoDPointEditor';
 import TwoDPoint from '../../../fields/twoDPoint/TwoDPoint';
 import { useRectangleInstanceSubmitter } from './useRectangleInstanceSubmitter';
 import RectangleInstance from './RectangleInstance';
+import { useSubmitter } from '../../useSubmitter';
 
 function CreateRectangleInstance(
   props: CreateContentInstanceProps<Rectangle>
 ) {
-  const rectangleInstanceSubmitter = useRectangleInstanceSubmitter();
-
-  const [rectangleInstance, setRectangleInstance] = useState<RectangleInstance>({
+  const [submit, handleChange, value] = useSubmitter<RectangleInstance>({
       name: '',
       contentName: '',
       scale: 0,
       position: {x: 0, y: 0 },
       rgb: props.content.rgb,
-  });
+    },
+    useRectangleInstanceSubmitter(),
+  () => {});
 
   const onNameValueChange = (newNameValue: string) => {
-    setRectangleInstance({
-      name: newNameValue,
-      contentName: rectangleInstance.contentName,
-      scale: rectangleInstance.scale,
-      position: rectangleInstance.position,
-      rgb: rectangleInstance.rgb,
+    handleChange<string>(newNameValue, (newNameValue: string) => {
+      return {
+        name: newNameValue,
+        contentName: value.contentName,
+        scale: value.scale,
+        position: value.position,
+        rgb: value.rgb,
+      }
     });
   };
 
   const onScaleValueChange = (newScaleValue: number) => {
-    setRectangleInstance({
-      name: rectangleInstance.name,
-      contentName: rectangleInstance.contentName,
-      scale: newScaleValue,
-      position: rectangleInstance.position,
-      rgb: rectangleInstance.rgb,
+    handleChange<number>(newScaleValue, (newScaleValue: number) => {
+      return {
+        name: value.name,
+        contentName: value.contentName,
+        scale: newScaleValue,
+        position: value.position,
+        rgb: value.rgb,
+      }
     });
   };
 
   const onPositionValueChange = (newPositionValue: TwoDPoint) => {
-    setRectangleInstance({
-      name: rectangleInstance.name,
-      contentName: rectangleInstance.contentName,
-      scale: rectangleInstance.scale,
-      position: newPositionValue,
-      rgb: rectangleInstance.rgb,
+    handleChange<TwoDPoint>(newPositionValue, (newPositionValue: TwoDPoint) => {
+      return {
+        name: value.name,
+        contentName: value.contentName,
+        scale: value.scale,
+        position: newPositionValue,
+        rgb: value.rgb,
+      }
     });
-  };
-
-  const submit = async (e: any) => {
-    rectangleInstanceSubmitter.submit(rectangleInstance, e, () => {});
   };
 
   return (
