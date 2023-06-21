@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import CreateContentProps from '../CreateContentProps';
@@ -8,8 +8,11 @@ import TwoDPoint from '../../fields/twoDPoint/TwoDPoint';
 import Rgb from '../../fields/rgb/Rgb';
 import TwoDPointEditor from '../../fields/twoDPoint/TwoDPointEditor';
 import RgbEditor from '../../fields/rgb/RgbEditor';
+import { TriangleWriterContext } from './TriangleWriterContext';
 
-function CreateTriangle(props: CreateContentProps<Triangle>) {
+function CreateTriangle(props: CreateContentProps) {
+  const triangleWriter = useContext(TriangleWriterContext);
+
   const [name, setName] = useState('');
   const [point1, setPoint1] = useState<TwoDPoint>({
     x: 0,
@@ -42,7 +45,7 @@ function CreateTriangle(props: CreateContentProps<Triangle>) {
   const submit = async (e: any) => {
     e.preventDefault();
 
-    await props.contentWriter?.write({
+    await triangleWriter.write({
       name: name,
       type: 'triangle',
       point1: {

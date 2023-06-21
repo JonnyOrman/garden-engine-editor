@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react';
+import { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Dropdown from 'react-bootstrap/Dropdown';
 import Modal from 'react-bootstrap/Modal';
@@ -6,23 +6,23 @@ import CreateTriangle from './triangle/CreateTriangle';
 import CreateContentModalProps from './CreateContentModalProps';
 import CreateRectangle from './rectangle/CreateRectangle';
 import React from 'react';
-import { RectangleWriterContext } from './rectangle/RectangleWriterContext';
-import { TriangleWriterContext } from './triangle/TriangleWriterContext';
+import CreateEquilateralTriangle from './triangle/EquilateralTriangle/CreateEquilateralTriangle';
 
 function CreateContentModal(props: CreateContentModalProps) {
-  const triangleWriter = useContext(TriangleWriterContext);
-  const rectangleWriter = useContext(RectangleWriterContext);
-
   const [type, setType] = useState('');
 
   let typeForm;
   if (type == 'triangle') {
     typeForm = (
-      <CreateTriangle onHide={props.onHide} contentWriter={triangleWriter} />
+      <CreateTriangle onHide={props.onHide} />
     );
   } else if (type == 'rectangle') {
     typeForm = (
-      <CreateRectangle onHide={props.onHide} contentWriter={rectangleWriter} />
+      <CreateRectangle onHide={props.onHide} />
+    );
+  } else if (type == 'EquilateralTriangle') {
+    typeForm = (
+      <CreateEquilateralTriangle onHide={props.onHide} />
     );
   }
 
@@ -48,6 +48,9 @@ function CreateContentModal(props: CreateContentModalProps) {
             </Dropdown.Item>
             <Dropdown.Item eventKey={'rectangle'} href="#">
               Rectangle
+            </Dropdown.Item>
+            <Dropdown.Item eventKey={'EquilateralTriangle'} href="#">
+              Equilateral Triangle
             </Dropdown.Item>
           </Dropdown.Menu>
         </Dropdown>
