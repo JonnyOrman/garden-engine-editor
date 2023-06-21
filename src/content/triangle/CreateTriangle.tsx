@@ -8,10 +8,10 @@ import TwoDPoint from '../../fields/twoDPoint/TwoDPoint';
 import Rgb from '../../fields/rgb/Rgb';
 import TwoDPointEditor from '../../fields/twoDPoint/TwoDPointEditor';
 import RgbEditor from '../../fields/rgb/RgbEditor';
-import { useTriangleWriterContext } from './useTriangleWriterContext';
+import { useTriangleWriter } from './useTriangleWriter';
 
 function CreateTriangle(props: CreateContentProps) {
-  const triangleWriter = useTriangleWriterContext();
+  const triangleWriter = useTriangleWriter();
 
   const [name, setName] = useState('');
   const [point1, setPoint1] = useState<TwoDPoint>({

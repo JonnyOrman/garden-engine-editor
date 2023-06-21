@@ -6,10 +6,10 @@ import Name from '../../fields/name/NameEditor';
 import Rgb from '../../fields/rgb/Rgb';
 import Dimension from '../../fields/dimension/DimensionEditor';
 import RgbEditor from '../../fields/rgb/RgbEditor';
-import { useRectangleWriterContext } from './useRectangleWriterContext';
+import { useRectangleWriter } from './useRectangleWriter';
 
 function CreateRectangle(props: CreateContentProps) {
-  const rectangleWriter = useRectangleWriterContext();
+  const rectangleWriter = useRectangleWriter();
 
   const [name, setName] = useState('');
   const [width, setWidth] = useState(0);

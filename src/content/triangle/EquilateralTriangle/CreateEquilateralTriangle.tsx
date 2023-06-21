@@ -4,10 +4,10 @@ import Form from 'react-bootstrap/Form';
 import CreateContentProps from '../../CreateContentProps';
 import NameEditor from '../../../fields/name/NameEditor';
 import DimensionEditor from '../../../fields/dimension/DimensionEditor';
-import { useEquilateralTriangleWriterContext } from './useEquilateralTriangleWriterContext';
+import { useEquilateralTriangleWriter } from './useEquilateralTriangleWriter';
 
 export default function CreateEquilateralTriangle(props: CreateContentProps) {
-    const equilateralTriangleWriter = useEquilateralTriangleWriterContext();
+    const equilateralTriangleWriter = useEquilateralTriangleWriter();
 
   const [name, setName] = useState('');
 
