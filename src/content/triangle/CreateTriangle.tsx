@@ -1,46 +1,31 @@
-import React, { useContext, useState } from 'react';
+import React, { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import CreateContentProps from '../CreateContentProps';
-import Triangle from './Triangle';
 import Name from '../../fields/name/NameEditor';
-import TwoDPoint from '../../fields/twoDPoint/TwoDPoint';
-import Rgb from '../../fields/rgb/Rgb';
-import TwoDPointEditor from '../../fields/twoDPoint/TwoDPointEditor';
-import RgbEditor from '../../fields/rgb/RgbEditor';
 import { useTriangleWriter } from './useTriangleWriter';
+import { TrianglePoint } from './TrianglePoint';
+import TrianglePointEditor from './TrianglePointEditor';
 
 function CreateTriangle(props: CreateContentProps) {
   const triangleWriter = useTriangleWriter();
 
   const [name, setName] = useState('');
-  const [point1, setPoint1] = useState<TwoDPoint>({
-    x: 0,
-    y: 0,
+
+  const [point1, setPoint1] = useState<TrianglePoint>({
+    twoDPoint: {x: 0, y: 0},
+    rgb: {r: 0, g: 0, b: 0}
   });
-  const [point1Rgb, setPoint1Rgb] = useState<Rgb>({
-    r: 0,
-    g: 0,
-    b: 0,
+
+  const [point2, setPoint2] = useState<TrianglePoint>({
+    twoDPoint: {x: 0, y: 0},
+    rgb: {r: 0, g: 0, b: 0}
   });
-  const [point2, setPoint2] = useState<TwoDPoint>({
-    x: 0,
-    y: 0,
-  });
-  const [point2Rgb, setPoint2Rgb] = useState<Rgb>({
-    r: 0,
-    g: 0,
-    b: 0,
-  });
-  const [point3, setPoint3] = useState<TwoDPoint>({
-    x: 0,
-    y: 0,
-  });
-  const [point3Rgb, setPoint3Rgb] = useState<Rgb>({
-    r: 0,
-    g: 0,
-    b: 0,
-  });
+
+  const [point3, setPoint3] = useState<TrianglePoint>({
+    twoDPoint: {x: 0, y: 0},
+    rgb: {r: 0, g: 0, b: 0}
+  })
 
   const submit = async (e: any) => {
     e.preventDefault();
@@ -48,18 +33,9 @@ function CreateTriangle(props: CreateContentProps) {
     await triangleWriter.write({
       name: name,
       type: 'triangle',
-      point1: {
-        twoDPoint: point1,
-        rgb: point1Rgb,
-      },
-      point2: {
-        twoDPoint: point2,
-        rgb: point2Rgb,
-      },
-      point3: {
-        twoDPoint: point3,
-        rgb: point3Rgb,
-      },
+      point1: point1,
+      point2: point2,
+      point3: point3,
     });
 
     props.onHide();
@@ -69,16 +45,13 @@ function CreateTriangle(props: CreateContentProps) {
     <Form onSubmit={submit}>
       <Name onChange={setName}></Name>
       <Form.Group>
-        <TwoDPointEditor onChange={setPoint1}></TwoDPointEditor>
-        <RgbEditor onChange={setPoint1Rgb}></RgbEditor>
+        <TrianglePointEditor onChange={setPoint1}></TrianglePointEditor>
       </Form.Group>
       <Form.Group>
-        <TwoDPointEditor onChange={setPoint2}></TwoDPointEditor>
-        <RgbEditor onChange={setPoint2Rgb}></RgbEditor>
+        <TrianglePointEditor onChange={setPoint2}></TrianglePointEditor>
       </Form.Group>
       <Form.Group>
-        <TwoDPointEditor onChange={setPoint3}></TwoDPointEditor>
-        <RgbEditor onChange={setPoint3Rgb}></RgbEditor>
+        <TrianglePointEditor onChange={setPoint3}></TrianglePointEditor>
       </Form.Group>
       <Button variant="primary" type="submit">
         Create
