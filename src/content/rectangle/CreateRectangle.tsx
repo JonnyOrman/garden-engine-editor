@@ -1,14 +1,16 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import CreateContentProps from '../CreateContentProps';
-import Rectangle from './Rectangle';
 import Name from '../../fields/name/NameEditor';
 import Rgb from '../../fields/rgb/Rgb';
 import Dimension from '../../fields/dimension/DimensionEditor';
 import RgbEditor from '../../fields/rgb/RgbEditor';
+import { useRectangleWriter } from './useRectangleWriter';
 
-function CreateRectangle(props: CreateContentProps<Rectangle>) {
+function CreateRectangle(props: CreateContentProps) {
+  const rectangleWriter = useRectangleWriter();
+
   const [name, setName] = useState('');
   const [width, setWidth] = useState(0);
   const [height, setHeight] = useState(0);
@@ -21,7 +23,7 @@ function CreateRectangle(props: CreateContentProps<Rectangle>) {
   const submit = async (e: any) => {
     e.preventDefault();
 
-    await props.contentWriter?.write({
+    await rectangleWriter.write({
       name: name,
       type: 'rectangle',
       width: width,

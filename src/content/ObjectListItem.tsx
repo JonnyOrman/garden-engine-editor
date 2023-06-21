@@ -10,6 +10,8 @@ import { TriangleInstanceWriterContext } from './triangle/instances/TriangleInst
 import { RectangleInstanceWriterContext } from './rectangle/instances/RectangleInstanceWriterContext';
 import { RectangleInstanceProviderContext } from './rectangle/instances/RectangleInstanceProviderContext';
 import { TriangleInstanceProviderContext } from './triangle/instances/TriangleInstanceProviderContext';
+import EquilateralTriangle from './triangle/EquilateralTriangle/EquilateralTriangle';
+import CreateEquilateralTriangleInstance from './triangle/EquilateralTriangle/instances/CreateEquilateralTriangleInstance';
 
 function ObjectListItem(props: ObjectListItemProps) {
   const triangleInstanceProvider = useContext(TriangleInstanceProviderContext);
@@ -33,7 +35,6 @@ function ObjectListItem(props: ObjectListItemProps) {
         createContentInstance={
           <CreateTriangleInstance
             content={props.object as Triangle}
-            contentInstanceWriter={triangleInstanceWriter}
           />
         }
       />
@@ -49,7 +50,21 @@ function ObjectListItem(props: ObjectListItemProps) {
         createContentInstance={
           <CreateRectangleInstance
             content={props.object as Rectangle}
-            contentInstanceWriter={rectangleInstanceWriter}
+          />
+        }
+      />
+    );
+  } else if (props.object.type == 'EquilateralTriangle') {
+    typeInstancesModal = (
+      <ObjectInstancesModal
+        content={props.object as EquilateralTriangle}
+        show={instancesModalShow}
+        onHide={() => setInstancesModalShow(false)}
+        contentInstancesProvider={rectangleInstanceProvider}
+        contentInstanceWriter={rectangleInstanceWriter}
+        createContentInstance={
+          <CreateEquilateralTriangleInstance
+            content={props.object as EquilateralTriangle}
           />
         }
       />
