@@ -1,5 +1,3 @@
-import Button from 'react-bootstrap/Button';
-import Form from 'react-bootstrap/Form';
 import CreateContentInstanceProps from '../../../instances/CreateContentInstanceProps';
 import EquilateralTriangle from '../EquilateralTriangle';
 import React from 'react';
@@ -59,14 +57,14 @@ function CreateEquilateralTriangleInstance(
   return (
     <div>
       <h4>Create new instance</h4>
-      <Form onSubmit={submit}>
+      <form onSubmit={submit}>
         <Name onChange={onNameValueChange}></Name>
         <ScaleEditor onChange={onScaleValueChange}></ScaleEditor>
         <TwoDPointEditor onChange={onPositionValueChange}></TwoDPointEditor>
-        <Button variant="primary" type="submit">
+        <input type="submit">
           Create
-        </Button>
-      </Form>
+        </input>
+      </form>
     </div>
   );
 }

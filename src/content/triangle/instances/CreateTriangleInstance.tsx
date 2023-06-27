@@ -1,6 +1,4 @@
 import react from 'react';
-import Button from 'react-bootstrap/Button';
-import Form from 'react-bootstrap/Form';
 import CreateContentInstanceProps from '../../instances/CreateContentInstanceProps';
 import Triangle from '../Triangle';
 import Name from '../../../fields/name/NameEditor';
@@ -59,14 +57,14 @@ function CreateTriangleInstance(
   return (
     <div>
       <h4>Create new instance</h4>
-      <Form onSubmit={submit}>
+      <form onSubmit={submit}>
         <Name onChange={onNameValueChange}></Name>
         <ScaleEditor onChange={onScaleValueChange}></ScaleEditor>
         <TwoDPointEditor onChange={onPositionValueChange}></TwoDPointEditor>
-        <Button variant="primary" type="submit">
+        <input type="submit">
           Create
-        </Button>
-      </Form>
+        </input>
+      </form>
     </div>
   );
 }

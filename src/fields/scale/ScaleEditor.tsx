@@ -4,7 +4,7 @@ import EditorProps from '../EditorProps';
 
 export const ScaleEditor = (props: EditorProps<number>) => {
   const [handleChange, value, error] = useValidatedChangeHandler<number>(
-    'scale',
+    'Scale',
     props.onChange,
     0
   );

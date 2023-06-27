@@ -1,5 +1,3 @@
-import Button from 'react-bootstrap/esm/Button';
-import Form from 'react-bootstrap/esm/Form';
 import CreateContentInstanceProps from '../../instances/CreateContentInstanceProps';
 import Rectangle from '../Rectangle';
 import React from 'react';
@@ -63,14 +61,14 @@ function CreateRectangleInstance(
   return (
     <div>
       <h4>Create new instance</h4>
-      <Form onSubmit={submit}>
+      <form onSubmit={submit}>
         <Name onChange={onNameValueChange}></Name>
         <ScaleEditor onChange={onScaleValueChange}></ScaleEditor>
         <TwoDPointEditor onChange={onPositionValueChange}></TwoDPointEditor>
-        <Button variant="primary" type="submit">
+        <input type="submit">
           Create
-        </Button>
-      </Form>
+        </input>
+      </form>
     </div>
   );
 }

@@ -9,5 +9,5 @@ export default class GameFilePathProvider implements Provider<string> {
 }
 
 export const gameFilePathProvider = new GameFilePathProvider(
-  'FILE_PATH/content.json'
+  '/users/jonathanorman/garden-engine-editor/content.json'
 );

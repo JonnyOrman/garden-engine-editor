@@ -1,6 +1,4 @@
 import { useContext, useEffect, useState } from 'react';
-import Col from 'react-bootstrap/Col';
-import Row from 'react-bootstrap/Row';
 import EditContent from '../content/EditContent';
 import EditScene from '../scene/EditScene';
 import Game from './Game';
@@ -25,14 +23,14 @@ function EditGame() {
   }, []);
 
   return (
-    <Row className="h-100">
-      <Col xs="10">
+    <div>
+      <div>
         <EditScene objects={game?.objects || []} />
-      </Col>
-      <Col xs="2">
+      </div>
+      <div>
         <EditContent content={game?.content} />
-      </Col>
-    </Row>
+      </div>
+    </div>
   );
 }
 

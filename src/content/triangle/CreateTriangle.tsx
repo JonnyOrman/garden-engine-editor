@@ -1,6 +1,4 @@
 import React from 'react';
-import Button from 'react-bootstrap/Button';
-import Form from 'react-bootstrap/Form';
 import CreateContentProps from '../CreateContentProps';
 import Name from '../../fields/name/NameEditor';
 import { TrianglePoint } from './TrianglePoint';
@@ -78,21 +76,21 @@ function CreateTriangle(props: CreateContentProps) {
   };
   
   return (
-    <Form onSubmit={submit}>
+    <form onSubmit={submit}>
       <Name onChange={onNameValueChange}></Name>
-      <Form.Group>
+      <div>
         <TrianglePointEditor onChange={onPoint1ValueChange}></TrianglePointEditor>
-      </Form.Group>
-      <Form.Group>
+      </div>
+      <div>
         <TrianglePointEditor onChange={onPoint2ValueChange}></TrianglePointEditor>
-      </Form.Group>
-      <Form.Group>
+      </div>
+      <div>
         <TrianglePointEditor onChange={onPoint3ValueChange}></TrianglePointEditor>
-      </Form.Group>
-      <Button variant="primary" type="submit">
+      </div>
+      <input type="submit">
         Create
-      </Button>
-    </Form>
+      </input>
+    </form>
   );
 }
 

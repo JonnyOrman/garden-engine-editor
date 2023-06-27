@@ -1,6 +1,4 @@
 import React from 'react';
-import Button from 'react-bootstrap/Button';
-import Form from 'react-bootstrap/Form';
 import CreateContentProps from '../../CreateContentProps';
 import NameEditor from '../../../fields/name/NameEditor';
 import DimensionEditor from '../../../fields/dimension/DimensionEditor';
@@ -38,14 +36,14 @@ export default function CreateEquilateralTriangle(props: CreateContentProps) {
   };
   
   return (
-    <Form onSubmit={submit}>
+    <form onSubmit={submit}>
       <NameEditor onChange={onNameValueChange}></NameEditor>
-      <Form.Group>
+      <div>
         <DimensionEditor dimension='size' onChange={onSizeValueChange}></DimensionEditor>
-      </Form.Group>
-      <Button variant="primary" type="submit">
+      </div>
+      <input type="submit">
         Create
-      </Button>
-    </Form>
+      </input>
+    </form>
   );
   }

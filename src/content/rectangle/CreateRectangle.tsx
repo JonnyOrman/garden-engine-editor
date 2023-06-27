@@ -1,6 +1,4 @@
 import React from 'react';
-import Button from 'react-bootstrap/Button';
-import Form from 'react-bootstrap/Form';
 import CreateContentProps from '../CreateContentProps';
 import Name from '../../fields/name/NameEditor';
 import Rgb from '../../fields/rgb/Rgb';
@@ -74,17 +72,17 @@ function CreateRectangle(props: CreateContentProps) {
   };
 
   return (
-    <Form onSubmit={submit}>
+    <form onSubmit={submit}>
       <Name onChange={onNameValueChange}></Name>
-      <Form.Group>
+      <div>
         <Dimension dimension="Width" onChange={onWidthValueChange} />
         <Dimension dimension="Height" onChange={onHeightValueChange} />
         <RgbEditor onChange={onRgbValueChange}></RgbEditor>
-      </Form.Group>
-      <Button variant="primary" type="submit">
+      </div>
+      <input type="submit">
         Create
-      </Button>
-    </Form>
+      </input>
+    </form>
   );
 }
 

@@ -1,5 +1,4 @@
 import React, { useContext } from 'react';
-import Button from 'react-bootstrap/Button';
 import ObjectInstancesModal from './instances/ObjectInstancesModal';
 import ObjectListItemProps from './ObjectListItemProps';
 import CreateRectangleInstance from './rectangle/instances/CreateRectangleInstance';
@@ -33,9 +32,7 @@ function ObjectListItem(props: ObjectListItemProps) {
         contentInstancesProvider={triangleInstanceProvider}
         contentInstanceWriter={triangleInstanceWriter}
         createContentInstance={
-          <CreateTriangleInstance
-            content={props.object as Triangle}
-          />
+          <CreateTriangleInstance content={props.object as Triangle} />
         }
       />
     );
@@ -48,9 +45,7 @@ function ObjectListItem(props: ObjectListItemProps) {
         contentInstancesProvider={rectangleInstanceProvider}
         contentInstanceWriter={rectangleInstanceWriter}
         createContentInstance={
-          <CreateRectangleInstance
-            content={props.object as Rectangle}
-          />
+          <CreateRectangleInstance content={props.object as Rectangle} />
         }
       />
     );
@@ -74,9 +69,9 @@ function ObjectListItem(props: ObjectListItemProps) {
   return (
     <div>
       <h4>{props.object.name}</h4>
-      <Button variant="secondary" onClick={() => setInstancesModalShow(true)}>
+      <input type="button" onClick={() => setInstancesModalShow(true)}>
         View instances
-      </Button>
+      </input>
       {typeInstancesModal}
     </div>
   );

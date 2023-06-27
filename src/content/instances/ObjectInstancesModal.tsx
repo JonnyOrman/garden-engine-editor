@@ -1,5 +1,4 @@
 import react, { useEffect } from 'react';
-import Modal from 'react-bootstrap/Modal';
 import Entity from '../../Entity';
 import ContentInstance from './ContentInstance';
 import ContentInstancesModalProps from './ContentInstancesModalProps';
@@ -28,18 +27,11 @@ function ObjectInstancesModal<
   }, []);
 
   return (
-    <Modal
-      {...props}
-      size="lg"
-      aria-labelledby="content-instances-modal"
-      centered
-    >
-      <Modal.Header closeButton>
-        <Modal.Title id="content-instances-modal">
-          {props.content.name} instances
-        </Modal.Title>
-      </Modal.Header>
-      <Modal.Body>
+    <div {...props} aria-labelledby="content-instances-modal">
+      <div>
+        <div id="content-instances-modal">{props.content.name} instances</div>
+      </div>
+      <div>
         <h4>Triangle instances</h4>
         <div>
           {contentInstances?.map((contentInstance: TContentInstance) => {
@@ -52,8 +44,8 @@ function ObjectInstancesModal<
           })}
         </div>
         {props.createContentInstance}
-      </Modal.Body>
-    </Modal>
+      </div>
+    </div>
   );
 }
 

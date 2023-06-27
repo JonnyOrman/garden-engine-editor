@@ -1,7 +1,4 @@
 import React from 'react';
-import Button from 'react-bootstrap/Button';
-import Col from 'react-bootstrap/Col';
-import Row from 'react-bootstrap/Row';
 import CreateContentModal from './CreateContentModal';
 import EditContentProps from './EditContentProps';
 import ObjectListItem from './ObjectListItem';
@@ -11,25 +8,22 @@ function EditContent(props: EditContentProps) {
     React.useState(false);
 
   return (
-    <Col>
-      <Row>
+    <div>
+      <div>
         {props?.content?.objects?.map((object: any) => {
           return <ObjectListItem object={object || {}} />;
         })}
-      </Row>
-      <Row>
-        <Button
-          variant="primary"
-          onClick={() => setCreateContentModalShow(true)}
-        >
+      </div>
+      <div>
+        <input type="button" onClick={() => setCreateContentModalShow(true)}>
           Add content
-        </Button>
-      </Row>
+        </input>
+      </div>
       <CreateContentModal
         show={createContentModalShow}
         onHide={() => setCreateContentModalShow(false)}
       />
-    </Col>
+    </div>
   );
 }
 
