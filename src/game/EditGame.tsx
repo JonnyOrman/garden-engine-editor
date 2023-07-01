@@ -1,11 +1,19 @@
 import { useContext, useEffect, useState } from 'react';
-import Col from 'react-bootstrap/Col';
-import Row from 'react-bootstrap/Row';
 import EditContent from '../content/EditContent';
 import EditScene from '../scene/EditScene';
 import Game from './Game';
 import React from 'react';
 import { GameReaderContext } from './GameReaderContext';
+import Component from '../components/Component';
+import styled from 'styled-components';
+
+const EditSceneContainer = styled.div({
+  flexGrow: 1,
+});
+
+const EditContentContainer = styled.div({
+  width: '200px',
+});
 
 function EditGame() {
   const [game, setGame] = useState<Game>();
@@ -25,14 +33,14 @@ function EditGame() {
   }, []);
 
   return (
-    <Row className="h-100">
-      <Col xs="10">
+    <Component>
+      <EditSceneContainer>
         <EditScene objects={game?.objects || []} />
-      </Col>
-      <Col xs="2">
+      </EditSceneContainer>
+      <EditContentContainer>
         <EditContent content={game?.content} />
-      </Col>
-    </Row>
+      </EditContentContainer>
+    </Component>
   );
 }
 

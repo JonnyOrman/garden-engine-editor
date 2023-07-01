@@ -1,10 +1,11 @@
 import React from 'react';
 import { useValidatedChangeHandler } from '../useValidatedChangeHandler';
 import EditorProps from '../EditorProps';
+import Error from '../../errors/Error';
 
 export const ScaleEditor = (props: EditorProps<number>) => {
   const [handleChange, value, error] = useValidatedChangeHandler<number>(
-    'scale',
+    'Scale',
     props.onChange,
     0
   );
@@ -16,9 +17,9 @@ export const ScaleEditor = (props: EditorProps<number>) => {
         <input
           type="number"
           onChange={(e) => handleChange(+e.currentTarget.value)}
-        ></input>
+        />
       </label>
-      {error && <span>{error}</span>}
+      <Error error={error} />
     </div>
   );
 };

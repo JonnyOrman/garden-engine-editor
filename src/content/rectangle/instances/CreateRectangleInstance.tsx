@@ -1,5 +1,3 @@
-import Button from 'react-bootstrap/esm/Button';
-import Form from 'react-bootstrap/esm/Form';
 import CreateContentInstanceProps from '../../instances/CreateContentInstanceProps';
 import Rectangle from '../Rectangle';
 import React from 'react';
@@ -11,18 +9,21 @@ import { useRectangleInstanceSubmitter } from './useRectangleInstanceSubmitter';
 import RectangleInstance from './RectangleInstance';
 import { useSubmitter } from '../../useSubmitter';
 
-function CreateRectangleInstance(
-  props: CreateContentInstanceProps<Rectangle>
-) {
-  const [submit, handleChange, value] = useSubmitter<RectangleInstance>({
+function CreateRectangleInstance(props: CreateContentInstanceProps<Rectangle>) {
+  const [submit, handleChange, value] = useSubmitter<RectangleInstance>(
+    {
       name: '',
       contentName: '',
       scale: 0,
-      position: {x: 0, y: 0 },
+      position: {
+        x: 0,
+        y: 0,
+      },
       rgb: props.content.rgb,
     },
     useRectangleInstanceSubmitter(),
-  () => {});
+    () => {}
+  );
 
   const onNameValueChange = (newNameValue: string) => {
     handleChange<string>(newNameValue, (newNameValue: string) => {
@@ -32,7 +33,7 @@ function CreateRectangleInstance(
         scale: value.scale,
         position: value.position,
         rgb: value.rgb,
-      }
+      };
     });
   };
 
@@ -44,7 +45,7 @@ function CreateRectangleInstance(
         scale: newScaleValue,
         position: value.position,
         rgb: value.rgb,
-      }
+      };
     });
   };
 
@@ -56,21 +57,19 @@ function CreateRectangleInstance(
         scale: value.scale,
         position: newPositionValue,
         rgb: value.rgb,
-      }
+      };
     });
   };
 
   return (
     <div>
       <h4>Create new instance</h4>
-      <Form onSubmit={submit}>
+      <form onSubmit={submit}>
         <Name onChange={onNameValueChange}></Name>
         <ScaleEditor onChange={onScaleValueChange}></ScaleEditor>
         <TwoDPointEditor onChange={onPositionValueChange}></TwoDPointEditor>
-        <Button variant="primary" type="submit">
-          Create
-        </Button>
-      </Form>
+        <input type="submit" value="Create" />
+      </form>
     </div>
   );
 }

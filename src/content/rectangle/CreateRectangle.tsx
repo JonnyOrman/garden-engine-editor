@@ -1,7 +1,4 @@
 import React from 'react';
-import Button from 'react-bootstrap/Button';
-import Form from 'react-bootstrap/Form';
-import CreateContentProps from '../CreateContentProps';
 import Name from '../../fields/name/NameEditor';
 import Rgb from '../../fields/rgb/Rgb';
 import Dimension from '../../fields/dimension/DimensionEditor';
@@ -9,21 +6,24 @@ import RgbEditor from '../../fields/rgb/RgbEditor';
 import Rectangle from './Rectangle';
 import { useRectangleSubmitter } from './useRectangleSubmitter';
 import { useSubmitter } from '../useSubmitter';
+import Form from '../../forms/Form';
 
-function CreateRectangle(props: CreateContentProps) {
-  const [submit, handleChange, value] = useSubmitter<Rectangle>({
-        name: '',
-        type: 'rectangle',
-        width: 0,
-        height: 0,
-        rgb: {
-          r: 0,
-          g: 0,
-          b: 0
-        }
+function CreateRectangle() {
+  const [submit, handleChange, value] = useSubmitter<Rectangle>(
+    {
+      name: '',
+      type: 'rectangle',
+      width: 0,
+      height: 0,
+      rgb: {
+        r: 0,
+        g: 0,
+        b: 0,
       },
-      useRectangleSubmitter(),
-  () => {});
+    },
+    useRectangleSubmitter(),
+    () => {}
+  );
 
   const onNameValueChange = (newNameValue: string) => {
     handleChange<string>(newNameValue, (newNameValue: string) => {
@@ -33,7 +33,7 @@ function CreateRectangle(props: CreateContentProps) {
         width: value.width,
         height: value.height,
         rgb: value.rgb,
-      }
+      };
     });
   };
 
@@ -45,7 +45,7 @@ function CreateRectangle(props: CreateContentProps) {
         width: newWidthValue,
         height: value.height,
         rgb: value.rgb,
-      }
+      };
     });
   };
 
@@ -57,7 +57,7 @@ function CreateRectangle(props: CreateContentProps) {
         width: value.width,
         height: newHeightValue,
         rgb: value.rgb,
-      }
+      };
     });
   };
 
@@ -69,22 +69,51 @@ function CreateRectangle(props: CreateContentProps) {
         width: value.width,
         height: value.height,
         rgb: newRgbValue,
-      }
+      };
     });
   };
 
+  const buildValue = () => {
+    return {
+      name: value.name,
+      type: value.type,
+      width: value.width,
+      height: value.height,
+      rgb: value.rgb,
+    };
+  };
+
+  const onSubmit = (rectangle: Rectangle, e: any) => {
+    submit(e);
+  };
+
+  const defaultValue = {
+    name: '',
+    type: 'rectangle',
+    width: 0,
+    height: 0,
+    rgb: {
+      r: 0,
+      g: 0,
+      b: 0,
+    },
+  };
+
+  const fieldRenderers = [
+    () => <Name onChange={onNameValueChange}></Name>,
+    () => <Dimension dimension="Width" onChange={onWidthValueChange} />,
+    () => <Dimension dimension="Height" onChange={onHeightValueChange} />,
+    () => <RgbEditor onChange={onRgbValueChange}></RgbEditor>,
+  ];
+
   return (
-    <Form onSubmit={submit}>
-      <Name onChange={onNameValueChange}></Name>
-      <Form.Group>
-        <Dimension dimension="Width" onChange={onWidthValueChange} />
-        <Dimension dimension="Height" onChange={onHeightValueChange} />
-        <RgbEditor onChange={onRgbValueChange}></RgbEditor>
-      </Form.Group>
-      <Button variant="primary" type="submit">
-        Create
-      </Button>
-    </Form>
+    <Form
+      buildValue={buildValue}
+      onSubmit={onSubmit}
+      defaultValue={defaultValue}
+      fieldRenderers={fieldRenderers}
+      dependencies={[]}
+    />
   );
 }
 

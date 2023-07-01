@@ -1,5 +1,3 @@
-import Button from 'react-bootstrap/Button';
-import Form from 'react-bootstrap/Form';
 import CreateContentInstanceProps from '../../../instances/CreateContentInstanceProps';
 import EquilateralTriangle from '../EquilateralTriangle';
 import React from 'react';
@@ -14,14 +12,20 @@ import TwoDPoint from '../../../../fields/twoDPoint/TwoDPoint';
 function CreateEquilateralTriangleInstance(
   props: CreateContentInstanceProps<EquilateralTriangle>
 ) {
-  const [submit, handleChange, value] = useSubmitter<EquilateralTriangleInstance>({
+  const [submit, handleChange, value] =
+    useSubmitter<EquilateralTriangleInstance>(
+      {
         name: '',
         contentName: props.content.name,
         scale: 0,
-        position: { x: 0, y: 0 },
+        position: {
+          x: 0,
+          y: 0,
+        },
       },
       useEquilateralTriangleInstanceSubmitter(),
-      () => {});
+      () => {}
+    );
 
   const onNameValueChange = (newNameValue: string) => {
     handleChange<string>(newNameValue, (newNameValue: string) => {
@@ -30,7 +34,7 @@ function CreateEquilateralTriangleInstance(
         contentName: value.contentName,
         scale: value.scale,
         position: value.position,
-      }
+      };
     });
   };
 
@@ -41,7 +45,7 @@ function CreateEquilateralTriangleInstance(
         contentName: value.contentName,
         scale: newScaleValue,
         position: value.position,
-      }
+      };
     });
   };
 
@@ -52,21 +56,19 @@ function CreateEquilateralTriangleInstance(
         contentName: value.contentName,
         scale: value.scale,
         position: newPositionValue,
-      }
+      };
     });
   };
 
   return (
     <div>
       <h4>Create new instance</h4>
-      <Form onSubmit={submit}>
+      <form onSubmit={submit}>
         <Name onChange={onNameValueChange}></Name>
         <ScaleEditor onChange={onScaleValueChange}></ScaleEditor>
         <TwoDPointEditor onChange={onPositionValueChange}></TwoDPointEditor>
-        <Button variant="primary" type="submit">
-          Create
-        </Button>
-      </Form>
+        <input type="submit" value="Create" />
+      </form>
     </div>
   );
 }

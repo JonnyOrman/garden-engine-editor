@@ -1,12 +1,12 @@
 import React from 'react';
-import Form from 'react-bootstrap/Form';
 import Scene from './Scene';
 import DimensionEditor from '../fields/dimension/DimensionEditor';
 import { useValidatedChangeHandler } from '../fields/useValidatedChangeHandler';
+import Component from '../components/Component';
 
 export const SceneEditor = (props: { onChange: (newValue: Scene) => void }) => {
   const [handleChange, value, error] = useValidatedChangeHandler<Scene>(
-    'scale',
+    'Scale',
     props.onChange,
     {
       width: 0,
@@ -31,10 +31,10 @@ export const SceneEditor = (props: { onChange: (newValue: Scene) => void }) => {
   };
 
   return (
-    <Form.Group>
+    <Component>
       <DimensionEditor dimension="Width" onChange={onWidthChange} />
       <DimensionEditor dimension="Height" onChange={onHeightChange} />
       {error && <span>{error}</span>}
-    </Form.Group>
+    </Component>
   );
 };

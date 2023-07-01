@@ -1,6 +1,8 @@
 import React from 'react';
 import { useValidatedChangeHandler } from '../useValidatedChangeHandler';
 import EditorProps from '../EditorProps';
+import { TextEditor } from '../TextEditor';
+import ValidatedField from '../ValidatedField';
 
 export const NameEditor = (props: EditorProps<string>) => {
   const [handleChange, value, error] = useValidatedChangeHandler<string>(
@@ -10,16 +12,12 @@ export const NameEditor = (props: EditorProps<string>) => {
   );
 
   return (
-    <div>
-      <label>
-        Name
-        <input
-          type="text"
-          onChange={(e) => handleChange(e.currentTarget.value)}
-        ></input>
-      </label>
-      {error && <span>{error}</span>}
-    </div>
+    <ValidatedField
+      name="Name"
+      renderEditor={() => <TextEditor onChange={handleChange} />}
+      value={value}
+      error={error}
+    />
   );
 };
 

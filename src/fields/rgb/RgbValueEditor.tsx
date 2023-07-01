@@ -16,7 +16,7 @@ export const RgbValueEditor = (props: RgbValueEditorProps) => {
         <input
           type="number"
           onChange={(e) => handleChange(+e.currentTarget.value)}
-        ></input>
+        />
       </label>
       {error && <span>{error}</span>}
     </div>

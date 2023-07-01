@@ -1,64 +1,77 @@
 import { useState } from 'react';
-import Button from 'react-bootstrap/Button';
-import Dropdown from 'react-bootstrap/Dropdown';
-import Modal from 'react-bootstrap/Modal';
-import CreateTriangle from './triangle/CreateTriangle';
 import CreateContentModalProps from './CreateContentModalProps';
-import CreateRectangle from './rectangle/CreateRectangle';
 import React from 'react';
 import CreateEquilateralTriangle from './triangle/EquilateralTriangle/CreateEquilateralTriangle';
 import useContentTypes from './useContentTypes';
+import { VerticalComponent } from '../components/VerticalComponent';
+import styled from 'styled-components';
+import SelectItem from '../selectors/SelectItem';
+import Window from '../windows/Window';
+import { Dropdown } from '../selectors/Dropdown';
+import Component from '../components/Component';
+import CreateTriangle from './triangle/CreateTriangle';
+import CreateRectangle from './rectangle/CreateRectangle';
+
+const CreateContentModalComponent = styled(VerticalComponent)({
+  backgroundColor: '#2f2f2f',
+  display: 'flex',
+  flexDirection: 'column',
+});
+
+const Body = styled.div({
+  flexGrow: 1,
+  display: 'flex',
+  flexDirection: 'column',
+});
+
+const TypeSelect = styled.div({
+  width: '100%',
+  display: 'flex',
+  justifyContent: 'center',
+});
+
+const SelectedType = styled.div({
+  flexGrow: 1,
+});
 
 function CreateContentModal(props: CreateContentModalProps) {
-  const [type, setType] = useState('');
+  const [type, setType] = useState('Triangle');
 
   const contentTypes = useContentTypes();
 
-  let typeForm;
-  if (type == 'triangle') {
-    typeForm = (
-      <CreateTriangle onHide={props.onHide} />
-    );
-  } else if (type == 'rectangle') {
-    typeForm = (
-      <CreateRectangle onHide={props.onHide} />
-    );
-  } else if (type == 'EquilateralTriangle') {
-    typeForm = (
-      <CreateEquilateralTriangle onHide={props.onHide} />
-    );
-  }
+  const contentTypeOptions: SelectItem<string>[] = contentTypes.map(
+    (contentType) => {
+      return {
+        name: contentType.name,
+        value: contentType.type,
+      };
+    }
+  );
 
   return (
-    <Modal {...props} size="lg" aria-labelledby="create-content-modal" centered>
-      <Modal.Header closeButton>
-        <Modal.Title id="create-content-modal">Modal heading</Modal.Title>
-      </Modal.Header>
-      <Modal.Body>
-        <h4>New Content</h4>
-        <Dropdown
-          onSelect={(eventKey: any, event: any) => {
-            setType(eventKey);
-          }}
-        >
-          <Dropdown.Toggle variant="success" id="dropdown-basic">
-            Type
-          </Dropdown.Toggle>
-
-          <Dropdown.Menu>
-            {contentTypes.map((contentType: any) => {
-              return <Dropdown.Item eventKey={contentType.type} href="#">
-                {contentType.name}
-              </Dropdown.Item>
-            })}
-          </Dropdown.Menu>
-        </Dropdown>
-        {typeForm}
-      </Modal.Body>
-      <Modal.Footer>
-        <Button onClick={props.onHide}>Close</Button>
-      </Modal.Footer>
-    </Modal>
+    <CreateContentModalComponent>
+      <Window
+        content={() => {
+          return (
+            <Component>
+              <Body>
+                <TypeSelect>
+                  <Dropdown options={contentTypeOptions} onChange={setType} />
+                </TypeSelect>
+                <SelectedType>
+                  {type == 'Triangle' && <CreateTriangle />}
+                  {type == 'Rectangle' && <CreateRectangle />}
+                  {type == 'EquilateralTriangle' && (
+                    <CreateEquilateralTriangle />
+                  )}
+                </SelectedType>
+              </Body>
+            </Component>
+          );
+        }}
+        closeWindow={props.onHide}
+      />
+    </CreateContentModalComponent>
   );
 }
 

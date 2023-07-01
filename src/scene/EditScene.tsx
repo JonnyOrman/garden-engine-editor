@@ -1,14 +1,15 @@
+import styled from 'styled-components';
+import Component from '../components/Component';
 import EditSceneProps from './EditSceneProps';
 import React from 'react';
 
+const EditSceneComponent = styled(Component)({
+  backgroundColor: 'black',
+});
+
 function EditScene(props: EditSceneProps) {
   return (
-    <div
-      className="h-100"
-      style={{
-        background: 'black',
-      }}
-    >
+    <EditSceneComponent>
       {props.objects.map((object: any) => {
         return (
           <div
@@ -20,7 +21,7 @@ function EditScene(props: EditSceneProps) {
           </div>
         );
       })}
-    </div>
+    </EditSceneComponent>
   );
 }
 
