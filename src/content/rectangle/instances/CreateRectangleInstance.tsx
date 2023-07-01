@@ -9,18 +9,21 @@ import { useRectangleInstanceSubmitter } from './useRectangleInstanceSubmitter';
 import RectangleInstance from './RectangleInstance';
 import { useSubmitter } from '../../useSubmitter';
 
-function CreateRectangleInstance(
-  props: CreateContentInstanceProps<Rectangle>
-) {
-  const [submit, handleChange, value] = useSubmitter<RectangleInstance>({
+function CreateRectangleInstance(props: CreateContentInstanceProps<Rectangle>) {
+  const [submit, handleChange, value] = useSubmitter<RectangleInstance>(
+    {
       name: '',
       contentName: '',
       scale: 0,
-      position: {x: 0, y: 0 },
+      position: {
+        x: 0,
+        y: 0,
+      },
       rgb: props.content.rgb,
     },
     useRectangleInstanceSubmitter(),
-  () => {});
+    () => {}
+  );
 
   const onNameValueChange = (newNameValue: string) => {
     handleChange<string>(newNameValue, (newNameValue: string) => {
@@ -30,7 +33,7 @@ function CreateRectangleInstance(
         scale: value.scale,
         position: value.position,
         rgb: value.rgb,
-      }
+      };
     });
   };
 
@@ -42,7 +45,7 @@ function CreateRectangleInstance(
         scale: newScaleValue,
         position: value.position,
         rgb: value.rgb,
-      }
+      };
     });
   };
 
@@ -54,7 +57,7 @@ function CreateRectangleInstance(
         scale: value.scale,
         position: newPositionValue,
         rgb: value.rgb,
-      }
+      };
     });
   };
 
@@ -65,9 +68,7 @@ function CreateRectangleInstance(
         <Name onChange={onNameValueChange}></Name>
         <ScaleEditor onChange={onScaleValueChange}></ScaleEditor>
         <TwoDPointEditor onChange={onPositionValueChange}></TwoDPointEditor>
-        <input type="submit">
-          Create
-        </input>
+        <input type="submit" value="Create" />
       </form>
     </div>
   );

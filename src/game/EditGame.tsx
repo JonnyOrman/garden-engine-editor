@@ -4,6 +4,16 @@ import EditScene from '../scene/EditScene';
 import Game from './Game';
 import React from 'react';
 import { GameReaderContext } from './GameReaderContext';
+import Component from '../components/Component';
+import styled from 'styled-components';
+
+const EditSceneContainer = styled.div({
+  flexGrow: 1,
+});
+
+const EditContentContainer = styled.div({
+  width: '200px',
+});
 
 function EditGame() {
   const [game, setGame] = useState<Game>();
@@ -23,14 +33,14 @@ function EditGame() {
   }, []);
 
   return (
-    <div>
-      <div>
+    <Component>
+      <EditSceneContainer>
         <EditScene objects={game?.objects || []} />
-      </div>
-      <div>
+      </EditSceneContainer>
+      <EditContentContainer>
         <EditContent content={game?.content} />
-      </div>
-    </div>
+      </EditContentContainer>
+    </Component>
   );
 }
 

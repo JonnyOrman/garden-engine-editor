@@ -1,27 +1,29 @@
 import React from 'react';
-import CreateContentProps from '../../CreateContentProps';
 import NameEditor from '../../../fields/name/NameEditor';
 import DimensionEditor from '../../../fields/dimension/DimensionEditor';
 import EquilateralTriangle from './EquilateralTriangle';
 import { useEquilateralTriangleSubmitter } from './useEquilateralTriangleSubmitter';
 import { useSubmitter } from '../../useSubmitter';
+import Form from '../../../forms/Form';
 
-export default function CreateEquilateralTriangle(props: CreateContentProps) {
-  const [submit, handleChange, value] = useSubmitter<EquilateralTriangle>({
+export default function CreateEquilateralTriangle() {
+  const [submit, handleChange, value] = useSubmitter<EquilateralTriangle>(
+    {
       name: '',
       type: 'EquilateralTriangle',
-      size: 0
+      size: 0,
     },
     useEquilateralTriangleSubmitter(),
-  () => {});
+    () => {}
+  );
 
   const onNameValueChange = (newNameValue: string) => {
     handleChange<string>(newNameValue, (newNameValue: string) => {
       return {
         name: newNameValue,
         type: value.type,
-        size: value.size
-      }
+        size: value.size,
+      };
     });
   };
 
@@ -31,19 +33,46 @@ export default function CreateEquilateralTriangle(props: CreateContentProps) {
         name: value.name,
         type: value.type,
         size: newSizeValue,
-      }
+      };
     });
   };
-  
+
+  const buildValue = () => {
+    return {
+      name: value.name,
+      type: value.type,
+      size: value.size,
+    };
+  };
+
+  const onSubmit = (equilateralTriangle: EquilateralTriangle, e: any) => {
+    submit(e);
+  };
+
+  const defaultValue = {
+    name: '',
+    type: 'EquilateralTriangle',
+    size: 0,
+  };
+
+  const fieldRenderers = [
+    () => <NameEditor onChange={onNameValueChange} key="name" />,
+    () => (
+      <DimensionEditor
+        dimension="size"
+        onChange={onSizeValueChange}
+        key="scene"
+      />
+    ),
+  ];
+
   return (
-    <form onSubmit={submit}>
-      <NameEditor onChange={onNameValueChange}></NameEditor>
-      <div>
-        <DimensionEditor dimension='size' onChange={onSizeValueChange}></DimensionEditor>
-      </div>
-      <input type="submit">
-        Create
-      </input>
-    </form>
+    <Form
+      buildValue={buildValue}
+      onSubmit={onSubmit}
+      defaultValue={defaultValue}
+      fieldRenderers={fieldRenderers}
+      dependencies={[]}
+    ></Form>
   );
-  }
+}

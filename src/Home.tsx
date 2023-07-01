@@ -3,16 +3,12 @@ import React from 'react';
 import styled from 'styled-components';
 import Header1 from './headers/Header1';
 import PrimaryButton from './buttons/PrimaryButton';
+import ButtonCollection from './buttons/ButtonCollection';
 
 const Container = styled.div({
   width: '100%',
   height: '100%',
   position: 'absolute',
-});
-
-const Content = styled.div({
-  display: 'flex',
-  justifyContent: 'space-around',
 });
 
 function Home() {
@@ -30,10 +26,10 @@ function Home() {
     <Container>
       <Header1 text="Garden Engine Editor" />
 
-      <Content>
+      <ButtonCollection>
         <PrimaryButton text="Create new game" onClick={goToCreateNewGame} />
         <PrimaryButton text="Edit game" onClick={goToEditGame} />
-      </Content>
+      </ButtonCollection>
     </Container>
   );
 }

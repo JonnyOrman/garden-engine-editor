@@ -1,4 +1,4 @@
-import react from 'react';
+import React from 'react';
 import CreateContentInstanceProps from '../../instances/CreateContentInstanceProps';
 import Triangle from '../Triangle';
 import Name from '../../../fields/name/NameEditor';
@@ -9,17 +9,20 @@ import { TriangleInstance } from './TriangleInstance';
 import { useTriangleInstanceSubmitter } from './useTriangleInstanceSubmitter';
 import { useSubmitter } from '../../useSubmitter';
 
-function CreateTriangleInstance(
-  props: CreateContentInstanceProps<Triangle>
-) {
-  const [submit, handleChange, value] = useSubmitter<TriangleInstance>({
-        name: '',
-        contentName: props.content.name,
-        scale: 0,
-        position: { x: 0, y: 0 },
+function CreateTriangleInstance(props: CreateContentInstanceProps<Triangle>) {
+  const [submit, handleChange, value] = useSubmitter<TriangleInstance>(
+    {
+      name: '',
+      contentName: props.content.name,
+      scale: 0,
+      position: {
+        x: 0,
+        y: 0,
       },
-      useTriangleInstanceSubmitter(),
-      () => {});
+    },
+    useTriangleInstanceSubmitter(),
+    () => {}
+  );
 
   const onNameValueChange = (newNameValue: string) => {
     handleChange<string>(newNameValue, (newNameValue: string) => {
@@ -28,7 +31,7 @@ function CreateTriangleInstance(
         contentName: value.contentName,
         scale: value.scale,
         position: value.position,
-      }
+      };
     });
   };
 
@@ -39,7 +42,7 @@ function CreateTriangleInstance(
         contentName: value.contentName,
         scale: newScaleValue,
         position: value.position,
-      }
+      };
     });
   };
 
@@ -50,10 +53,10 @@ function CreateTriangleInstance(
         contentName: value.contentName,
         scale: value.scale,
         position: newPositionValue,
-      }
+      };
     });
   };
-  
+
   return (
     <div>
       <h4>Create new instance</h4>
@@ -61,9 +64,7 @@ function CreateTriangleInstance(
         <Name onChange={onNameValueChange}></Name>
         <ScaleEditor onChange={onScaleValueChange}></ScaleEditor>
         <TwoDPointEditor onChange={onPositionValueChange}></TwoDPointEditor>
-        <input type="submit">
-          Create
-        </input>
+        <input type="submit">Create</input>
       </form>
     </div>
   );

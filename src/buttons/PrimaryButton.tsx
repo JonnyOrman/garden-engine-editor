@@ -1,4 +1,5 @@
 import React from 'react';
+import { Button } from './Button';
 
 export const PrimaryButton = ({
   text,
@@ -7,11 +8,7 @@ export const PrimaryButton = ({
   text: string;
   onClick: () => void;
 }) => {
-  return (
-    <div>
-      <button onClick={onClick}>{text}</button>
-    </div>
-  );
+  return <Button onClick={onClick} text={text} />;
 };
 
 export default PrimaryButton;

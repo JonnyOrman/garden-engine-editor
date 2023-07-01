@@ -1,4 +1,9 @@
 import React from 'react';
+import styled from 'styled-components';
+
+const Container = styled.input({
+  borderRadius: 0,
+});
 
 export const Input = <T,>({
   type,
@@ -10,9 +15,9 @@ export const Input = <T,>({
   castValue: (value: string) => T;
 }) => {
   return (
-    <input
+    <Container
       type={type}
       onChange={(e) => onChange(castValue(e.currentTarget.value))}
-    ></input>
+    />
   );
 };

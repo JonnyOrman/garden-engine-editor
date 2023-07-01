@@ -1,10 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import Component from '../components/Component';
 import { Submit } from './Submit';
 import { Error } from '../errors/Error';
 
 const FormComponent = styled.form({
+  display: 'flex',
+  flexDirection: 'column',
+  gap: '15px',
+  width: '100%',
+  height: '100%',
+  boxSizing: 'border-box',
+  padding: '0 15px',
   div: {
     width: '100%',
   },
@@ -12,7 +18,9 @@ const FormComponent = styled.form({
 
 const FormFields = styled.div({
   display: 'flex',
+  flexDirection: 'column',
   width: '100%',
+  gap: '12px',
 });
 
 const FormFooter = styled.div({
@@ -49,19 +57,17 @@ export const Form = <T,>({
   };
 
   return (
-    <Component>
-      <FormComponent onSubmit={submit}>
-        <FormFields>
-          {fieldRenderers.map((fieldRenderer) => {
-            return fieldRenderer();
-          })}
-        </FormFields>
-        <FormFooter>
-          <Submit text="Create" />
-          {error && <Error error={error}></Error>}
-        </FormFooter>
-      </FormComponent>
-    </Component>
+    <FormComponent onSubmit={submit}>
+      <FormFields>
+        {fieldRenderers.map((fieldRenderer) => {
+          return fieldRenderer();
+        })}
+      </FormFields>
+      <FormFooter>
+        <Submit text="Create" />
+        <Error error={error}></Error>
+      </FormFooter>
+    </FormComponent>
   );
 };
 

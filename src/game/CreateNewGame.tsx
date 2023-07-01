@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Game from './Game';
 import Scene from '../scene/Scene';
@@ -7,7 +7,7 @@ import { SceneEditor } from '../scene/SceneEditor';
 import { GameWriterContext } from './GameWriterContext';
 import Header1 from '../headers/Header1';
 import Form from '../forms/Form';
-import Component from '../components/Component';
+import { VerticalComponent } from '../components/VerticalComponent';
 
 function CreateNewGame() {
   const [name, setName] = useState('');
@@ -21,44 +21,50 @@ function CreateNewGame() {
 
   const gameWriter = useContext(GameWriterContext);
 
+  const buildValue = () => {
+    return {
+      name: name,
+      scene: scene,
+      content: {
+        objects: [],
+      },
+      objects: [],
+    };
+  };
+
+  const onSubmit = (game: Game, e: any) => {
+    if (game) {
+      e.preventDefault();
+
+      gameWriter.write(game).then(() => {
+        navigate('/edit-game');
+      });
+    }
+  };
+
+  const defaultValue = {
+    name: name,
+    scene: scene,
+    content: {
+      objects: [],
+    },
+    objects: [],
+  };
+
   return (
-    <Component>
+    <VerticalComponent>
       <Header1 text="Create new game"></Header1>
       <Form
-        buildValue={() => {
-          return {
-            name: name,
-            scene: scene,
-            content: {
-              objects: [],
-            },
-            objects: [],
-          };
-        }}
-        onSubmit={(game: Game, e: any) => {
-          if (game) {
-            e.preventDefault();
-
-            gameWriter.write(game).then(() => {
-              navigate('/edit-game');
-            });
-          }
-        }}
-        defaultValue={{
-          name: name,
-          scene: scene,
-          content: {
-            objects: [],
-          },
-          objects: [],
-        }}
+        buildValue={buildValue}
+        onSubmit={onSubmit}
+        defaultValue={defaultValue}
         fieldRenderers={[
           () => <Name onChange={setName} key="name" />,
           () => <SceneEditor onChange={setScene} key="scene" />,
         ]}
         dependencies={[name, scene]}
       ></Form>
-    </Component>
+    </VerticalComponent>
   );
 }
 

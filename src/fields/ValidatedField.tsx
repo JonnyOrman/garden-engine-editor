@@ -17,7 +17,7 @@ export const ValidatedField = <T,>({
   return (
     <FullWidthComponent>
       <Field name={name} renderEditor={renderEditor} value={value} />
-      {error && <Error error={error} />}
+      <Error error={error} />
     </FullWidthComponent>
   );
 };

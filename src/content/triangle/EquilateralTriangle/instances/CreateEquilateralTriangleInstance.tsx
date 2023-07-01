@@ -12,14 +12,20 @@ import TwoDPoint from '../../../../fields/twoDPoint/TwoDPoint';
 function CreateEquilateralTriangleInstance(
   props: CreateContentInstanceProps<EquilateralTriangle>
 ) {
-  const [submit, handleChange, value] = useSubmitter<EquilateralTriangleInstance>({
+  const [submit, handleChange, value] =
+    useSubmitter<EquilateralTriangleInstance>(
+      {
         name: '',
         contentName: props.content.name,
         scale: 0,
-        position: { x: 0, y: 0 },
+        position: {
+          x: 0,
+          y: 0,
+        },
       },
       useEquilateralTriangleInstanceSubmitter(),
-      () => {});
+      () => {}
+    );
 
   const onNameValueChange = (newNameValue: string) => {
     handleChange<string>(newNameValue, (newNameValue: string) => {
@@ -28,7 +34,7 @@ function CreateEquilateralTriangleInstance(
         contentName: value.contentName,
         scale: value.scale,
         position: value.position,
-      }
+      };
     });
   };
 
@@ -39,7 +45,7 @@ function CreateEquilateralTriangleInstance(
         contentName: value.contentName,
         scale: newScaleValue,
         position: value.position,
-      }
+      };
     });
   };
 
@@ -50,7 +56,7 @@ function CreateEquilateralTriangleInstance(
         contentName: value.contentName,
         scale: value.scale,
         position: newPositionValue,
-      }
+      };
     });
   };
 
@@ -61,9 +67,7 @@ function CreateEquilateralTriangleInstance(
         <Name onChange={onNameValueChange}></Name>
         <ScaleEditor onChange={onScaleValueChange}></ScaleEditor>
         <TwoDPointEditor onChange={onPositionValueChange}></TwoDPointEditor>
-        <input type="submit">
-          Create
-        </input>
+        <input type="submit" value="Create" />
       </form>
     </div>
   );

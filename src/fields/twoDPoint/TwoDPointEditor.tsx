@@ -1,17 +1,18 @@
 import React from 'react';
 import TwoDPoint from './TwoDPoint';
 import DimensionEditor from '../dimension/DimensionEditor';
-import { useValidatedPropertyChangeHandler } from '../useValidatedPropertyChangeHandler';
+import { usePropertyChangeHandler } from '../usePropertyChangeHandler';
 import EditorProps from '../EditorProps';
 
 export const TwoDPointEditor = (props: EditorProps<TwoDPoint>) => {
-  const [handleChange, value, error] = useValidatedPropertyChangeHandler<
-    TwoDPoint,
-    number
-  >('TwoPointEditor', props.onChange, {
-    x: 0,
-    y: 0,
-  });
+  const [handleChange, value] = usePropertyChangeHandler<TwoDPoint, number>(
+    'Two2PointEditor',
+    props.onChange,
+    {
+      x: 0,
+      y: 0,
+    }
+  );
 
   const onXValueChange = (newXValue: number) => {
     handleChange(newXValue, (newXValue: number) => {
@@ -41,7 +42,6 @@ export const TwoDPointEditor = (props: EditorProps<TwoDPoint>) => {
         onChange={onYValueChange}
         dimension="Y"
       ></DimensionEditor>
-      {error && <span>{error}</span>}
     </div>
   );
 };
