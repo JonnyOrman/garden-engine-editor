@@ -4,8 +4,14 @@ import EditScene from '../scene/EditScene';
 import Game from './Game';
 import React from 'react';
 import { GameReaderContext } from './GameReaderContext';
-import Component from '../components/Component';
 import styled from 'styled-components';
+import { VerticalComponent } from '../components/VerticalComponent';
+import Component from '../components/Component';
+import WindowDock from '../windows/WindowDock';
+
+const Editor = styled(Component)({
+  flexGrow: 1,
+});
 
 const EditSceneContainer = styled.div({
   flexGrow: 1,
@@ -33,14 +39,17 @@ function EditGame() {
   }, []);
 
   return (
-    <Component>
-      <EditSceneContainer>
-        <EditScene objects={game?.objects || []} />
-      </EditSceneContainer>
-      <EditContentContainer>
-        <EditContent content={game?.content} />
-      </EditContentContainer>
-    </Component>
+    <VerticalComponent>
+      <Editor>
+        <EditSceneContainer>
+          <EditScene objects={game?.objects || []} />
+        </EditSceneContainer>
+        <EditContentContainer>
+          <EditContent content={game?.content} />
+        </EditContentContainer>
+      </Editor>
+      <WindowDock />
+    </VerticalComponent>
   );
 }
 
