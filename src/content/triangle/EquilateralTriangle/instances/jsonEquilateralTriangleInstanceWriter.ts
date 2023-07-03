@@ -4,4 +4,7 @@ import JsonContentInstanceWriter from '../../../instances/JsonContentInstanceWri
 import { EquilateralTriangleInstance } from './EquilateralTriangleInstance';
 
 export const jsonEquilateralTriangleInstanceWriter =
-  new JsonContentInstanceWriter<EquilateralTriangleInstance>(gameReader, gameWriter);
+  new JsonContentInstanceWriter<EquilateralTriangleInstance>(
+    gameReader,
+    gameWriter
+  );
