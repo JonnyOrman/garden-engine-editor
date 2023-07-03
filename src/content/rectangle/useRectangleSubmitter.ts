@@ -1,4 +1,5 @@
-import { useContext } from "react";
-import { RectangleSubmitterContext } from "./RectangleSubmitterContext";
+import { useContext } from 'react';
+import { RectangleSubmitterContext } from './RectangleSubmitterContext';
 
-export const useRectangleSubmitter = () => useContext(RectangleSubmitterContext);
+export const useRectangleSubmitter = () =>
+  useContext(RectangleSubmitterContext);

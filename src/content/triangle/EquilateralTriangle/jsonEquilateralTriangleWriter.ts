@@ -3,7 +3,5 @@ import { gameWriter } from '../../../game/GameWriter';
 import JsonObjectWriter from '../../JsonObjectWriter';
 import EquilateralTriangle from './EquilateralTriangle';
 
-export const jsonEquilateralTriangleWriter = new JsonObjectWriter<EquilateralTriangle>(
-  gameReader,
-  gameWriter
-);
+export const jsonEquilateralTriangleWriter =
+  new JsonObjectWriter<EquilateralTriangle>(gameReader, gameWriter);

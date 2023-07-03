@@ -10,7 +10,6 @@ const ModalBackground = styled(Component)({
   bottom: 0,
   right: 0,
   opacity: 0.5,
-  //div: {},
 });
 
 export default ModalBackground;
