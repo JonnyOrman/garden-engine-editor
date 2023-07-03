@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import { FullWidthComponent } from '../components/FullWidthComponent';
 import Tab from './Tab';
 import TabProps from './TabProps';
+import useTabs from './useTabs';
 
 const Container = styled(FullWidthComponent)({
   height: '25px',
@@ -10,12 +11,7 @@ const Container = styled(FullWidthComponent)({
 });
 
 export const WindowDock = () => {
-  const [tabs, setTabs] = useState([
-    {
-      name: 'some tab',
-      url: 'some/url',
-    },
-  ]);
+  const tabs = useTabs();
 
   if (tabs && tabs.length > 0) {
     return (

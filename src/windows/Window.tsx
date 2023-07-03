@@ -17,7 +17,7 @@ export const Window = ({
 }) => {
   return (
     <WindowComponent>
-      <Toolbar closeWindow={closeWindow} />
+      <Toolbar windowName={content.name} closeWindow={closeWindow} />
       <WindowContent content={content} />
     </WindowComponent>
   );
