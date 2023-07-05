@@ -12,12 +12,9 @@ export const DimensionEditor = (props: DimensionEditorProps) => {
   );
 
   return (
-    <ValidatedField
-      name={props.dimension}
-      renderEditor={() => <NumberEditor onChange={handleChange} />}
-      value={value}
-      error={error}
-    />
+    <ValidatedField name={props.dimension} value={value} error={error}>
+      <NumberEditor onChange={handleChange} />
+    </ValidatedField>
   );
 };
 

@@ -17,17 +17,17 @@ const FieldRow = styled.div({
 
 export const Field = <T,>({
   name,
-  renderEditor,
   value,
+  children,
 }: {
   name: string;
-  renderEditor: (value: T) => React.ReactNode;
   value: T;
+  children: JSX.Element | JSX.Element[];
 }) => {
   return (
     <FieldRow>
       <Label>{name}</Label>
-      {renderEditor(value)}
+      {children}
     </FieldRow>
   );
 };

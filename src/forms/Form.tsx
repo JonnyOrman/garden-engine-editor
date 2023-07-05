@@ -33,13 +33,13 @@ export const Form = <T,>({
   buildValue,
   onSubmit,
   defaultValue,
-  fieldRenderers,
+  children,
   dependencies,
 }: {
   buildValue: () => T;
   onSubmit: (value: T, e: any) => void;
   defaultValue: T;
-  fieldRenderers: (() => React.ReactNode)[];
+  children: JSX.Element[];
   dependencies?: React.DependencyList | undefined;
 }) => {
   const [value, setValue] = useState<T>(defaultValue);
@@ -58,11 +58,7 @@ export const Form = <T,>({
 
   return (
     <FormComponent onSubmit={submit}>
-      <FormFields>
-        {fieldRenderers.map((fieldRenderer) => {
-          return fieldRenderer();
-        })}
-      </FormFields>
+      <FormFields>{children}</FormFields>
       <FormFooter>
         <Submit text="Create" />
         <Error error={error}></Error>

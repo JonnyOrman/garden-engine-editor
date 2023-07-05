@@ -99,21 +99,18 @@ function CreateRectangle() {
     },
   };
 
-  const fieldRenderers = [
-    () => <Name onChange={onNameValueChange}></Name>,
-    () => <Dimension dimension="Width" onChange={onWidthValueChange} />,
-    () => <Dimension dimension="Height" onChange={onHeightValueChange} />,
-    () => <RgbEditor onChange={onRgbValueChange}></RgbEditor>,
-  ];
-
   return (
     <Form
       buildValue={buildValue}
       onSubmit={onSubmit}
       defaultValue={defaultValue}
-      fieldRenderers={fieldRenderers}
       dependencies={[]}
-    />
+    >
+      <Name onChange={onNameValueChange}></Name>
+      <Dimension dimension="Width" onChange={onWidthValueChange} />
+      <Dimension dimension="Height" onChange={onHeightValueChange} />
+      <RgbEditor onChange={onRgbValueChange}></RgbEditor>
+    </Form>
   );
 }
 

@@ -55,24 +55,19 @@ export default function CreateEquilateralTriangle() {
     size: 0,
   };
 
-  const fieldRenderers = [
-    () => <NameEditor onChange={onNameValueChange} key="name" />,
-    () => (
-      <DimensionEditor
-        dimension="size"
-        onChange={onSizeValueChange}
-        key="scene"
-      />
-    ),
-  ];
-
   return (
     <Form
       buildValue={buildValue}
       onSubmit={onSubmit}
       defaultValue={defaultValue}
-      fieldRenderers={fieldRenderers}
       dependencies={[]}
-    ></Form>
+    >
+      <NameEditor onChange={onNameValueChange} key="name" />
+      <DimensionEditor
+        dimension="size"
+        onChange={onSizeValueChange}
+        key="scene"
+      />
+    </Form>
   );
 }
