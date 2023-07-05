@@ -12,12 +12,9 @@ export const NameEditor = (props: EditorProps<string>) => {
   );
 
   return (
-    <ValidatedField
-      name="Name"
-      renderEditor={() => <TextEditor onChange={handleChange} />}
-      value={value}
-      error={error}
-    />
+    <ValidatedField name="Name" value={value} error={error}>
+      <TextEditor onChange={handleChange} />
+    </ValidatedField>
   );
 };
 

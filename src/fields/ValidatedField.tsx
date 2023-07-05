@@ -5,18 +5,20 @@ import { Field } from './Field';
 
 export const ValidatedField = <T,>({
   name,
-  renderEditor,
   value,
   error,
+  children,
 }: {
   name: string;
-  renderEditor: (value: T) => React.ReactNode;
   value: T;
   error: string | null;
+  children: any;
 }) => {
   return (
     <FullWidthComponent>
-      <Field name={name} renderEditor={renderEditor} value={value} />
+      <Field name={name} value={value}>
+        {children}
+      </Field>
       <Error error={error} />
     </FullWidthComponent>
   );
