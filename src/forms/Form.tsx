@@ -39,7 +39,7 @@ export const Form = <T,>({
   buildValue: () => T;
   onSubmit: (value: T, e: any) => void;
   defaultValue: T;
-  children: any;
+  children: JSX.Element[];
   dependencies?: React.DependencyList | undefined;
 }) => {
   const [value, setValue] = useState<T>(defaultValue);

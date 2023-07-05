@@ -12,7 +12,7 @@ export const ValidatedField = <T,>({
   name: string;
   value: T;
   error: string | null;
-  children: any;
+  children: JSX.Element | JSX.Element[];
 }) => {
   return (
     <FullWidthComponent>

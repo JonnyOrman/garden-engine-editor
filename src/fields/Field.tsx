@@ -22,7 +22,7 @@ export const Field = <T,>({
 }: {
   name: string;
   value: T;
-  children: any;
+  children: JSX.Element | JSX.Element[];
 }) => {
   return (
     <FieldRow>
