@@ -159,27 +159,18 @@ function CreateTriangle() {
     },
   };
 
-  const fieldRenderers = [
-    () => <Name onChange={onNameValueChange}></Name>,
-    () => (
-      <TrianglePointEditor onChange={onPoint1ValueChange}></TrianglePointEditor>
-    ),
-    () => (
-      <TrianglePointEditor onChange={onPoint2ValueChange}></TrianglePointEditor>
-    ),
-    () => (
-      <TrianglePointEditor onChange={onPoint3ValueChange}></TrianglePointEditor>
-    ),
-  ];
-
   return (
     <Form
       buildValue={buildValue}
       onSubmit={onSubmit}
       defaultValue={defaultValue}
-      fieldRenderers={fieldRenderers}
       dependencies={[]}
-    />
+    >
+      <Name onChange={onNameValueChange}></Name>
+      <TrianglePointEditor onChange={onPoint1ValueChange}></TrianglePointEditor>
+      <TrianglePointEditor onChange={onPoint2ValueChange}></TrianglePointEditor>
+      <TrianglePointEditor onChange={onPoint3ValueChange}></TrianglePointEditor>
+    </Form>
   );
 }
 

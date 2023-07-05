@@ -58,12 +58,11 @@ function CreateNewGame() {
         buildValue={buildValue}
         onSubmit={onSubmit}
         defaultValue={defaultValue}
-        fieldRenderers={[
-          () => <Name onChange={setName} key="name" />,
-          () => <SceneEditor onChange={setScene} key="scene" />,
-        ]}
         dependencies={[name, scene]}
-      ></Form>
+      >
+        <Name onChange={setName} key="name" />
+        <SceneEditor onChange={setScene} key="scene" />
+      </Form>
     </VerticalComponent>
   );
 }
