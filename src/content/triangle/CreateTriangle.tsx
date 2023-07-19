@@ -1,5 +1,5 @@
 import React from 'react';
-import Name from '../../fields/name/NameEditor';
+import NameEditor from '../../fields/name/NameEditor';
 import { TrianglePoint } from './TrianglePoint';
 import TrianglePointEditor from './TrianglePointEditor';
 import Triangle from './Triangle';
@@ -130,10 +130,10 @@ function CreateTriangle() {
       defaultValue={defaultValue}
       dependencies={[]}
     >
-      <Name onChange={onNameValueChange}></Name>
-      <TrianglePointEditor onChange={onPoint1ValueChange}></TrianglePointEditor>
-      <TrianglePointEditor onChange={onPoint2ValueChange}></TrianglePointEditor>
-      <TrianglePointEditor onChange={onPoint3ValueChange}></TrianglePointEditor>
+      <NameEditor onChange={onNameValueChange} />
+      <TrianglePointEditor onChange={onPoint1ValueChange} />
+      <TrianglePointEditor onChange={onPoint2ValueChange} />
+      <TrianglePointEditor onChange={onPoint3ValueChange} />
     </Form>
   );
 }

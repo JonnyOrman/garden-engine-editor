@@ -13,6 +13,7 @@ import Form from '../../../forms/Form';
 function CreateRectangleInstance(props: CreateContentInstanceProps<Rectangle>) {
   const defaultValue = {
     name: '',
+    type: 'Rectangle',
     contentName: '',
     scale: 0,
     position: {
@@ -32,6 +33,7 @@ function CreateRectangleInstance(props: CreateContentInstanceProps<Rectangle>) {
     handleChange<string>(newNameValue, (newNameValue: string) => {
       return {
         name: newNameValue,
+        type: 'Rectangle',
         contentName: value.contentName,
         scale: value.scale,
         position: value.position,
@@ -44,6 +46,7 @@ function CreateRectangleInstance(props: CreateContentInstanceProps<Rectangle>) {
     handleChange<number>(newScaleValue, (newScaleValue: number) => {
       return {
         name: value.name,
+        type: 'Rectangle',
         contentName: value.contentName,
         scale: newScaleValue,
         position: value.position,
@@ -56,6 +59,7 @@ function CreateRectangleInstance(props: CreateContentInstanceProps<Rectangle>) {
     handleChange<TwoDPoint>(newPositionValue, (newPositionValue: TwoDPoint) => {
       return {
         name: value.name,
+        type: 'Rectangle',
         contentName: value.contentName,
         scale: value.scale,
         position: newPositionValue,
@@ -67,7 +71,7 @@ function CreateRectangleInstance(props: CreateContentInstanceProps<Rectangle>) {
   const buildValue = () => {
     return {
       name: value.name,
-      contentNamem: value.contentName,
+      contentName: value.contentName,
       scale: value.scale,
       position: value.position,
       rgb: value.rgb,
