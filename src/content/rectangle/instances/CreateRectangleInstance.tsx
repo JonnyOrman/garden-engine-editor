@@ -1,13 +1,14 @@
 import CreateContentInstanceProps from '../../instances/CreateContentInstanceProps';
 import Rectangle from '../Rectangle';
 import React from 'react';
-import Name from '../../../fields/name/NameEditor';
+import NameEditor from '../../../fields/name/NameEditor';
 import ScaleEditor from '../../../fields/scale/ScaleEditor';
 import TwoDPointEditor from '../../../fields/twoDPoint/TwoDPointEditor';
 import TwoDPoint from '../../../fields/twoDPoint/TwoDPoint';
 import { useRectangleInstanceSubmitter } from './useRectangleInstanceSubmitter';
 import RectangleInstance from './RectangleInstance';
 import { useSubmitter } from '../../useSubmitter';
+import Form from '../../../forms/Form';
 
 function CreateRectangleInstance(props: CreateContentInstanceProps<Rectangle>) {
   const [submit, handleChange, value] = useSubmitter<RectangleInstance>(
@@ -61,16 +62,42 @@ function CreateRectangleInstance(props: CreateContentInstanceProps<Rectangle>) {
     });
   };
 
+  const buildValue = () => {
+    return {
+      name: value.name,
+      contentNamem: value.contentName,
+      scale: value.scale,
+      position: value.position,
+      rgb: value.rgb,
+    };
+  };
+
+  const defaultValue = {
+    name: '',
+    contentName: '',
+    scale: 0,
+    position: {
+      x: 0,
+      y: 0,
+    },
+    rgb: {
+      r: 0,
+      g: 0,
+      b: 0,
+    },
+  };
+
   return (
-    <div>
-      <h4>Create new instance</h4>
-      <form onSubmit={submit}>
-        <Name onChange={onNameValueChange}></Name>
-        <ScaleEditor onChange={onScaleValueChange}></ScaleEditor>
-        <TwoDPointEditor onChange={onPositionValueChange}></TwoDPointEditor>
-        <input type="submit" value="Create" />
-      </form>
-    </div>
+    <Form
+      buildValue={buildValue}
+      onSubmit={submit}
+      defaultValue={defaultValue}
+      dependencies={[]}
+    >
+      <NameEditor onChange={onNameValueChange} />
+      <ScaleEditor onChange={onScaleValueChange} />
+      <TwoDPointEditor onChange={onPositionValueChange} />
+    </Form>
   );
 }
 
