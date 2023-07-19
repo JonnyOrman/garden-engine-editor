@@ -6,40 +6,33 @@ import RgbEditor from '../../fields/rgb/RgbEditor';
 import EditorProps from '../../fields/EditorProps';
 import { TrianglePoint } from './TrianglePoint';
 import { useValidatedPropertyChangeHandler } from '../../fields/useValidatedPropertyChangeHandler';
+import { Field } from '../../fields/Field';
 
 export const TrianglePointEditor = (props: EditorProps<TrianglePoint>) => {
+  const defualtValue = {
+    twoDPoint: {
+      x: 0,
+      y: 0,
+    },
+    rgb: {
+      r: 0,
+      g: 0,
+      b: 0,
+    },
+  };
+
   const [twoDPointHandleChange, twoDPointValue, twoDPointError] =
     useValidatedPropertyChangeHandler<TrianglePoint, TwoDPoint>(
       'TwoDPoint',
       props.onChange,
-      {
-        twoDPoint: {
-          x: 0,
-          y: 0,
-        },
-        rgb: {
-          r: 0,
-          g: 0,
-          b: 0,
-        },
-      }
+      defualtValue
     );
 
   const [rgbHandleChange, rgbValue, rgbError] =
     useValidatedPropertyChangeHandler<TrianglePoint, Rgb>(
       'TwoDPoint',
       props.onChange,
-      {
-        twoDPoint: {
-          x: 0,
-          y: 0,
-        },
-        rgb: {
-          r: 0,
-          g: 0,
-          b: 0,
-        },
-      }
+      defualtValue
     );
 
   const onTwoDPointValueChange = (newTwoDPointValue: TwoDPoint) => {
@@ -61,10 +54,10 @@ export const TrianglePointEditor = (props: EditorProps<TrianglePoint>) => {
   };
 
   return (
-    <div>
+    <Field name="Triangle Point" value={defualtValue}>
       <TwoDPointEditor onChange={onTwoDPointValueChange}></TwoDPointEditor>
       <RgbEditor onChange={onRgbValueChange}></RgbEditor>
-    </div>
+    </Field>
   );
 };
 

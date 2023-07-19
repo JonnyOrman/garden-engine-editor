@@ -3,15 +3,18 @@ import TwoDPoint from './TwoDPoint';
 import DimensionEditor from '../dimension/DimensionEditor';
 import { usePropertyChangeHandler } from '../usePropertyChangeHandler';
 import EditorProps from '../EditorProps';
+import { Field } from '../Field';
 
 export const TwoDPointEditor = (props: EditorProps<TwoDPoint>) => {
+  const defaultValue = {
+    x: 0,
+    y: 0,
+  };
+
   const [handleChange, value] = usePropertyChangeHandler<TwoDPoint, number>(
     'Two2PointEditor',
     props.onChange,
-    {
-      x: 0,
-      y: 0,
-    }
+    defaultValue
   );
 
   const onXValueChange = (newXValue: number) => {
@@ -33,7 +36,7 @@ export const TwoDPointEditor = (props: EditorProps<TwoDPoint>) => {
   };
 
   return (
-    <div>
+    <Field name="2D Point" value={value}>
       <DimensionEditor
         onChange={onXValueChange}
         dimension="X"
@@ -42,7 +45,7 @@ export const TwoDPointEditor = (props: EditorProps<TwoDPoint>) => {
         onChange={onYValueChange}
         dimension="Y"
       ></DimensionEditor>
-    </div>
+    </Field>
   );
 };
 

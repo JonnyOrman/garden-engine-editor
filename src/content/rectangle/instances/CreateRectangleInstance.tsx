@@ -11,17 +11,19 @@ import { useSubmitter } from '../../useSubmitter';
 import Form from '../../../forms/Form';
 
 function CreateRectangleInstance(props: CreateContentInstanceProps<Rectangle>) {
-  const [submit, handleChange, value] = useSubmitter<RectangleInstance>(
-    {
-      name: '',
-      contentName: '',
-      scale: 0,
-      position: {
-        x: 0,
-        y: 0,
-      },
-      rgb: props.content.rgb,
+  const defaultValue = {
+    name: '',
+    contentName: '',
+    scale: 0,
+    position: {
+      x: 0,
+      y: 0,
     },
+    rgb: props.content.rgb,
+  };
+
+  const [submit, handleChange, value] = useSubmitter<RectangleInstance>(
+    defaultValue,
     useRectangleInstanceSubmitter(),
     () => {}
   );
@@ -70,21 +72,6 @@ function CreateRectangleInstance(props: CreateContentInstanceProps<Rectangle>) {
       position: value.position,
       rgb: value.rgb,
     };
-  };
-
-  const defaultValue = {
-    name: '',
-    contentName: '',
-    scale: 0,
-    position: {
-      x: 0,
-      y: 0,
-    },
-    rgb: {
-      r: 0,
-      g: 0,
-      b: 0,
-    },
   };
 
   return (

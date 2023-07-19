@@ -8,44 +8,46 @@ import { useSubmitter } from '../useSubmitter';
 import Form from '../../forms/Form';
 
 function CreateTriangle() {
-  const [submit, handleChange, value] = useSubmitter<Triangle>(
-    {
-      name: '',
-      type: 'triangle',
-      point1: {
-        twoDPoint: {
-          x: 0,
-          y: 0,
-        },
-        rgb: {
-          r: 0,
-          g: 0,
-          b: 0,
-        },
+  const defaultValue = {
+    name: '',
+    type: 'triangle',
+    point1: {
+      twoDPoint: {
+        x: 0,
+        y: 0,
       },
-      point2: {
-        twoDPoint: {
-          x: 0,
-          y: 0,
-        },
-        rgb: {
-          r: 0,
-          g: 0,
-          b: 0,
-        },
-      },
-      point3: {
-        twoDPoint: {
-          x: 0,
-          y: 0,
-        },
-        rgb: {
-          r: 0,
-          g: 0,
-          b: 0,
-        },
+      rgb: {
+        r: 0,
+        g: 0,
+        b: 0,
       },
     },
+    point2: {
+      twoDPoint: {
+        x: 0,
+        y: 0,
+      },
+      rgb: {
+        r: 0,
+        g: 0,
+        b: 0,
+      },
+    },
+    point3: {
+      twoDPoint: {
+        x: 0,
+        y: 0,
+      },
+      rgb: {
+        r: 0,
+        g: 0,
+        b: 0,
+      },
+    },
+  };
+
+  const [submit, handleChange, value] = useSubmitter<Triangle>(
+    defaultValue,
     useTriangleSubmitter(),
     () => {}
   );
@@ -119,44 +121,6 @@ function CreateTriangle() {
 
   const onSubmit = (triangle: Triangle, e: any) => {
     submit(e);
-  };
-
-  const defaultValue = {
-    name: '',
-    type: 'triangle',
-    point1: {
-      twoDPoint: {
-        x: 0,
-        y: 0,
-      },
-      rgb: {
-        r: 0,
-        g: 0,
-        b: 0,
-      },
-    },
-    point2: {
-      twoDPoint: {
-        x: 0,
-        y: 0,
-      },
-      rgb: {
-        r: 0,
-        g: 0,
-        b: 0,
-      },
-    },
-    point3: {
-      twoDPoint: {
-        x: 0,
-        y: 0,
-      },
-      rgb: {
-        r: 0,
-        g: 0,
-        b: 0,
-      },
-    },
   };
 
   return (

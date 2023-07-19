@@ -47,9 +47,9 @@ export const RgbEditor = (props: EditorProps<Rgb>) => {
 
   return (
     <ValidatedField name={'RGB'} value={value} error={error}>
-      <RgbValueEditor name={'R'} onChange={onRValueChange}></RgbValueEditor>
-      <RgbValueEditor name={'G'} onChange={onGValueChange}></RgbValueEditor>
-      <RgbValueEditor name={'B'} onChange={onBValueChange}></RgbValueEditor>
+      <RgbValueEditor name={'R'} onChange={onRValueChange} />
+      <RgbValueEditor name={'G'} onChange={onGValueChange} />
+      <RgbValueEditor name={'B'} onChange={onBValueChange} />
     </ValidatedField>
   );
 };
