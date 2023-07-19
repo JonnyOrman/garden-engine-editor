@@ -1,7 +1,7 @@
 import CreateContentInstanceProps from '../../../instances/CreateContentInstanceProps';
 import EquilateralTriangle from '../EquilateralTriangle';
 import React from 'react';
-import Name from '../../../../fields/name/NameEditor';
+import NameEditor from '../../../../fields/name/NameEditor';
 import ScaleEditor from '../../../../fields/scale/ScaleEditor';
 import TwoDPointEditor from '../../../../fields/twoDPoint/TwoDPointEditor';
 import { useSubmitter } from '../../../useSubmitter';
@@ -16,6 +16,7 @@ function CreateEquilateralTriangleInstance(
     useSubmitter<EquilateralTriangleInstance>(
       {
         name: '',
+        type: 'EquilateralTriangle',
         contentName: props.content.name,
         scale: 0,
         position: {
@@ -31,6 +32,7 @@ function CreateEquilateralTriangleInstance(
     handleChange<string>(newNameValue, (newNameValue: string) => {
       return {
         name: newNameValue,
+        type: 'EquilateralTriangle',
         contentName: value.contentName,
         scale: value.scale,
         position: value.position,
@@ -42,6 +44,7 @@ function CreateEquilateralTriangleInstance(
     handleChange<number>(newScaleValue, (newScaleValue: number) => {
       return {
         name: value.name,
+        type: 'EquilateralTriangle',
         contentName: value.contentName,
         scale: newScaleValue,
         position: value.position,
@@ -53,6 +56,7 @@ function CreateEquilateralTriangleInstance(
     handleChange<TwoDPoint>(newPositionValue, (newPositionValue: TwoDPoint) => {
       return {
         name: value.name,
+        type: 'EquilateralTriangle',
         contentName: value.contentName,
         scale: value.scale,
         position: newPositionValue,
@@ -64,9 +68,9 @@ function CreateEquilateralTriangleInstance(
     <div>
       <h4>Create new instance</h4>
       <form onSubmit={submit}>
-        <Name onChange={onNameValueChange}></Name>
-        <ScaleEditor onChange={onScaleValueChange}></ScaleEditor>
-        <TwoDPointEditor onChange={onPositionValueChange}></TwoDPointEditor>
+        <NameEditor onChange={onNameValueChange} />
+        <ScaleEditor onChange={onScaleValueChange} />
+        <TwoDPointEditor onChange={onPositionValueChange} />
         <input type="submit" value="Create" />
       </form>
     </div>

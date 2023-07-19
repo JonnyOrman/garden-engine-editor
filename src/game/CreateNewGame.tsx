@@ -2,7 +2,7 @@ import React, { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Game from './Game';
 import Scene from '../scene/Scene';
-import Name from '../fields/name/NameEditor';
+import NameEditor from '../fields/name/NameEditor';
 import { SceneEditor } from '../scene/SceneEditor';
 import { GameWriterContext } from './GameWriterContext';
 import Header1 from '../headers/Header1';
@@ -60,8 +60,8 @@ function CreateNewGame() {
         defaultValue={defaultValue}
         dependencies={[name, scene]}
       >
-        <Name onChange={setName} key="name" />
-        <SceneEditor onChange={setScene} key="scene" />
+        <NameEditor onChange={setName} />
+        <SceneEditor onChange={setScene} />
       </Form>
     </VerticalComponent>
   );

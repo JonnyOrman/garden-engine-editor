@@ -18,8 +18,14 @@ export const Dropdown = <T extends string | number>({
   options: SelectItem<T>[];
   onChange: (value: T) => void;
 }) => {
+  const defaultOption = {
+    name: '-- select --',
+    value: '',
+  };
+
   return (
     <SelectElement onChange={(e) => onChange(e.target.value as T)}>
+      <DropdownSelectItem selectItem={defaultOption} key={'default'} />
       {options.map((option: SelectItem<T>) => {
         return <DropdownSelectItem selectItem={option} key={option.value} />;
       })}

@@ -1,7 +1,7 @@
 import React from 'react';
-import Name from '../../fields/name/NameEditor';
+import NameEditor from '../../fields/name/NameEditor';
 import Rgb from '../../fields/rgb/Rgb';
-import Dimension from '../../fields/dimension/DimensionEditor';
+import DimensionEditor from '../../fields/dimension/DimensionEditor';
 import RgbEditor from '../../fields/rgb/RgbEditor';
 import Rectangle from './Rectangle';
 import { useRectangleSubmitter } from './useRectangleSubmitter';
@@ -106,10 +106,10 @@ function CreateRectangle() {
       defaultValue={defaultValue}
       dependencies={[]}
     >
-      <Name onChange={onNameValueChange}></Name>
-      <Dimension dimension="Width" onChange={onWidthValueChange} />
-      <Dimension dimension="Height" onChange={onHeightValueChange} />
-      <RgbEditor onChange={onRgbValueChange}></RgbEditor>
+      <NameEditor onChange={onNameValueChange} />
+      <DimensionEditor dimension="Width" onChange={onWidthValueChange} />
+      <DimensionEditor dimension="Height" onChange={onHeightValueChange} />
+      <RgbEditor onChange={onRgbValueChange} />
     </Form>
   );
 }

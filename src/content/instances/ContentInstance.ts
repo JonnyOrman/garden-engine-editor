@@ -5,4 +5,5 @@ export default interface ContentInstance extends Entity {
   contentName: string;
   scale: number;
   position: Position;
+  type: string;
 }

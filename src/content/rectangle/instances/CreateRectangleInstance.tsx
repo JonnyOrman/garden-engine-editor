@@ -1,26 +1,30 @@
 import CreateContentInstanceProps from '../../instances/CreateContentInstanceProps';
 import Rectangle from '../Rectangle';
 import React from 'react';
-import Name from '../../../fields/name/NameEditor';
+import NameEditor from '../../../fields/name/NameEditor';
 import ScaleEditor from '../../../fields/scale/ScaleEditor';
 import TwoDPointEditor from '../../../fields/twoDPoint/TwoDPointEditor';
 import TwoDPoint from '../../../fields/twoDPoint/TwoDPoint';
 import { useRectangleInstanceSubmitter } from './useRectangleInstanceSubmitter';
 import RectangleInstance from './RectangleInstance';
 import { useSubmitter } from '../../useSubmitter';
+import Form from '../../../forms/Form';
 
 function CreateRectangleInstance(props: CreateContentInstanceProps<Rectangle>) {
-  const [submit, handleChange, value] = useSubmitter<RectangleInstance>(
-    {
-      name: '',
-      contentName: '',
-      scale: 0,
-      position: {
-        x: 0,
-        y: 0,
-      },
-      rgb: props.content.rgb,
+  const defaultValue = {
+    name: '',
+    type: 'Rectangle',
+    contentName: '',
+    scale: 0,
+    position: {
+      x: 0,
+      y: 0,
     },
+    rgb: props.content.rgb,
+  };
+
+  const [submit, handleChange, value] = useSubmitter<RectangleInstance>(
+    defaultValue,
     useRectangleInstanceSubmitter(),
     () => {}
   );
@@ -29,6 +33,7 @@ function CreateRectangleInstance(props: CreateContentInstanceProps<Rectangle>) {
     handleChange<string>(newNameValue, (newNameValue: string) => {
       return {
         name: newNameValue,
+        type: 'Rectangle',
         contentName: value.contentName,
         scale: value.scale,
         position: value.position,
@@ -41,6 +46,7 @@ function CreateRectangleInstance(props: CreateContentInstanceProps<Rectangle>) {
     handleChange<number>(newScaleValue, (newScaleValue: number) => {
       return {
         name: value.name,
+        type: 'Rectangle',
         contentName: value.contentName,
         scale: newScaleValue,
         position: value.position,
@@ -53,6 +59,7 @@ function CreateRectangleInstance(props: CreateContentInstanceProps<Rectangle>) {
     handleChange<TwoDPoint>(newPositionValue, (newPositionValue: TwoDPoint) => {
       return {
         name: value.name,
+        type: 'Rectangle',
         contentName: value.contentName,
         scale: value.scale,
         position: newPositionValue,
@@ -61,16 +68,27 @@ function CreateRectangleInstance(props: CreateContentInstanceProps<Rectangle>) {
     });
   };
 
+  const buildValue = () => {
+    return {
+      name: value.name,
+      contentName: value.contentName,
+      scale: value.scale,
+      position: value.position,
+      rgb: value.rgb,
+    };
+  };
+
   return (
-    <div>
-      <h4>Create new instance</h4>
-      <form onSubmit={submit}>
-        <Name onChange={onNameValueChange}></Name>
-        <ScaleEditor onChange={onScaleValueChange}></ScaleEditor>
-        <TwoDPointEditor onChange={onPositionValueChange}></TwoDPointEditor>
-        <input type="submit" value="Create" />
-      </form>
-    </div>
+    <Form
+      buildValue={buildValue}
+      onSubmit={submit}
+      defaultValue={defaultValue}
+      dependencies={[]}
+    >
+      <NameEditor onChange={onNameValueChange} />
+      <ScaleEditor onChange={onScaleValueChange} />
+      <TwoDPointEditor onChange={onPositionValueChange} />
+    </Form>
   );
 }
 

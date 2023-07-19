@@ -3,6 +3,7 @@ import Rgb from './Rgb';
 import RgbValueEditor from './RgbValueEditor';
 import EditorProps from '../EditorProps';
 import { useValidatedPropertyChangeHandler } from '../useValidatedPropertyChangeHandler';
+import ValidatedField from '../ValidatedField';
 
 export const RgbEditor = (props: EditorProps<Rgb>) => {
   const [handleChange, value, error] = useValidatedPropertyChangeHandler<
@@ -45,12 +46,11 @@ export const RgbEditor = (props: EditorProps<Rgb>) => {
   };
 
   return (
-    <div>
-      <RgbValueEditor name={'R'} onChange={onRValueChange}></RgbValueEditor>
-      <RgbValueEditor name={'G'} onChange={onGValueChange}></RgbValueEditor>
-      <RgbValueEditor name={'B'} onChange={onBValueChange}></RgbValueEditor>
-      {error && <span>{error}</span>}
-    </div>
+    <ValidatedField name={'RGB'} value={value} error={error}>
+      <RgbValueEditor name={'R'} onChange={onRValueChange} />
+      <RgbValueEditor name={'G'} onChange={onGValueChange} />
+      <RgbValueEditor name={'B'} onChange={onBValueChange} />
+    </ValidatedField>
   );
 };
 

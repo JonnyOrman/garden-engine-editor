@@ -2,16 +2,18 @@ import React from 'react';
 import Scene from './Scene';
 import DimensionEditor from '../fields/dimension/DimensionEditor';
 import { useValidatedChangeHandler } from '../fields/useValidatedChangeHandler';
-import Component from '../components/Component';
+import ValidatedField from '../fields/ValidatedField';
 
 export const SceneEditor = (props: { onChange: (newValue: Scene) => void }) => {
+  const defaultValue = {
+    width: 0,
+    height: 0,
+  };
+
   const [handleChange, value, error] = useValidatedChangeHandler<Scene>(
     'Scale',
     props.onChange,
-    {
-      width: 0,
-      height: 0,
-    }
+    defaultValue
   );
 
   const onWidthChange = (newWidth: number) => {
@@ -31,10 +33,9 @@ export const SceneEditor = (props: { onChange: (newValue: Scene) => void }) => {
   };
 
   return (
-    <Component>
+    <ValidatedField name="Scene" value={defaultValue} error={error}>
       <DimensionEditor dimension="Width" onChange={onWidthChange} />
       <DimensionEditor dimension="Height" onChange={onHeightChange} />
-      {error && <span>{error}</span>}
-    </Component>
+    </ValidatedField>
   );
 };

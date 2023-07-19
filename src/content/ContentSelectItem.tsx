@@ -4,6 +4,7 @@ import Modal from '../modals/Modal';
 import Window from '../windows/Window';
 import Component from '../components/Component';
 import styled from 'styled-components';
+import Entity from '../Entity';
 
 const Body = styled.div({
   flexGrow: 1,
@@ -17,7 +18,7 @@ export const ContentSelectItem = ({
   show,
   onClose,
 }: {
-  object: any;
+  object: Entity;
   onClick: () => void;
   show: boolean;
   onClose: () => void;

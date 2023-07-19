@@ -1,5 +1,5 @@
 import React from 'react';
-import Name from '../../fields/name/NameEditor';
+import NameEditor from '../../fields/name/NameEditor';
 import { TrianglePoint } from './TrianglePoint';
 import TrianglePointEditor from './TrianglePointEditor';
 import Triangle from './Triangle';
@@ -8,44 +8,46 @@ import { useSubmitter } from '../useSubmitter';
 import Form from '../../forms/Form';
 
 function CreateTriangle() {
-  const [submit, handleChange, value] = useSubmitter<Triangle>(
-    {
-      name: '',
-      type: 'triangle',
-      point1: {
-        twoDPoint: {
-          x: 0,
-          y: 0,
-        },
-        rgb: {
-          r: 0,
-          g: 0,
-          b: 0,
-        },
+  const defaultValue = {
+    name: '',
+    type: 'triangle',
+    point1: {
+      twoDPoint: {
+        x: 0,
+        y: 0,
       },
-      point2: {
-        twoDPoint: {
-          x: 0,
-          y: 0,
-        },
-        rgb: {
-          r: 0,
-          g: 0,
-          b: 0,
-        },
-      },
-      point3: {
-        twoDPoint: {
-          x: 0,
-          y: 0,
-        },
-        rgb: {
-          r: 0,
-          g: 0,
-          b: 0,
-        },
+      rgb: {
+        r: 0,
+        g: 0,
+        b: 0,
       },
     },
+    point2: {
+      twoDPoint: {
+        x: 0,
+        y: 0,
+      },
+      rgb: {
+        r: 0,
+        g: 0,
+        b: 0,
+      },
+    },
+    point3: {
+      twoDPoint: {
+        x: 0,
+        y: 0,
+      },
+      rgb: {
+        r: 0,
+        g: 0,
+        b: 0,
+      },
+    },
+  };
+
+  const [submit, handleChange, value] = useSubmitter<Triangle>(
+    defaultValue,
     useTriangleSubmitter(),
     () => {}
   );
@@ -121,44 +123,6 @@ function CreateTriangle() {
     submit(e);
   };
 
-  const defaultValue = {
-    name: '',
-    type: 'triangle',
-    point1: {
-      twoDPoint: {
-        x: 0,
-        y: 0,
-      },
-      rgb: {
-        r: 0,
-        g: 0,
-        b: 0,
-      },
-    },
-    point2: {
-      twoDPoint: {
-        x: 0,
-        y: 0,
-      },
-      rgb: {
-        r: 0,
-        g: 0,
-        b: 0,
-      },
-    },
-    point3: {
-      twoDPoint: {
-        x: 0,
-        y: 0,
-      },
-      rgb: {
-        r: 0,
-        g: 0,
-        b: 0,
-      },
-    },
-  };
-
   return (
     <Form
       buildValue={buildValue}
@@ -166,10 +130,10 @@ function CreateTriangle() {
       defaultValue={defaultValue}
       dependencies={[]}
     >
-      <Name onChange={onNameValueChange}></Name>
-      <TrianglePointEditor onChange={onPoint1ValueChange}></TrianglePointEditor>
-      <TrianglePointEditor onChange={onPoint2ValueChange}></TrianglePointEditor>
-      <TrianglePointEditor onChange={onPoint3ValueChange}></TrianglePointEditor>
+      <NameEditor onChange={onNameValueChange} />
+      <TrianglePointEditor onChange={onPoint1ValueChange} />
+      <TrianglePointEditor onChange={onPoint2ValueChange} />
+      <TrianglePointEditor onChange={onPoint3ValueChange} />
     </Form>
   );
 }
